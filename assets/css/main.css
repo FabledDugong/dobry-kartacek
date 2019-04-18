@@ -1,4 +1,4 @@
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, textarea, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   vertical-align: baseline;
   margin: 0;
   padding: 0;
@@ -53,12 +53,6 @@ html {
   src: url("../font/Roboto-Regular.ttf") format("truetype");
   font-family: "Roboto-Regular"; }
 @font-face {
-  src: url("../font/RobotoSlab-Regular.ttf") format("truetype");
-  font-family: "RobotoSlab-Regular"; }
-@font-face {
-  src: url("../font/RobotoSlab-Bold.ttf") format("truetype");
-  font-family: "RobotoSlab-Bold"; }
-@font-face {
   src: url("../font/Axis-Extrabold.otf") format("opentype");
   font-family: "Axis"; }
 body {
@@ -68,16 +62,21 @@ header, section, footer {
   display: flex;
   width: 100vw; }
 
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%; }
+
 h1, h2, h3, h4, h5 {
   font-family: "Axis", sans-serif; }
 
 h1 {
   margin: 0 0 1vmin 0;
   font-size: 8vmin;
-  color: #000; }
+  color: #218F76; }
 
 h2 {
-  font-size: 4vmin; }
+  font-size: 5vmin; }
 
 h3 {
   font-size: 2.5vmin; }
@@ -85,39 +84,32 @@ h3 {
 h4 {
   font-size: 3vmin; }
 
+h5 {
+  font-size: 1.75vmin;
+  color: #28292D; }
+
 p {
   font-size: 2vmin;
-  color: #000000; }
+  color: #218F76; }
 
 a {
   font-family: "Axis", sans-serif; }
 
 button {
-  width: 50%;
+  width: 100%;
+  margin: 0 3vmin 0 0;
   padding: 2vmin;
-  background: #53C1E0;
+  background: #218F76;
   border: none;
+  box-shadow: 5px 0 25px 1px #BCBCBC;
   font-family: "Axis", sans-serif;
   font-size: 2.5vmin;
   color: #fff; }
 
-input:not([type="submit"]), textarea:not([type="submit"]) {
-  height: 5vmin;
-  background: transparent;
-  border: none;
-  border-bottom: 0.1vmin solid #565757; }
-input[type="submit"], textarea[type="submit"] {
-  padding: 2vmin;
-  border: 1px solid black;
-  background: transparent; }
-
-textarea {
-  height: 10vmin;
-  resize: none; }
-
 .logo {
   width: 10vmin;
-  height: 10vmin; }
+  height: 10vmin;
+  padding: 2vmin; }
 
 .icon {
   width: 5vmin;
@@ -125,20 +117,24 @@ textarea {
 
 #header {
   height: 100vh;
-  background: #fff;
+  background: linear-gradient(#fff, #EAEAEA);
   color: #fff; }
   #header div {
     width: 50%; }
   #header #intro {
     display: flex;
     flex-direction: column;
-    padding: 5vmin;
-    background-color: #fff; }
+    padding: 5vmin; }
+    #header #intro div div {
+      display: flex;
+      flex-direction: row; }
+      #header #intro div div button:first-of-type {
+        background: #DE9E33; }
     #header #intro p {
       margin: 2vmin 0 5vmin 0;
       font-family: "Roboto-Light", sans-serif;
       font-size: 4vmin;
-      color: #565757; }
+      color: #28292D; }
     #header #intro #control-panel {
       display: flex;
       flex-direction: row;
@@ -147,17 +143,24 @@ textarea {
       width: 100%;
       height: 10vmin;
       margin: 0 0 5vmin 0;
-      background: #EAEAEA;
+      background: white;
       box-shadow: 5px 5px 25px 1px #BCBCBC;
-      color: #565757; }
+      color: #28292D; }
       #header #intro #control-panel div {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        width: 25vmin;
+        width: 60%;
         height: 100%; }
       #header #intro #control-panel #brand {
+        width: fit-content;
         justify-content: flex-start; }
+      #header #intro #control-panel #menu #cart::after {
+        content: "1";
+        display: none;
+        position: relative;
+        top: 2vmin;
+        right: 50%; }
       #header #intro #control-panel:hover {
         border-bottom: 0.1vmin solid #BCBCBC;
         -webkit-transition: border 0.5s;
@@ -168,7 +171,7 @@ textarea {
   #header .carousel {
     overflow: hidden;
     position: relative;
-    margin: 2.5vmin;
+    margin: 2.5vmin 5vmin;
     box-shadow: 5px 5px 25px 1px #BCBCBC; }
     #header .carousel .images {
       display: flex;
@@ -233,26 +236,12 @@ textarea {
         display: block;
         width: 1.5vmin;
         height: 1.5vmin;
-        background: #565757;
+        background: #28292D;
         border-radius: 50%;
         cursor: pointer;
         margin: 1vmin 0; }
         #header .carousel .status .bar.active {
-          background: #fff; }
-
-#why {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 50vh;
-  padding: 15vmin;
-  background: linear-gradient(#fff, #EAEAEA); }
-  #why .why-division {
-    display: flex;
-    flex-direction: column;
-    width: 25vmin; }
-    #why .why-division .icon {
-      border-bottom: 0.1vmin solid #565757; }
+          background: #EAEAEA; }
 
 #shop {
   height: 100%;
@@ -287,33 +276,59 @@ textarea {
     z-index: 10;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 20%;
     height: 100%;
     background: #fff;
     box-shadow: 5px 0 25px 1px #BCBCBC; }
-  #shop #products {
+  #shop #products, #shop #product-detail {
     z-index: 1;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
-    width: 50%;
+    width: 60%;
     height: 100%;
     background: #fff;
     box-shadow: -5px 0 25px 1px #BCBCBC; }
-    #shop #products .product {
+    #shop #products .product, #shop #product-detail .product {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 33.33%;
       height: 33.33%; }
-      #shop #products .product h4 {
+      #shop #products .product h4, #shop #product-detail .product h4 {
         display: none; }
-      #shop #products .product:hover ::after {
+      #shop #products .product:hover ::after, #shop #product-detail .product:hover ::after {
         background-color: rgba(0, 0, 0, 0.5); }
-      #shop #products .product:hover h4 {
+      #shop #products .product:hover h4, #shop #product-detail .product:hover h4 {
         display: block; }
+  #shop #product-detail {
+    display: none;
+    flex-direction: column;
+    align-items: center; }
+    #shop #product-detail div {
+      display: flex;
+      flex-direction: column;
+      width: 100%; }
+    #shop #product-detail .product-image {
+      height: 50%;
+      background: url("../img/products/PEN GRIP NAVI BLUE.jpg") no-repeat center center/contain; }
+    #shop #product-detail .product-content {
+      padding: 5vmin; }
+      #shop #product-detail .product-content .product-info {
+        display: flex;
+        flex-direction: row; }
+        #shop #product-detail .product-content .product-info p {
+          text-align: justify; }
+      #shop #product-detail .product-content .product-control {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }
+        #shop #product-detail .product-content .product-control button {
+          width: 35%; }
+          #shop #product-detail .product-content .product-control button[data-role='back'] {
+            width: 20%; }
 
 #product1 {
   background: url("../img/products/PEN GRIP NAVI BLUE.jpg") no-repeat center center/contain; }
@@ -324,37 +339,71 @@ textarea {
 #product3 {
   background: url("../img/products/PEN GRIP NAVI RED.jpg") no-repeat center center/contain; }
 
-.section-content {
-  width: 100%;
-  height: 100%;
-  padding: 2vmin; }
-
-#footer {
-  flex-wrap: wrap;
+#contact {
+  flex-direction: row;
   justify-content: space-between;
-  height: 75vh;
-  padding: 5vmin 5vmin 0;
+  height: fit-content;
+  padding: 5vmin;
   background-color: #EAEAEA; }
-  #footer #contact {
-    width: 55%;
-    height: 75%;
-    background: #EAEAEA; }
-    #footer #contact h2 {
-      color: #00955D; }
-    #footer #contact #contact-form {
-      display: flex; }
-      #footer #contact #contact-form form {
-        display: flex;
-        flex-direction: column; }
-  #footer #important {
-    width: 40%;
-    height: 75%;
-    background: #EAEAEA; }
-  #footer #copy {
+  #contact div {
+    width: 100%; }
+    #contact div h2 {
+      color: #218F76; }
+    #contact div address {
+      font-family: "Axis", sans-serif;
+      font-size: 3vmin;
+      color: #000; }
+  #contact #help {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 25%; }
+    justify-content: space-between; }
+    #contact #help form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      background: transparent; }
+      #contact #help form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 0 2vmin 0; }
+      #contact #help form input:not([type="submit"]) {
+        width: 49%;
+        height: 5vmin;
+        padding: 0 0 0 1vmin;
+        background: transparent;
+        border-bottom: 0.1vmin solid #BCBCBC;
+        outline-color: #218F76; }
+      #contact #help form input[type="submit"] {
+        width: 14%;
+        padding: 2vmin; }
+      #contact #help form textarea {
+        width: 84%;
+        height: 20vmin;
+        padding: 1vmin 0 0 1vmin;
+        background: transparent;
+        border: 0.1vmin solid #BCBCBC;
+        outline-color: #218F76;
+        font-family: "Roboto-Light", sans-serif;
+        font-size: 1.5vmin;
+        resize: none; }
+
+#footer {
+  height: 50vh;
+  background: #28292D; }
+  #footer #important {
+    display: flex;
+    flex-direction: row; }
+    #footer #important div {
+      width: 50%; }
+    #footer #important #copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      height: 25%; }
 
 ::-webkit-scrollbar-track {
   background-color: #EAEAEA; }
@@ -364,6 +413,6 @@ textarea {
   background-color: #EAEAEA; }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #565757; }
+  background-color: #28292D; }
 
 /*# sourceMappingURL=main.css.map */

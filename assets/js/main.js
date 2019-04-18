@@ -172,14 +172,51 @@ let imgs = [
 
 /* --------------------- */
 
-let _categories = [...document.querySelectorAll('.category')]
-_categories.map(e => e.addEventListener('click', () => {
-    e.style.display != 'none' ? e.style.display = 'none' : e.style.color = 'initial';
-    if (e.classList.contains('active')) {
-        e.classList.remove('active')
-    } else {
-        e.classList.add('active')
+let _vp = document.querySelector('#header').getBoundingClientRect()
+console.log(_vp)
+// window.addEventListener('scroll', () => {
+//     if (_vp.height )
+// })
+
+function updateCheckout () {
+    let _cart = document.querySelector('#cart')
+    console.log(_cart)
+    _cart.style.borderBottom = '0.25vmin solid #218F76'
+    _cart.style.setProperty('after', 'display: block')
+}
+
+let _buy = document.querySelector('[data-role]')
+_buy.addEventListener('click', () => {
+    updateCheckout()
+})
+console.log(_buy)
+
+let _categories = [...document.querySelectorAll('.category')],
+    _subcategories = [...document.querySelectorAll('.subcategory')],
+    products = document.querySelector('#products'),
+    _products = [...document.querySelectorAll('.product')],
+    _detail = document.querySelector('#product-detail')
+
+function subcCheck () {
+    for (let i = 0; i < _categories.length; i++) {
+        let t = _categories[i]
+        ! t.classList.contains('active') ? t.style.display = 'none' : t.style.display = 'block'
     }
+}
+
+function showDetail(product) {
+    let product_id = product.dataset.id
+    products.style.display = 'none'
+    _detail.style.display = 'flex'
+    console.log(product_id)
+}
+
+_categories.map(e => e.addEventListener('click', () => {
+   e.classList.add('active')
+    subcCheck()
 }))
+
+_products.map(e => e.addEventListener('click', () => {showDetail(e)}))
+
 
 // _categories => n.classList.contains('active')

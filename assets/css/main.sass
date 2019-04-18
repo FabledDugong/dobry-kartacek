@@ -7,54 +7,50 @@ body
 header, section, footer
   display: flex
   width: 100vw
+nav
+  display: flex
+  justify-content: space-evenly
+  width: 60%
 h1,h2,h3,h4,h5
   font-family: $title-font
 h1
   margin: 0 0 1vmin 0
   font-size: 8vmin
-  color: #000
+  color: $main-color
 h2
-  font-size: 4vmin
+  font-size: 5vmin
 h3
   font-size: 2.5vmin
 h4
   font-size: 3vmin
+h5
+  font-size: 1.75vmin
+  color: $dark
 p
   font-size: 2vmin
-  color: #000000
+  color: $main-color
 a
   font-family: $title-font
 button
-  width: 50%
+  width: 100%
+  margin: 0 3vmin 0 0
   padding: 2vmin
-  background: $secondary-color
+  background: $main-color
   border: none
+  box-shadow: 5px 0 25px 1px #BCBCBC
   font-family: $title-font
   font-size: 2.5vmin
   color: #fff
-input
-  &:not([type="submit"])
-    height: 5vmin
-    background: transparent
-    border: none
-    border-bottom: 0.1vmin solid #565757
-  &[type="submit"]
-    padding: 2vmin
-    border: 1px solid black
-    background: transparent
-textarea
-  @extend input
-  height: 10vmin
-  resize: none
 .logo
   width: 10vmin
   height: 10vmin
+  padding: 2vmin
 .icon
   width: 5vmin
   height: 5vmin
 #header
   height: 100vh
-  background: #fff
+  background: linear-gradient(#fff, $gray)
   color: #fff
   div
     width: 50%
@@ -62,12 +58,18 @@ textarea
     display: flex
     flex-direction: column
     padding: 5vmin
-    background-color: #fff
+    div
+      div
+        display: flex
+        flex-direction: row
+        button
+          &:first-of-type
+            background: $secondary-color
     p
       margin: 2vmin 0 5vmin 0
       font-family: $content-font-lighter
       font-size: 4vmin
-      color: #565757
+      color: $dark
     #control-panel
       display: flex
       flex-direction: row
@@ -76,17 +78,27 @@ textarea
       width: 100%
       height: 10vmin
       margin: 0 0 5vmin 0
-      background: $gray
+      //border-bottom: 0.1vmin solid #BCBCBC
+      background: white
       box-shadow: 5px 5px 25px 1px #BCBCBC
-      color: #565757
+      color: #28292D
       div
         display: flex
         justify-content: space-evenly
         align-items: center
-        width: 25vmin
+        width: 60%
         height: 100%
       #brand
+        width: fit-content
         justify-content: flex-start
+      #menu
+        #cart
+          &::after
+            content: '1'
+            display: none
+            position: relative
+            top: 2vmin
+            right: 50%
       &:hover
         border-bottom: 0.1vmin solid #BCBCBC
         -webkit-transition: border 0.5s
@@ -98,7 +110,7 @@ textarea
   .carousel
     overflow: hidden
     position: relative
-    margin: 2.5vmin
+    margin: 2.5vmin 5vmin
     box-shadow: 5px 5px 25px 1px #BCBCBC
     .images
       display: flex
@@ -161,26 +173,13 @@ textarea
         display: block
         width: 1.5vmin
         height: 1.5vmin
-        background: #565757
+        background: $dark
         border-radius: 50%
         cursor: pointer
         margin: 1vmin 0
         &.active
-          background: #fff
+          background: $gray
 
-#why
-  flex-direction: row
-  justify-content: space-between
-  align-items: center
-  height: 50vh
-  padding: 15vmin
-  background: linear-gradient(#fff, $gray)
-  .why-division
-    display: flex
-    flex-direction: column
-    width: 25vmin
-    .icon
-      border-bottom: 0.1vmin solid #565757
 #shop
   height: 100%
   padding: 5vmin
@@ -210,12 +209,11 @@ textarea
         .subcategory
           display: flex
           height: 20%
-
   #filter
     z-index: 10
     display: flex
     flex-direction: column
-    width: 30%
+    width: 20%
     height: 100%
     background: #fff
     box-shadow: 5px 0 25px 1px #BCBCBC
@@ -225,7 +223,7 @@ textarea
     flex-direction: row
     flex-wrap: wrap
     align-content: flex-start
-    width: 50%
+    width: 60%
     height: 100%
     background: #fff
     box-shadow: -5px 0 25px 1px #BCBCBC
@@ -243,6 +241,33 @@ textarea
           background-color: rgba(0,0,0,0.5)
         h4
           display: block
+  #product-detail
+    @extend #products
+    display: none
+    flex-direction: column
+    align-items: center
+    div
+      display: flex
+      flex-direction: column
+      width: 100%
+    .product-image
+      height: 50%
+      @include bg-img("../img/products/PEN GRIP NAVI BLUE.jpg")
+    .product-content
+      padding: 5vmin
+      .product-info
+        display: flex
+        flex-direction: row
+        p
+          text-align: justify
+      .product-control
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        button
+          width: 35%
+          &[data-role='back']
+            width: 20%
 
 #product1
   @include bg-img("../img/products/PEN GRIP NAVI BLUE.jpg")
@@ -251,37 +276,74 @@ textarea
 #product3
   @include bg-img("../img/products/PEN GRIP NAVI RED.jpg")
 
-.section-content
-  width: 100%
-  height: 100%
-  padding: 2vmin
-
-#footer
-  flex-wrap: wrap
+#contact
+  flex-direction: row
   justify-content: space-between
-  height: 75vh
-  padding: 5vmin 5vmin 0
+  height: fit-content
+  padding: 5vmin
   background-color: $gray
-  #contact
-    width: 55%
-    height: 75%
-    background: $gray
+  div
+    width: 100%
     h2
-      color: #00955D
-    #contact-form
-      display: flex
-      form
-        display: flex
-        flex-direction: column
-  #important
-    width: 40%
-    height: 75%
-    background: $gray
-  #copy
+      color: $main-color
+    address
+      font-family: $title-font
+      font-size: 3vmin
+      color: #000
+  #help
     display: flex
     flex-direction: column
-    justify-content: center
-    height: 25%
+    justify-content: space-between
+    form
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      align-items: center
+      width: 100%
+      background: transparent
+      //box-shadow: 0 0 25px 1px #BCBCBC
+      div
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        margin: 0 0 2vmin 0
+      input
+        &:not([type="submit"])
+          width: 49%
+          height: 5vmin
+          padding: 0 0 0 1vmin
+          background: transparent
+          border-bottom: 0.1vmin solid #BCBCBC
+          outline-color: $main-color
+          //box-shadow: 0 0 25px 1px #BCBCBC
+        &[type="submit"]
+          width: 14%
+          padding: 2vmin
+      textarea
+        width: 84%
+        height: 20vmin
+        padding: 1vmin 0 0 1vmin
+        background: transparent
+        border: 0.1vmin solid #BCBCBC
+        outline-color: $main-color
+        font-family: $content-font-lighter
+        font-size: 1.5vmin
+        resize: none
+#footer
+  height: 50vh
+  background: $dark
+  //background: linear-gradient($gray, $grayer)
+  #important
+    display: flex
+    flex-direction: row
+    div
+      width: 50%
+    #copy
+      display: flex
+      flex-direction: column
+      justify-content: center
+      width: 100%
+      height: 25%
 
 ::-webkit-scrollbar-track
   background-color: $gray
@@ -289,4 +351,4 @@ textarea
   width: 0.75vmin
   background-color: $gray
 ::-webkit-scrollbar-thumb
-  background-color: #565757
+  background-color: $dark

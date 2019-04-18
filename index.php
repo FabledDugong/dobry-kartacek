@@ -15,111 +15,136 @@
     <div id="intro">
         <div id="control-panel">
             <div id="brand">
-                <a><img src="" alt="logo" class="logo"></a>
+                <a><img src="assets/img/scroll.svg" alt="logo" class="logo"></a>
             </div>
-            <div>
+            <nav id="menu">
+                <a href="#shop">eshop</a>
+                <a href="#contact">kontakt</a>
                 <a href="#">přihlášení</a>
-                <a href="#">košík</a>
-            </div>
-
-<!--            <a><img src="assets/img/shopping-cart.svg" alt="shopping-cart" class="icon"></a>-->
+                <a href="#" id="cart">košík</a>
+            </nav>
         </div>
         <div>
             <h1>dobrý kartáček</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu eleifend nibh, eget sollicitudin neque. Morbi sit amet egestas odio.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu eleifend nibh, eget sollicitudin
+                neque. Morbi sit amet egestas odio.
             </p>
-            <a href="#"><img src="assets/img/scroll.svg" alt="scroll" class="icon"></a>
+            <div>
+                <button>kartáček?</button>
+                <button>eshop</button>
+            </div>
         </div>
     </div>
     <div class="carousel" id="carousel">
         <div class="images"></div>
         <div class="controls">
             <div class="prev">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
-                </svg>
+                <img src="assets/img/arrow-up.svg" alt="arrow-up">
             </div>
             <div class="next">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
-                </svg>
+                <img src="assets/img/arrow-down.svg" alt="arrow-down">
             </div>
         </div>
         <div class="status"></div>
     </div>
 </header>
 <main>
-    <section id="why">
-        <div class="why-division">
-            <img src="assets/img/scroll.svg" alt="icon" class="icon">
-            <h3>nejlepší výběr</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-        <div class="why-division">
-            <img src="assets/img/scroll.svg" alt="icon" class="icon">
-            <h3>nejlepší výběr</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-        <div class="why-division">
-            <img src="assets/img/scroll.svg" alt="icon" class="icon">
-            <h3>nejlepší výběr</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-    </section>
     <section id="shop">
         <div id="categories">
             <div class="category">
-                <h3>category 1</h3>
+                <h3>zubní kartáčky</h3>
                 <div class="subcategory">
-                    <h3>subcategory 1.1</h3>
+                    <h3>ci medical</h3>
                 </div>
                 <div class="subcategory">
-                    <h3>subcategory 1.2</h3>
+                    <h3>bio bambusové</h3>
                 </div>
             </div>
-            <div class="category"><h3>category 2</h3></div>
-            <div class="category"><h3>category 3</h3></div>
-            <div class="category"><h3>category 4</h3></div>
+            <div class="category"><h3>zubní pasty</h3></div>
+            <div class="category"><h3>ostatní</h3></div>
         </div>
         <div id="filter">
 
         </div>
         <div id="products">
-            <div class="product" id="product1">
+            <div class="product" id="product1" data-id="1">
                 <h4>product name</h4>
             </div>
-            <div class="product" id="product2">
+            <div class="product" id="product2" data-id="2">
                 <h4>product name</h4>
             </div>
-            <div class="product" id="product3">
+            <div class="product" id="product3" data-id="3">
                 <h4>product name</h4>
             </div>
             <div class="product">
                 <h4>product name</h4>
             </div>
         </div>
+        <div id="product-detail" data-id="1">
+            <div class="product-image"></div>
+            <div class="product-content">
+                <div class="product-info">
+                    <div>
+                        <h4>product name</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div>
+                        <h5>skladem/not</h5>
+                        <h5>cena</h5>
+                        <h5>typ</h5>
+                        <h5>tvrdost</h5>
+                        <h5>délka štětin</h5>
+                        <h5>barva</h5>
+                    </div>
+                </div>
+                <div class="product-control">
+                    <button data-role="back">zpět</button>
+                    <button data-role="buy">koupit</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div>
+            <h2>info@dobry-kartacek.cz</h2>
+            <h2>+420 123 456 789</h2>
+            <address>
+                Jilmová 70<br>
+                Holubice<br>
+                252 65
+            </address>
+        </div>
+        <div id="help">
+            <form name="cf" method="post" action="">
+                <div>
+                    <input type="text" placeholder="Jméno a Příjmení">
+                    <input type="email" placeholder="E-mail">
+                </div>
+                <div>
+                    <textarea name="cf-content" placeholder="Vaše zpráva"></textarea>
+                    <input type="submit" value="Odeslat" disabled>
+                </div>
+            </form>
+        </div>
     </section>
 </main>
 <footer id="footer">
-    <div class="section-content" id="contact">
-        <h2>info@dobry-kartacek.cz</h2>
-        <h2>+420 123 456 789</h2>
-        <address>
-            Antonova 17,
-            Pardubice
-            53002
-        </address>
-        <div id="contact-form">
-            <form name="cf" method="post" action="">
-                <input type="text">
-                <input type="email">
-                <textarea name="cf-content" placeholder="test"></textarea>
-                <input type="submit" disabled>
-            </form>
+    <div id="important">
+        <div>
+            <h5>důležité odkazy</h5>
+            <h6>obchodní podmínky</h6>
+            <h6>zpracování osobních údajů</h6>
+            <h6>o nás</h6>
+            <h6>faq</h6>
+        </div>
+        <div>
+            <h5>jak nakoupit</h5>
+            <h6>možnosti dopravy</h6>
+            <h6>možnosti platby</h6>
+            <h6>reklamace a vrácení</h6>
         </div>
     </div>
-    <div class="section-content" id="important">
     <div id="copy">
         <h6>© 2019 Dobrý kartáček. All rights reserved.</h6>
         <h6>Created by JŠ&MZ</h6>
