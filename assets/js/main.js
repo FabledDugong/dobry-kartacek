@@ -179,13 +179,13 @@ console.log(_vp)
 // })
 
 function updateCheckout () {
-    let _cart = document.querySelector('#cart')
+    let _cart = document.querySelector('[data-role="button-open-cart"]')
     console.log(_cart)
     _cart.style.borderBottom = '0.25vmin solid #218F76'
     _cart.style.setProperty('after', 'display: block')
 }
 
-let _buy = document.querySelector('[data-role]')
+let _buy = document.querySelector('[data-role="button-buy"]')
 _buy.addEventListener('click', () => {
     updateCheckout()
 })
@@ -220,3 +220,79 @@ _products.map(e => e.addEventListener('click', () => {showDetail(e)}))
 
 
 // _categories => n.classList.contains('active')
+
+
+/* ----------modal controls---------- */
+let _modal = document.querySelector('#modal'),
+    modal_close = document.querySelector('[data-role="button-close"]'),
+    modal_state = true,
+    modal_operate = s => {
+        if (s) {
+            _modal.style.display = 'flex'
+            document.body.style.overflow = 'hidden'
+        } else {
+            _modal.style.display = 'none'
+            document.body.style.overflow = 'auto'
+        }
+    },
+    _login = document.querySelector('#login'),
+    login_open = document.querySelector('[data-role="button-open-login"]'),
+    _signup = document.querySelector('#signup'),
+    signup_open = document.querySelector('[data-role="link-signup"]'),
+    _cart = document.querySelector('#cart'),
+    cart_open = document.querySelector('[data-role="button-open-cart"]')
+    // console.log(modal_close)
+
+modal_operate(modal_state)
+
+login_open.addEventListener('click', () => {
+    _modal.style.display = 'flex';
+    modal_state = true
+    modal_operate(modal_state)
+    /*_login.style.display = 'flex'*/
+})
+signup_open.addEventListener('click', () => {_login.style.display = 'none'; _signup.style.display = 'flex'})
+cart_open.addEventListener('click', () => {_modal.style.display = 'flex'; _login.style.display = 'none'; _cart.style.display = 'flex'})
+
+modal_close.addEventListener('click', () => {modal_state = false; modal_operate(modal_state)})
+window.addEventListener('click', e => {
+    if (e.target.getAttribute('id') === 'modal')
+        _modal.style.display = 'none'
+})
+window.addEventListener('keydown', k => {
+    if (k.code === "Escape")
+        _modal.style.display = 'none'
+})
+
+/* ----------login control---------- */
+class Control {
+    constructor () {
+    }
+
+    sanitizeString(str) {
+        const r = /[^a-zá-ž0-9]/g
+
+        str = str.trim()
+        str = str.toLowerCase()
+        str = str.replace(r, '')
+        return str
+    }
+
+    parsefs(type) {
+        
+        switch (type) {
+            case 'email':
+                break;
+            case 'pass':
+                break;
+            default:
+                break;
+        }
+        
+    }
+
+}
+
+const C = new Control()
+const str = '            ycX73?9@B,FH    ]b\'-[tjZ | # @ c QX9.'
+console.log(C.sanitizeString(str))

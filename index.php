@@ -11,6 +11,46 @@
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
+<!--Heslo musí být alespoň 10 znaků dlouhé. Musí obsahovat alespoň jedno velké písmeno, jednu číslici a jeden symbol.-->
+<div id="modal">
+    <div id="login">
+        <div id="login-control"><img src="assets/img/close.svg" data-role="button-close" alt="close-button" class="icon"></div>
+        <h3>přihlásit se</h3>
+        <form action="" method="post" name="login-form" id="login-form">
+            <input type="email" placeholder="E-mail" id="login-acc" maxlength="30">
+            <label for="login-acc">test</label>
+            <input type="password" placeholder="Heslo" id="login-pass">
+            <label for="login-pass">wrong?</label>
+            <input type="submit" value="Přihlásit se" disabled>
+        </form>
+        <span>Nechcete nakupovat anonymně? <u data-role="link-signup">Registrujte se!</u></span>
+    </div>
+    <div id="signup">
+        <div id="signup-control"><img src="assets/img/close.svg" data-role="button-close" alt="close-button" class="icon"></div>
+        <h3>registrovat se</h3>
+        <form action="" method="post" name="signup-form" id="signup-form">
+            <div>
+                <input type="email" placeholder="E-mail" id="signup-acc">
+                <label for="signup-acc">test</label>
+                <input type="password" placeholder="Heslo" id="signup-pass">
+                <label for="signup-pass">wrong?</label>
+                <input type="password" placeholder="Potvrzení hesla" id="signup-pass">
+                <label for="signup-pass">match?</label>
+            </div>
+            <div>
+                <input type="text" placeholder="Jméno" name="signup-fname" id="signup-fname">
+<!--                <label for="signup-fname">Křestn</label>-->
+                <input type="text" placeholder="Příjmení" name="signup-sname" id="signup-sname">
+                <input type="text" placeholder="Ulice, č. popisné" name="signup-address" id="signup-address">
+                <input type="text" placeholder="Město, PSČ" name="signup-address2" id="signup-address2">
+                <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
+                <input type="submit" value="Potvrdit registraci" disabled>
+            </div>
+        </form>
+        <span>Nejaky hovna o GDPR</span>
+    </div>
+    <div id="cart"></div>
+</div>
 <header id="header">
     <div id="intro">
         <div id="control-panel">
@@ -20,8 +60,8 @@
             <nav id="menu">
                 <a href="#shop">eshop</a>
                 <a href="#contact">kontakt</a>
-                <a href="#">přihlášení</a>
-                <a href="#" id="cart">košík</a>
+                <a data-role="button-open-login">přihlášení</a>
+                <a data-role="button-open-cart">košík</a>
             </nav>
         </div>
         <div>
@@ -69,7 +109,9 @@
         </div>
         <div id="products">
             <div class="product" id="product1" data-id="1">
-                <h4>product name</h4>
+                <div>
+                    <h4>product name</h4>
+                </div>
             </div>
             <div class="product" id="product2" data-id="2">
                 <h4>product name</h4>
@@ -99,8 +141,8 @@
                     </div>
                 </div>
                 <div class="product-control">
-                    <button data-role="back">zpět</button>
-                    <button data-role="buy">koupit</button>
+                    <button data-role="button-back">zpět</button>
+                    <button data-role="button-buy">koupit</button>
                 </div>
             </div>
         </div>
