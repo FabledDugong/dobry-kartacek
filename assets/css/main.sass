@@ -4,6 +4,7 @@
 
 body
   font-family: $content-font
+  overflow-x: hidden
 header, section, footer
   display: flex
   width: 100vw
@@ -93,6 +94,13 @@ form
       border-bottom: 0.1vmin solid $grayer
       box-shadow: 5px 5px 25px 1px $grayer
       color: #28292D
+      z-index: 101
+      &.pinned
+        position: fixed
+        width: 100%!important
+        margin-left: -5vmin
+        top: 0
+        transition: all .3s
       div
         display: flex
         justify-content: space-evenly
@@ -443,3 +451,4 @@ form
   background: transparent
 ::-webkit-scrollbar-thumb
   background: $dark
+

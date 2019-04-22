@@ -56,7 +56,8 @@ html {
   src: url("../font/Axis-Extrabold.otf") format("opentype");
   font-family: "Axis"; }
 body {
-  font-family: "Roboto-Regular", sans-serif; }
+  font-family: "Roboto-Regular", sans-serif;
+  overflow-x: hidden; }
 
 header, section, footer {
   display: flex;
@@ -154,7 +155,14 @@ form input [type="checkbox"] {
       background: white;
       border-bottom: 0.1vmin solid #BCBCBC;
       box-shadow: 5px 5px 25px 1px #BCBCBC;
-      color: #28292D; }
+      color: #28292D;
+      z-index: 101; }
+      #header #intro #control-panel.pinned {
+        position: fixed;
+        width: 100% !important;
+        margin-left: -5vmin;
+        top: 0;
+        transition: all 0.3s; }
       #header #intro #control-panel div {
         display: flex;
         justify-content: space-evenly;

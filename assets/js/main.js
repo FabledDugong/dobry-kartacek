@@ -1,5 +1,5 @@
 'use strict'
-// idk just trying something
+
 class Carousel {
     constructor(_target, _content) {
         this.target = _target
@@ -172,6 +172,24 @@ let imgs = [
 
 /* --------------------- */
 
+const menu = document.getElementById('control-panel'),
+      menuTop = menu.offsetTop
+window.addEventListener('scroll', () => {
+    if ( menuTop <= window.pageYOffset ) {
+        menu.setAttribute('style', 'width:' + menu.getBoundingClientRect().width + 'px')
+        setTimeout(() => {
+            menu.classList.add('pinned')
+        }, 10)
+    } else {
+        menu.setAttribute('style', '')
+        setTimeout(() => {
+            menu.classList.remove('pinned')
+        }, 10)
+    }
+})
+
+/* --------------------- */
+
 let _vp = document.querySelector('#header').getBoundingClientRect()
 console.log(_vp)
 // window.addEventListener('scroll', () => {
@@ -229,10 +247,10 @@ let _modal = document.querySelector('#modal'),
     modal_operate = s => {
         if (s) {
             _modal.style.display = 'flex'
-            document.body.style.overflow = 'hidden'
+            document.body.style.overflowY = 'hidden'
         } else {
             _modal.style.display = 'none'
-            document.body.style.overflow = 'auto'
+            document.body.style.overflowY = 'auto'
         }
     },
     _login = document.querySelector('#login'),
