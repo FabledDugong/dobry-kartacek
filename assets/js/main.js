@@ -43,9 +43,9 @@ class Carousel {
         }
 
         //for phones
-        let startX = 0,
-            tarEl = document.querySelector(_target),
-            imgEl = document.querySelector(_target + ' .images')
+        // let startX = 0,
+        //     tarEl = document.querySelector(_target),
+        //     imgEl = document.querySelector(_target + ' .images')
 
 //     tarEl.ontouchstart = (e) => {startX = e.touches[0].clientX}
 
