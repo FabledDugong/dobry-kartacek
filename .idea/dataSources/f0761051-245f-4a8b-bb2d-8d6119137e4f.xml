@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="_dk">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="eshop"/>
+    <schema id="3" parent="1" name="experimental"/>
+    <schema id="4" parent="1" name="finish"/>
+    <schema id="5" parent="1" name="finish_db"/>
+    <schema id="6" parent="1" name="firma"/>
+    <schema id="7" parent="1" name="hudba"/>
+    <schema id="8" parent="1" name="information_schema"/>
+    <schema id="9" parent="1" name="mysql"/>
+    <schema id="10" parent="1" name="performance_schema"/>
+    <schema id="11" parent="1" name="phpmyadmin"/>
+    <schema id="12" parent="1" name="pokedex"/>
+    <schema id="13" parent="1" name="prodej"/>
+    <schema id="14" parent="1" name="prodejna"/>
+    <schema id="15" parent="1" name="skola"/>
+    <schema id="16" parent="1" name="test"/>
+    <schema id="17" parent="1" name="world"/>
+    <schema id="18" parent="1" name="_finish"/>
+    <schema id="19" parent="1" name="_dk">
+      <Current>1</Current>
+    </schema>
+    <schema id="20" parent="1" name="bi-dbs"/>
+  </database-model>
+</dataSource>
