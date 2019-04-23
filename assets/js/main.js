@@ -183,18 +183,13 @@ window.addEventListener('scroll', () => {
     } else {
         menu.setAttribute('style', '')
         setTimeout(() => {
+            menu.setAttribute('style', 'width: initial')
             menu.classList.remove('pinned')
         }, 10)
     }
 })
 
 /* --------------------- */
-
-let _vp = document.querySelector('#header').getBoundingClientRect()
-console.log(_vp)
-// window.addEventListener('scroll', () => {
-//     if (_vp.height )
-// })
 
 function updateCheckout () {
     let _cart = document.querySelector('[data-role="button-open-cart"]')
@@ -242,14 +237,38 @@ _categories.map(e => e.addEventListener('click', () => {
 
 /* ----------modal controls---------- */
 let _modal = document.querySelector('#modal'),
+    modal_children = [..._modal.children],
     modal_close = document.querySelector('[data-role="button-close"]'),
-    modal_state = true,
-    modal_operate = s => {
+    modal_operate = (s, e, a = false) => {
         if (s) {
             _modal.style.display = 'flex'
             document.body.style.overflowY = 'hidden'
+            if (a) {
+                modal_children.forEach((el) => {
+                    console.log(el)
+                    if (el.classList.contains('modal-active'))
+                        console.log('true')
+                        el.classList.remove('modal-active')
+                })
+            }
+            console.log(e.getAttribute('id'))
+            switch (e.getAttribute('id')) {
+                case 'login':
+                    _login.classList.add('modal-active')
+                    break;
+                case 'signup':
+                    _signup.classList.add('modal-active')
+                    break;
+                case 'cart':
+                    _cart.classList.add('modal-active')
+                    break;
+            }
         } else {
             _modal.style.display = 'none'
+            modal_children.forEach((e) => {
+                if (e.classList.contains('modal-active'))
+                    e.classList.remove('modal-active')
+            })
             document.body.style.overflowY = 'auto'
         }
     },
@@ -259,27 +278,29 @@ let _modal = document.querySelector('#modal'),
     signup_open = document.querySelector('[data-role="link-signup"]'),
     _cart = document.querySelector('#cart'),
     cart_open = document.querySelector('[data-role="button-open-cart"]')
-    // console.log(modal_close)
 
-modal_operate(modal_state)
+    console.log(_login.id)
 
 login_open.addEventListener('click', () => {
-    _modal.style.display = 'flex';
-    modal_state = true
-    modal_operate(modal_state)
-    /*_login.style.display = 'flex'*/
+    modal_operate(true, _login)
 })
-signup_open.addEventListener('click', () => {_login.style.display = 'none'; _signup.style.display = 'flex'})
-cart_open.addEventListener('click', () => {_modal.style.display = 'flex'; _login.style.display = 'none'; _cart.style.display = 'flex'})
+signup_open.addEventListener('click', () => {
+    modal_operate(true, _signup, true)
+})
+cart_open.addEventListener('click', () => {
+    modal_operate(true, _cart)
+})
 
-modal_close.addEventListener('click', () => {modal_state = false; modal_operate(modal_state)})
+modal_close.addEventListener('click', () => {
+    modal_operate(false)
+})
 window.addEventListener('click', e => {
     if (e.target.getAttribute('id') === 'modal')
-        _modal.style.display = 'none'
+        modal_operate(false)
 })
 window.addEventListener('keydown', k => {
     if (k.code === "Escape")
-        _modal.style.display = 'none'
+        modal_operate(false)
 })
 
 /* ----------login control---------- */

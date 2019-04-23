@@ -41,11 +41,12 @@
                 <label for="signup-pass">match?</label>
             </div>
             <div>
-                <input type="text" placeholder="Jméno" name="signup-fname" id="signup-fname">
 <!--                <label for="signup-fname">Křestn</label>-->
-                <input type="text" placeholder="Příjmení" name="signup-sname" id="signup-sname">
+                <input type="text" placeholder="Jméno a příjmení" name="signup-name" id="signup-name">
                 <input type="text" placeholder="Ulice, č. popisné" name="signup-address" id="signup-address">
                 <input type="text" placeholder="Město, PSČ" name="signup-address2" id="signup-address2">
+                <input type="text" placeholder="Telefonní číslo" name="signup-phone" id="signup-phone">
+                <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
                 <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
                 <input type="submit" value="Potvrdit registraci" disabled>
             </div>
