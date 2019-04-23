@@ -426,7 +426,7 @@ form input [type="checkbox"] {
       height: 25%; }
 
 #modal {
-  display: flex;
+  display: none;
   z-index: 1000;
   position: fixed;
   overflow: hidden;
@@ -434,14 +434,17 @@ form input [type="checkbox"] {
   align-items: center;
   width: 100%;
   height: 100%;
-  background: rgba(188, 188, 188, 0.5); }
+  background: #EAEAEA; }
   #modal h3 {
     color: #28292D; }
   #modal span {
     font-size: 1.25vmin;
     color: #BCBCBC; }
+  #modal > div {
+    display: none; }
+    #modal > div.modal-active {
+      display: flex; }
   #modal #login, #modal #signup {
-    display: flex;
     flex-direction: column;
     align-items: center;
     width: 25%;
@@ -452,12 +455,15 @@ form input [type="checkbox"] {
     #modal #login #login-control, #modal #signup #login-control, #modal #signup #signup-control {
       display: flex;
       justify-content: flex-end;
+      align-items: center;
       width: 100%;
       height: 5vmin;
       margin: 0 0 2vmin 0;
+      padding: 0 1.5vmin 0 0;
       background: #28292D; }
       #modal #login #login-control .icon, #modal #signup #login-control .icon, #modal #signup #signup-control .icon {
-        padding: 1.25vmin;
+        width: 2vmin;
+        height: 2vmin;
         cursor: pointer; }
     #modal #login #login-form, #modal #signup #login-form, #modal #signup #signup-form {
       display: flex;
@@ -467,20 +473,21 @@ form input [type="checkbox"] {
       height: 75%;
       padding: 3vmin 5vmin; }
       #modal #login #login-form label, #modal #signup #login-form label, #modal #signup #signup-form label {
+        display: none;
         font-size: 1.25vmin;
         color: #BCBCBC; }
       #modal #login #login-form input, #modal #signup #login-form input, #modal #signup #signup-form input {
         height: 5vmin;
         padding: 0 0 0 1vmin;
+        background: transparent;
         border-bottom: 0.1vmin solid #BCBCBC;
         outline-color: #218F76; }
         #modal #login #login-form input[type='submit'], #modal #signup #login-form input[type='submit'], #modal #signup #signup-form input[type='submit'] {
           background: #218F76;
           border: none;
           box-shadow: 0 0 20px 0 #BCBCBC;
-          color: white; }
+          color: #fff; }
   #modal #signup {
-    display: none;
     width: 50%;
     height: 70%;
     padding: 0; }
@@ -492,11 +499,9 @@ form input [type="checkbox"] {
         flex-direction: column;
         justify-content: space-between;
         width: 47%;
-        height: 80%; }
+        height: 90%; }
         #modal #signup #signup-form div:first-of-type {
-          height: 50%; }
-  #modal #cart {
-    display: none; }
+          height: 40%; }
 
 ::-webkit-scrollbar-track {
   background: transparent; }
