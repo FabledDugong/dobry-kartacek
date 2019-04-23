@@ -1,5 +1,8 @@
 <?php
-
+    require_once 'assets/php/includes/config.php';
+    $DM = new DatabaseManager();
+    $products = $DM->product_SelectAll();
+    $categories = $DM->category_SelectTop();
 ?>
 <html lang="cs">
 <head>
@@ -92,54 +95,39 @@
 <main>
     <section id="shop">
         <div id="categories">
-            <div class="category">
-                <h3>zubní kartáčky</h3>
-                <div class="subcategory">
-                    <h3>ci medical</h3>
-                </div>
-                <div class="subcategory">
-                    <h3>bio bambusové</h3>
-                </div>
-            </div>
-            <div class="category"><h3>zubní pasty</h3></div>
-            <div class="category"><h3>ostatní</h3></div>
+            <?php
+                foreach ($categories as $cat) {
+                    $subCategories = $DM->category_SelectSub($cat->id);
+
+                    echo    "<div class='category' data-id='{$cat->id}'>
+                                <h3>{$cat->name}</h3>";
+
+                    foreach ($subCategories as $subCat)
+                        echo "<div class='subcategory' data-id='{$subCat->id}'>
+                                <h3>{$subCat->name}</h3>
+                              </div>";
+
+                    echo    "</div>";
+                }
+            ?>
         </div>
         <div id="filter">
 
         </div>
         <div id="products">
-            <div class="product" id="product1" data-id="1">
-                <div>
-                    <h4>product name</h4>
-                </div>
-            </div>
-            <div class="product" id="product2" data-id="2">
-                <h4>product name</h4>
-            </div>
-            <div class="product" id="product3" data-id="3">
-                <h4>product name</h4>
-            </div>
-            <div class="product">
-                <h4>product name</h4>
-            </div>
+            <?php
+                foreach ($products as $prod)
+                    echo "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(assets/img/products/{$prod->getPictures()}) no-repeat center center / contain'>
+                            <div>
+                                <h4>{$prod->getName()}</h4>
+                            </div>
+                         </div>";
+            ?>
         </div>
-        <div id="product-detail" data-id="1">
+        <div id="product-detail">
             <div class="product-image"></div>
             <div class="product-content">
-                <div class="product-info">
-                    <div>
-                        <h4>product name</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <div>
-                        <h5>skladem/not</h5>
-                        <h5>cena</h5>
-                        <h5>typ</h5>
-                        <h5>tvrdost</h5>
-                        <h5>délka štětin</h5>
-                        <h5>barva</h5>
-                    </div>
-                </div>
+                <div class="product-info"></div>
                 <div class="product-control">
                     <button data-role="button-back">zpět</button>
                     <button data-role="button-buy">koupit</button>
@@ -193,5 +181,6 @@
     </div>
 </footer>
 <script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/ajax.js"></script>
 </body>
 </html>

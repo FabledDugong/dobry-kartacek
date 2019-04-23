@@ -210,10 +210,10 @@ _buy.addEventListener('click', () => {
 console.log(_buy)
 
 let _categories = [...document.querySelectorAll('.category')],
-    _subcategories = [...document.querySelectorAll('.subcategory')],
-    products = document.querySelector('#products'),
-    _products = [...document.querySelectorAll('.product')],
-    _detail = document.querySelector('#product-detail')
+    _subcategories = [...document.querySelectorAll('.subcategory')]
+    // products = document.querySelector('#products'),
+    // _products = [...document.querySelectorAll('.product')],
+    // _detail = document.querySelector('#product-detail')
 
 function subcCheck () {
     for (let i = 0; i < _categories.length; i++) {
@@ -222,19 +222,19 @@ function subcCheck () {
     }
 }
 
-function showDetail(product) {
-    let product_id = product.dataset.id
-    products.style.display = 'none'
-    _detail.style.display = 'flex'
-    console.log(product_id)
-}
+// function showDetail(product) {
+//     let product_id = product.dataset.id
+//     products.style.display = 'none'
+//     _detail.style.display = 'flex'
+//     console.log(product_id)
+// }
 
 _categories.map(e => e.addEventListener('click', () => {
    e.classList.add('active')
     subcCheck()
 }))
 
-_products.map(e => e.addEventListener('click', () => {showDetail(e)}))
+// _products.map(e => e.addEventListener('click', () => {showDetail(e)}))
 
 
 // _categories => n.classList.contains('active')

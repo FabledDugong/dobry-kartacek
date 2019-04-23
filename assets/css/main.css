@@ -332,8 +332,7 @@ form input [type="checkbox"] {
       flex-direction: column;
       width: 100%; }
     #shop #product-detail .product-image {
-      height: 50%;
-      background: url("../img/products/PEN GRIP NAVI BLUE.jpg") no-repeat center center/contain; }
+      height: 50%; }
     #shop #product-detail .product-content {
       padding: 5vmin; }
       #shop #product-detail .product-content .product-info {
