@@ -19,19 +19,19 @@
     <div id="login">
         <div id="login-control"><img src="assets/img/close.svg" data-role="button-close" alt="close-button" class="icon"></div>
         <h3>přihlásit se</h3>
-        <form action="" method="post" name="login-form" id="login-form">
-            <input type="email" placeholder="E-mail" id="login-acc" maxlength="30">
+        <form action="assets/php/login.php" method="post" name="login-form" id="login-form">
+            <input type="text" placeholder="E-mail" name="login-acc" id="login-acc" maxlength="30">
             <label for="login-acc">test</label>
-            <input type="password" placeholder="Heslo" id="login-pass">
+            <input type="password" placeholder="Heslo" name="login-pass" id="login-pass">
             <label for="login-pass">wrong?</label>
-            <input type="submit" value="Přihlásit se" disabled>
+            <input type="submit" value="Přihlásit se">
         </form>
         <span>Nechcete nakupovat anonymně? <u data-role="link-signup">Registrujte se!</u></span>
     </div>
     <div id="signup">
         <div id="signup-control"><img src="assets/img/close.svg" data-role="button-close" alt="close-button" class="icon"></div>
         <h3>registrovat se</h3>
-        <form action="" method="post" name="signup-form" id="signup-form">
+        <form action="assets/php/register.php" method="post" name="signup-form" id="signup-form">
             <div>
                 <input type="email" placeholder="E-mail" id="signup-acc">
                 <label for="signup-acc">test</label>
@@ -63,7 +63,10 @@
             <nav id="menu">
                 <a href="#shop">eshop</a>
                 <a href="#contact">kontakt</a>
-                <a data-role="button-open-login">přihlášení</a>
+                <?php
+                    if ( !isset($_SESSION['user-id']) )
+                        echo '<a data-role="button-open-login">přihlášení</a>';
+                ?>
                 <a data-role="button-open-cart">košík</a>
             </nav>
         </div>

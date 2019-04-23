@@ -284,6 +284,25 @@
           return $data;
       }
 
+      public function user_Login ($name, $password) {
+          $query = $this->CONN->prepare(
+              'SELECT id
+                                password
+                         FROM user
+                         WHERE login = :name'
+          );
+
+          $query->execute([':name' => $name]);
+          $data = $query->fetchAll();
+
+          if ( !password_verify($password, $data->password) )
+              return false;
+
+          $_SESSION['user-id'] = $data->id;
+          return true;
+      }
+
+
       /*
 
       public function selectAllByManufacturerAndGroup($manufacturer, $group) {
