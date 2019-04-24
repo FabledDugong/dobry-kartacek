@@ -6,21 +6,37 @@
         public function __construct(){
             $this->products = [];
             $this->price = 0;
-            $_SESSION['cart'] = $this;
+            $_SESSION['shopping-cart'] = serialize($this);
         }
 
-        public function addProduct ($id, $cnt) {
-            array_push($this->products, $this->product_SelectById($id));
-            $this->products[sizeof($this->products) - 1]->cnt = $cnt;
+        public function addProduct ($id, $cnt = 1) {
+            array_push(
+                $this->products,
+                [
+                    "id" => $id,
+                    "cnt" => $cnt
+                ]
+            );
+
+            $_SESSION['shopping-cart'] = serialize($this);
         }
 
         public function delProduct ($id) {
-            $pos = array_search($this->product_SelectById($id), $this->products);
-            array_splice($this->products, $pos, 1);
+            for ($i = 0; $i < sizeof($this->products); $i++)
+                if ( $this->products[$i]['id'] === $id )
+                    break;
+
+            array_splice(
+                $this->products,
+                $i,
+                1
+            );
+
+            $_SESSION['shopping-cart'] = serialize($this);
         }
 
         public function delShoppingCart () {
-            unset($_SESSION['cart']);
+            unset($_SESSION['shopping-cart']);
         }
 
         public function getPrice (){

@@ -6,7 +6,7 @@ function loadData (url, value, callback) {
             callback(JSON.parse(xhr.responseText))
     }
 
-    xhr.open("POST", url, true)
+    xhr.open('POST', url, true)
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xhr.send(`param=${value}`)
@@ -16,6 +16,8 @@ function bindLoadDetail () {
     let _prods = [...document.getElementsByClassName('product')]
 
     _prods.map(el => el.addEventListener('click', () => {
+        document.getElementById('product-detail').setAttribute('data-id', el.dataset.id)
+
         loadData('assets/php/loadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
             document.querySelector('.product-info').innerHTML = `<div>
@@ -75,4 +77,25 @@ window.addEventListener('DOMContentLoaded', () => {
             bindLoadDetail()
         })
     }))
+
+    // ---------------------------------
+
+    let _buy =  document.querySelector('[data-role="button-buy"]')
+
+    _buy.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest(),
+              id = document.getElementById('product-detail').dataset.id,
+              cnt = document.getElementById('cnt').value
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200)
+                console.log('success')
+        }
+
+        xhr.open('POST', 'assets/php/addToShoppingCart.php', true)
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr.send(`id=${id}&cnt=${cnt}`)
+    })
+
 })

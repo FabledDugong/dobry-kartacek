@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2019 at 05:39 PM
+-- Generation Time: Apr 24, 2019 at 09:31 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -220,17 +220,18 @@ CREATE TABLE `user` (
   `surname` varchar(30) COLLATE utf16_czech_ci NOT NULL,
   `phone` varchar(20) COLLATE utf16_czech_ci NOT NULL,
   `address` varchar(50) COLLATE utf16_czech_ci NOT NULL,
-  `city` varchar(30) COLLATE utf16_czech_ci NOT NULL,
-  `zip` varchar(10) COLLATE utf16_czech_ci NOT NULL,
-  `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `city` varchar(50) COLLATE utf16_czech_ci NOT NULL,
+  `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `login`, `password`, `name`, `surname`, `phone`, `address`, `city`, `zip`, `registered`) VALUES
-(1, 'root', '', '', '', '', '', '', '', '2019-04-04 20:45:43');
+INSERT INTO `user` (`id`, `login`, `password`, `name`, `surname`, `phone`, `address`, `city`, `registered`, `active`) VALUES
+(1, 'root', '$2y$10$HCvA.ftrLeGwFv7aAwOyEOFHSM.YHY6GFSQwYvkmH2d1KdjrTlzJG', '', '', '', '', '', '2019-04-04 20:45:43', 1),
+(5, 'eyy@picovina.com', '$2y$10$vDx0svhLzSyacmTFKQW/T.i7u3KaYWW6ts0NdidefH1aEZ.BHJrAu', 'John', 'Doe', '666 666 666', 'V prdeli 666', 'Suchdol, 275 00', '2019-04-24 19:13:50', 0);
 
 --
 -- Indexes for dumped tables
@@ -373,7 +374,7 @@ ALTER TABLE `q&a`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,14 +1,14 @@
 <?php
-    class Product{
-        public $id = NULL;
-        public $idCategory;
-        public $idManufacturer;
-        public $name;
-        public $description;
-        public $price;
-        public $stock;
-        public $pictures;
-        public $cnt;
+    class Product implements JsonSerializable {
+        private $id = NULL;
+        private $idCategory;
+        private $idManufacturer;
+        private $name;
+        private $description;
+        private $price;
+        private $stock;
+        private $pictures;
+        private $cnt;
 
         public function __construct ($id, $idCategory, $idManufacturer, $name, $description, $price, $stock, $pictures, $cnt = 0) {
             if ( isset($id) )
@@ -44,5 +44,19 @@
         public function getStock            ()                  { return $this->stock; }
         public function getPictures         ()                  { return $this->pictures; }
         public function getCnt              ()                  { return $this->cnt; }
+        
+        public function jsonSerialize(){
+            return [
+                'id' => $this->getId(),
+                'id_category' => $this->getIdCategory(),
+                'id_manufacturer' => $this->getIdManufacturer(),
+                'name' => $this->getName(),
+                'decription' => $this->getDescription(),
+                'price' => $this->getPrice(),
+                'stock' => $this->getStock(),
+                'pictures' => $this->getPictures(),
+                'cnt' => $this->getCnt()
+            ];
+        }
     }
 ?>

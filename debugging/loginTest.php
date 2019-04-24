@@ -1,6 +1,7 @@
 <?php
+    session_start();
     if ( !isset($_SESSION['user-id']) ) {
-        header('Location: ' . $_SERVER['DOCUMENT_ROOT'] . '/index.php');
+        header('Location: index.php');
         exit;
     }
 ?>
@@ -11,6 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="assets/php/logout.php">logout</a>
+    <a href="../assets/php/logout.php">logout</a>
 </body>
 </html>

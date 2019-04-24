@@ -284,27 +284,115 @@
           return $data;
       }
 
+      public function user_SelectByLogin ($login) {
+          $query = $this->CONN->prepare(
+              'SELECT *
+                         FROM user
+                         WHERE login = :login'
+          );
+
+          $query->execute( [':login' => $login ] );
+          $data = $query->fetch();
+
+          return $data;
+      }
+
+      public function user_SelectById ($id) {
+          $query = $this->CONN->prepare(
+              'SELECT *
+                         FROM user
+                         WHERE id = :id'
+          );
+
+          $query->execute( [':id' => $id ] );
+          $data = $query->fetch();
+
+          return $data;
+      }
+
       public function user_Login ($name, $password) {
           $query = $this->CONN->prepare(
-              'SELECT id
-                                password
+              'SELECT id,
+                                password,
+                                active
                          FROM user
                          WHERE login = :name'
           );
 
           $query->execute([':name' => $name]);
-          $data = $query->fetchAll();
+          $data = $query->fetch();
 
-          if ( !password_verify($password, $data->password) )
+          if ( empty($data) || !password_verify($password, $data->password) || $data->active == 0 )
               return false;
 
           $_SESSION['user-id'] = $data->id;
           return true;
       }
 
+      public function user_Register($user) {
+          if ( !empty($this->user_SelectByLogin($user['login'])) )
+              return false;
+
+          $query = $this->CONN->prepare(
+              'INSERT INTO user 
+                         VALUES (
+                            DEFAULT, 
+                            :login, 
+                            :password, 
+                            :name, 
+                            :surname, 
+                            :phone, 
+                            :address,
+                            :city,
+                            DEFAULT,
+                            DEFAULT
+                         )'
+          );
+
+          $query->execute([
+              ':login' => $user['login'],
+              ':password' => password_hash($user['password'], PASSWORD_DEFAULT),
+              ':name' => $user['fName'],
+              ':surname' => $user['lName'],
+              ':phone' => $user['phone'],
+              ':address' => $user['address'],
+              ':city' => $user['city'],
+          ]);
+
+          $data = $this->user_SelectByLogin($user['login']);
+          $date = explode(' ', $data->registered);
+          $time = explode(':', $date[1]);
+          $date = explode('-', $date[0]);
+
+          return $data->id . '-' . $date[1] . '-' . $date[2] . '-' . $time[0] . '-' . $time[1] . '-' . $time[2];
+      }
+
+      public function user_SetActive ($token) {
+          $token = explode('-', $token);
+          $user = $this->user_SelectById($token[0]);
+
+          if ( empty($user) )
+              return false;
+
+          $date = explode(' ', $user->registered);
+          $time = explode(':', $date[1]);
+          $date = explode('-', $date[0]);
+
+          if ( $token[1] != $date[1] || $token[2] != $date[2] || $token[3] != $time[0] || $token[4] != $time[1] || $token[5] != $time[2] )
+              return false;
+
+          $query = $this->CONN->prepare(
+              'UPDATE user
+                         SET active = 1
+                         WHERE id = :id'
+          );
+
+          $query->execute([':id' => $token[0]]);
+
+          return true;
+      }
 
       /*
-
       public function selectAllByManufacturerAndGroup($manufacturer, $group) {
           $stmt = $this->conn->prepare('  SELECT  machines.id,
                                                             machines.manufacturer,

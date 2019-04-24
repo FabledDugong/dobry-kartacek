@@ -3,6 +3,11 @@
     $DM = new DatabaseManager();
     $products = $DM->product_SelectAll();
     $categories = $DM->category_SelectTop();
+
+    if ( !isset($_SESSION['shopping-cart']) )
+        $cart = new ShoppingCart();
+    else
+        $cart = unserialize($_SESSION['shopping-cart']);
 ?>
 <html lang="cs">
 <head>
@@ -33,11 +38,11 @@
         <h3>registrovat se</h3>
         <form action="assets/php/register.php" method="post" name="signup-form" id="signup-form">
             <div>
-                <input type="email" placeholder="E-mail" id="signup-acc">
+                <input type="email" placeholder="E-mail" name="signup-acc" id="signup-acc">
                 <label for="signup-acc">test</label>
-                <input type="password" placeholder="Heslo" id="signup-pass">
+                <input type="password" placeholder="Heslo" name="signup-pass" id="signup-pass">
                 <label for="signup-pass">wrong?</label>
-                <input type="password" placeholder="Potvrzení hesla" id="signup-pass">
+                <input type="password" placeholder="Potvrzení hesla" id="signup-pass2">
                 <label for="signup-pass">match?</label>
             </div>
             <div>
@@ -47,8 +52,7 @@
                 <input type="text" placeholder="Město, PSČ" name="signup-address2" id="signup-address2">
                 <input type="text" placeholder="Telefonní číslo" name="signup-phone" id="signup-phone">
                 <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
-                <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
-                <input type="submit" value="Potvrdit registraci" disabled>
+                <input type="submit" value="Potvrdit registraci">
             </div>
         </form>
         <span>Nejaky hovna o GDPR</span>
@@ -68,7 +72,7 @@
                     if ( !isset($_SESSION['user-id']) )
                         echo '<a data-role="button-open-login">přihlášení</a>';
                 ?>
-                <a data-role="button-open-cart">košík</a>
+                <a data-role="button-open-cart" href="debugging/shoppingCartTest.php">košík</a>
             </nav>
         </div>
         <div>
@@ -128,11 +132,12 @@
                          </div>";
             ?>
         </div>
-        <div id="product-detail">
+        <div id="product-detail" data-id="null">
             <div class="product-image"></div>
             <div class="product-content">
                 <div class="product-info"></div>
                 <div class="product-control">
+                    <input type="number" id="cnt" value="1" min="1">
                     <button data-role="button-back">zpět</button>
                     <button data-role="button-buy">koupit</button>
                 </div>
