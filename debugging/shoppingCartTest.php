@@ -1,5 +1,5 @@
 <?php
-    include '../assets/php/includes/config.php';
+    require_once '../assets/php/includes/config.php';
 
     if ( !isset($_SESSION['shopping-cart']) )
         $cart = new ShoppingCart();
@@ -58,5 +58,9 @@
             location.reload();
         }))
     </script>
+    <?php
+        if ( isset($_SESSION['notification']) )
+            unserialize($_SESSION['notification'])->show();
+    ?>
 </body>
 </html>

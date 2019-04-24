@@ -71,6 +71,8 @@
                 <?php
                     if ( !isset($_SESSION['user-id']) )
                         echo '<a data-role="button-open-login">přihlášení</a>';
+                    else
+                        echo '<a href="#">administrace</a>';
                 ?>
                 <a data-role="button-open-cart" href="debugging/shoppingCartTest.php">košík</a>
             </nav>
@@ -189,6 +191,10 @@
         <h6>Created by JŠ&MZ</h6>
     </div>
 </footer>
+<?php
+    if ( isset($_SESSION['notification']) )
+        unserialize($_SESSION['notification'])->show();
+?>
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/ajax.js"></script>
 </body>

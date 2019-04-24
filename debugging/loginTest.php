@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    require_once '../assets/php/includes/config.php';
     if ( !isset($_SESSION['user-id']) ) {
         header('Location: index.php');
         exit;
@@ -13,5 +13,9 @@
 </head>
 <body>
     <a href="../assets/php/logout.php">logout</a>
+    <?php
+        if ( isset($_SESSION['notification']) )
+            unserialize($_SESSION['notification'])->show();
+    ?>
 </body>
 </html>

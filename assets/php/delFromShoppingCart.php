@@ -1,5 +1,5 @@
 <?php
-    include 'includes/config.php';
+    require_once 'includes/config.php';
 
     if ( !isset($_SESSION['shopping-cart']) )
         $cart = new ShoppingCart();
@@ -7,4 +7,5 @@
         $cart = unserialize($_SESSION['shopping-cart']);
 
     $cart->delProduct($_POST['id']);
+    new Notification('Product deleted from shopping cart');
 ?>

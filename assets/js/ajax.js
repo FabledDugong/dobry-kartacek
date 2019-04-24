@@ -12,6 +12,27 @@ function loadData (url, value, callback) {
     xhr.send(`param=${value}`)
 }
 
+function notification (msg, type = 'DE9E33', duration = 3000) {
+    if ( document.getElementById('notification') == undefined ) {
+        let _box = document.createElement('div'),
+            _txt = document.createElement('h3')
+
+        _txt.innerHTML = msg
+        _box.appendChild(_txt)
+        _box.id = 'notification'
+        _box.style.background = '#' + type
+
+        document.body.appendChild(_box)
+
+        setTimeout(() => { _box.classList.add('visible') }, 100)
+        setTimeout(() => { document.getElementById('notification').classList.remove('visible') }, duration)
+    } else {
+        document.querySelector('#notification h3').innerHTML = msg
+        setTimeout(() => { document.getElementById('notification').classList.add('visible') }, 100)
+        setTimeout(() => { document.getElementById('notification').classList.remove('visible') }, duration)
+    }
+}
+
 function bindLoadDetail () {
     let _prods = [...document.getElementsByClassName('product')]
 
@@ -96,6 +117,7 @@ window.addEventListener('DOMContentLoaded', () => {
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
         xhr.send(`id=${id}&cnt=${cnt}`)
-    })
 
+        notification('Product added to shopping cart.');
+    })
 })
