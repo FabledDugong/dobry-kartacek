@@ -202,7 +202,13 @@ let _buy = document.querySelector('[data-role="button-buy"]')
 _buy.addEventListener('click', () => {
     updateCheckout()
 })
-console.log(_buy)
+// console.log(_buy)
+
+let _back = document.querySelector('[data-role="button-back"]')
+_back.addEventListener('click', () => {
+    document.getElementById('products').style.display = 'flex'
+    document.getElementById('product-detail').style.display = 'none'
+})
 
 let _categories = [...document.querySelectorAll('.category')],
     _subcategories = [...document.querySelectorAll('.subcategory')]
@@ -279,7 +285,7 @@ let _modal = document.querySelector('#modal'),
     _cart = document.querySelector('#cart'),
     cart_open = document.querySelector('[data-role="button-open-cart"]')
 
-    console.log(_login.id)
+    // console.log(_login.id)
 
 login_open.addEventListener('click', () => {
     modal_operate(true, _login)
@@ -334,4 +340,4 @@ class Control {
 
 const C = new Control()
 const str = '            ycX73?9@B,FH    ]b\'-[tjZ | # @ c QX9.'
-console.log(C.sanitizeString(str))
+// console.log(C.sanitizeString(str))
