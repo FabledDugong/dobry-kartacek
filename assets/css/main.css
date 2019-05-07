@@ -349,15 +349,6 @@ form input [type="checkbox"] {
           #shop #product-detail .product-content .product-control button[data-role='back'] {
             width: 20%; }
 
-#product1 {
-  background: url("../img/products/PEN GRIP NAVI BLUE.jpg") no-repeat center center/contain; }
-
-#product2 {
-  background: url("../img/products/PEN GRIP NAVI GREEN.jpg") no-repeat center center/contain; }
-
-#product3 {
-  background: url("../img/products/PEN GRIP NAVI RED.jpg") no-repeat center center/contain; }
-
 #contact {
   flex-direction: row;
   justify-content: space-between;

@@ -63,6 +63,15 @@ class Carousel {
 //       else
 //         imgEl.style.left = 0
 //     }
+        //preloading imgs to prevent lag
+        let _preload = document.createElement('div')
+        for (let img of _content) {
+            let tmpImg = document.createElement('img')
+            tmpImg.src = img
+            _preload.appendChild(tmpImg)
+        }
+        _preload.style.display = 'none'
+        document.querySelector(this.target + ' .images').appendChild(_preload)
     }
 
     //moves the imgs by one back

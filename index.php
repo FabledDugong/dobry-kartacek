@@ -126,10 +126,10 @@
         </div>
         <div id="products">
             <?php
-                foreach ($products as $prod)
-                    echo "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(assets/img/products/{$prod->getPictures()}) no-repeat center center / contain'>
+                foreach ($products as $p)
+                    echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
                             <div>
-                                <h4>{$prod->getName()}</h4>
+                                <h4>{$p->getName()}</h4>
                             </div>
                          </div>";
             ?>

@@ -37,22 +37,31 @@ function bindLoadDetail () {
     let _prods = [...document.getElementsByClassName('product')]
 
     _prods.map(el => el.addEventListener('click', () => {
+        let html = ''
+
         document.getElementById('product-detail').setAttribute('data-id', el.dataset.id)
 
         loadData('assets/php/loadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
-            document.querySelector('.product-info').innerHTML = `<div>
-                                                                    <h4>${data['name']}</h4>
-                                                                    <p>${data['description']}</p>
-                                                                </div>
-                                                                <div>
-                                                                    <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
-                                                                    <h5>cena: ${data['price']}</h5>
-                                                                    <h5>typ: ???</h5>
-                                                                    <h5>tvrdost: ???</h5>
-                                                                    <h5>délka štětin: ???</h5>
-                                                                    <h5>barva: ???</h5>
-                                                                </div>`
+
+            html += `<div>`
+
+            for ( let img of data['pictures'] )
+                html += `<img src="assets/img/products/${img['url']}" alt="${data['name']}">`;
+
+            html += `</div>
+                     <div>
+                         <h4>${data['name']}</h4>
+                         <p>${data['description']}</p>
+                     </div>
+                     <div>
+                         ${ (data['color'] != null) ? '<h5>barva: ' + data['color'] + '</h5>' : '' }
+                         ${ (data['toughness'] != null) ? '<h5>tvrdost: ' + data['toughness'] + '</h5>' : '' }
+                         <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
+                         <h5>cena: ${data['price']}</h5>
+                     </div>`
+
+            document.querySelector('.product-info').innerHTML = html
             document.getElementById('products').style.display = 'none'
             document.getElementById('product-detail').style.display = 'flex'
         })
@@ -72,7 +81,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url("assets/img/products/${product['pictures']}") no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
                             </div>
@@ -88,7 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url("assets/img/products/${product['pictures']}") no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
                             </div>
