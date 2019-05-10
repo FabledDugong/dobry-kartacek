@@ -4,25 +4,28 @@
           parent::__construct();
       }
 
+      /** **********************************************************************************************************************************
+       *  ********************************************************** PRODUTS ***************************************************************
+       *  ********************************************************************************************************************************** */
       public function product_SelectById ($id) {
           $result = NULL;
 
           $query = $this->CONN->prepare(
-              'SELECT *
+              'SELECT product.*
                          FROM product 
-                         WHERE id = :id'
+                         WHERE product.id = :id'
           );
 
           $query->execute([ ':id' => $id ]);
 
           if ( $row = $query->fetch() ) {
-              $query2 = $this->CONN->prepare(
-                  'SELECT url 
+              $query = $this->CONN->prepare(
+                  'SELECT picture.url
                              FROM picture 
-                             WHERE id_product = :id'
+                             WHERE picture.id_product = :id'
               );
 
-              $query2->execute([ ':id' => $id ]);
+              $query->execute([ ':id' => $id ]);
 
               $result = new Product(
                   $row->id,
@@ -30,9 +33,11 @@
                   $row->id_manufacturer,
                   $row->name,
                   $row->description,
+                  $row->color,
+                  $row->toughness,
                   $row->price,
                   $row->stock,
-                  $query2->fetchAll()
+                  $query->fetchAll()
               );
           }
 
@@ -41,125 +46,125 @@
 
       public function product_SelectAll () {
           $query = $this->CONN->prepare(
-              'SELECT   product.id,
-                                  id_category,
-                                  id_manufacturer,
-                                  name,
-                                  price,
-                                  url
+              'SELECT product.*,
+                                picture.url
                          FROM product
                          LEFT JOIN picture ON product.id = picture.id_product
                          GROUP BY product.id'
           );
+
           $query->execute();
 
           $data = [];
+
           while( $row = $query->fetch() )
               $data[] = new Product(
                   $row->id,
                   $row->id_category,
                   $row->id_manufacturer,
                   $row->name,
-                  NULL,
+                  $row->description,
+                  $row->color,
+                  $row->toughness,
                   $row->price,
-                  NULL,
+                  $row->stock,
                   $row->url
               );
 
           return $data;
       }
 
-      public function product_SelectAllByCategory ($idCategory) {
+      public function product_SelectAllByCategory ($id_category) {
           $query = $this->CONN->prepare(
-              'SELECT   product.id,
-                                  id_category,
-                                  id_manufacturer,
-                                  name,
-                                  price,
-                                  url
+              'SELECT product.*,
+                                picture.url
                          FROM product
                          LEFT JOIN picture ON product.id = picture.id_product
-                         WHERE id_category = :idCategory OR id_category IN (
+                         WHERE id_category = :id_category OR id_category IN (
                             SELECT DISTINCT id
                             FROM category
-                            WHERE id_parent = :idCategory
+                            WHERE id_parent = :id_category
                          )
                          GROUP BY product.id'
           );
-          $query->execute( ['idCategory' => $idCategory] );
+
+          $query->execute( ['id_category' => $id_category] );
 
           $data = [];
+
           while( $row = $query->fetch() )
               $data[] = new Product(
                   $row->id,
                   $row->id_category,
                   $row->id_manufacturer,
                   $row->name,
-                  NULL,
+                  $row->description,
+                  $row->color,
+                  $row->toughness,
                   $row->price,
-                  NULL,
+                  $row->stock,
                   $row->url
               );
 
           return $data;
       }
 
-      public function product_SelectAllBySubCategory ($idCategory) {
+      public function product_SelectAllBySubCategory ($id_category) {
           $query = $this->CONN->prepare(
-              'SELECT   product.id,
-                                  id_category,
-                                  id_manufacturer,
-                                  name,
-                                  price,
-                                  url
+              'SELECT product.*,
+                                picture.url
                          FROM product
                          LEFT JOIN picture ON product.id = picture.id_product
                          WHERE id_category = :idCategory
                          GROUP BY product.id'
           );
-          $query->execute( ['idCategory' => $idCategory] );
+
+          $query->execute( ['id_category' => $id_category] );
 
           $data = [];
+
           while( $row = $query->fetch() )
               $data[] = new Product(
                   $row->id,
                   $row->id_category,
                   $row->id_manufacturer,
                   $row->name,
-                  NULL,
+                  $row->description,
+                  $row->color,
+                  $row->toughness,
                   $row->price,
-                  NULL,
+                  $row->stock,
                   $row->url
               );
 
           return $data;
       }
 
-      public function product_SelectAllByManufacturer ($idManufacturer) {
+      public function product_SelectAllByManufacturer ($id_manufacturer) {
           $query = $this->CONN->prepare(
-              'SELECT   product.id,
-                                  id_category,
-                                  id_manufacturer,
-                                  name,
-                                  price,
-                                  url
+              'SELECT product.*,
+                                picture.url
                          FROM product
                          LEFT JOIN picture ON product.id = picture.id_product
-                         WHERE id_manufacturer = :idManufacturer
+                         WHERE id_manufacturer = :id_manufacturer
                          GROUP BY product.id'
           );
-          $query->execute( ['idManufacturer' => $idManufacturer] );
+
+          $query->execute( ['id_manufacturer' => $id_manufacturer] );
 
           $data = [];
+
           while( $row = $query->fetch() )
               $data[] = new Product(
                   $row->id,
                   $row->id_category,
                   $row->id_manufacturer,
                   $row->name,
-                  NULL,
+                  $row->description,
+                  $row->color,
+                  $row->toughness,
                   $row->price,
-                  NULL,
+                  $row->stock,
                   $row->url
               );
 
@@ -171,22 +176,26 @@
               'INSERT INTO product 
                          VALUES (
                             DEFAULT, 
-                            :idCategory, 
-                            :idManufacturer, 
+                            :id_category, 
+                            :id_manufacturer, 
                             :name, 
-                            :description, 
+                            :description,
+                            :color,
+                            :toughness, 
                             :price, 
                             :stock
                          )'
           );
 
           $query->execute([
-              ':idCategory'     => $product->getIdCategory(),
-              ':idManufacturer' => $product->getIdManufacturer(),
-              ':name'           => $product->getName(),
-              ':description'    => $product->getDescription(),
-              ':price'          => $product->getPrice(),
-              ':stock'          => $product->getStock()
+              ':id_category'     => $product->getIdCategory(),
+              ':id_manufacturer' => $product->getIdManufacturer(),
+              ':name'            => $product->getName(),
+              ':description'     => $product->getDescription(),
+              ':color'           => $product->getColor(),
+              ':toughness'       => $product->getToughness(),
+              ':price'           => $product->getPrice(),
+              ':stock'           => $product->getStock()
           ]);
 
           $id = $this->CONN->lastInsertId();
@@ -196,13 +205,13 @@
                   'INSERT INTO picture 
                              VALUES (
                                 DEFAULT,
-                                :idProduct, 
+                                :id_product, 
                                 :url
                              )'
               );
 
               $query->execute([
-                  ':idProduct'  => $id,
+                  ':id_product' => $id,
                   ':url'        => $picture
               ]);
           }
@@ -210,7 +219,7 @@
 
       public function product_Delete ($id) {
           foreach($this->product_SelectById($id)->getPictures() as $picture)
-              unlink("../../img/{$picture->url}");
+              unlink("../../img/products/{$picture}");
 
           $query = $this->CONN->prepare(
               'DELETE 
@@ -221,6 +230,9 @@
           $query->execute([ ':id' => $id ]);
       }
 
+      /** **********************************************************************************************************************************
+       *  ******************************************************** CATEGORIES **************************************************************
+       *  ********************************************************************************************************************************** */
       public function category_SelectTop () {
           $query = $this->CONN->prepare(
               'SELECT *
@@ -234,19 +246,22 @@
           return $data;
       }
 
-      public function category_SelectSub ($idParent) {
+      public function category_SelectSub ($id_parent) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM category
-                         WHERE id_parent = :idParent'
+                         WHERE id_parent = :id_parent'
           );
 
-          $query->execute( [':idParent' => $idParent ] );
+          $query->execute( [':id_parent' => $id_parent ] );
           $data = $query->fetchAll();
 
           return $data;
       }
 
+      /** **********************************************************************************************************************************
+       *  ******************************************************* MANUFACTURERS ************************************************************
+       *  ********************************************************************************************************************************** */
       public function manufacturer_SelectAll () {
           $query = $this->CONN->prepare(
               'SELECT *
@@ -259,6 +274,9 @@
           return $data;
       }
 
+      /** **********************************************************************************************************************************
+       *  ********************************************************** INVOICES **************************************************************
+       *  ********************************************************************************************************************************** */
       public function invoice_SelectAll () {
           $query = $this->CONN->prepare(
               'SELECT *
@@ -271,19 +289,22 @@
           return $data;
       }
 
-      public function invoice_SelectById ($idInvoice) {
+      public function invoice_SelectById ($id_invoice) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM invoice
-                         WHERE id = :idInvoice'
+                         WHERE id = :id_invoice'
           );
 
-          $query->execute( [':idInvoice' => $idInvoice] );
+          $query->execute( [':id_invoice' => $id_invoice] );
           $data = $query->fetchAll();
 
           return $data;
       }
 
+      /** **********************************************************************************************************************************
+       *  *********************************************************** USERS ****************************************************************
+       *  ********************************************************************************************************************************** */
       public function user_SelectByLogin ($login) {
           $query = $this->CONN->prepare(
               'SELECT *
@@ -310,16 +331,16 @@
           return $data;
       }
 
-      public function user_Login ($name, $password) {
+      public function user_Login ($login, $password) {
           $query = $this->CONN->prepare(
               'SELECT id,
                                 password,
                                 active
                          FROM user
-                         WHERE login = :name'
+                         WHERE login = :login'
           );
 
-          $query->execute([':name' => $name]);
+          $query->execute([':login' => $login]);
           $data = $query->fetch();
 
           if ( empty($data) || !password_verify($password, $data->password) || $data->active == 0 )
@@ -330,7 +351,7 @@
       }
 
       public function user_Register($user) {
-          if ( !empty($this->user_SelectByLogin($user['login'])) )
+          if ( !empty($this->user_SelectByLogin($user->login)) )
               return false;
 
           $query = $this->CONN->prepare(
@@ -339,8 +360,8 @@
                             DEFAULT, 
                             :login, 
                             :password, 
-                            :name, 
-                            :surname, 
+                            :f_name, 
+                            :l_name, 
                             :phone, 
                             :address,
                             :city,
@@ -350,13 +371,13 @@
           );
 
           $query->execute([
-              ':login' => $user['login'],
-              ':password' => password_hash($user['password'], PASSWORD_DEFAULT),
-              ':name' => $user['fName'],
-              ':surname' => $user['lName'],
-              ':phone' => $user['phone'],
-              ':address' => $user['address'],
-              ':city' => $user['city'],
+              ':login'    => $user->login,
+              ':password' => password_hash($user->password, PASSWORD_DEFAULT),
+              ':f_name'   => $user->f_name,
+              ':l_name'   => $user->l_name,
+              ':phone'    => $user->phone,
+              ':address'  => $user->address,
+              ':city'     => $user->city,
           ]);
 
           $data = $this->user_SelectByLogin($user['login']);
@@ -391,54 +412,5 @@
 
           return true;
       }
-
-      /*
-      public function selectAllByManufacturerAndGroup($manufacturer, $group) {
-          $stmt = $this->conn->prepare('  SELECT  machines.id,
-                                                            machines.manufacturer,
-                                                            machines.type,
-                                                            machines.kind,
-                                                            SUBSTRING(machines.description, 1, 200) as "description",
-                                                            images.url
-                                                    FROM machines 
-                                                    LEFT JOIN images ON machines.id = images.id_machine 
-                                                    WHERE machines.manufacturer = :manufacturer AND machines.kind = :group
-                                                    GROUP BY machines.id');
-          $stmt->execute([  ':manufacturer' => $manufacturer,
-                            ':group' => $group]);
-          $data = [];
-          while($row = $stmt->fetch()) {
-              $data[] = new Machine($row['id'], $row['manufacturer'], $row['type'], $row['kind'], $row['description'], $row['url']);
-          }
-          return $data;
-      }
-
-      public function update(Machine $machine){
-          $stmt = $this->conn->prepare('UPDATE machines SET id=:id, manufacturer=:manufacturer, type=:type, kind=:group, description=:description WHERE id=:id');
-          $stmt->execute([':id' => $machine->getId(),
-                          ':manufacturer' => $machine->getManufacturer(),
-                          ':type' => $machine->getType(),
-                          ':group' => $machine->getGroup(),
-                          ':description' => $machine->getDescription()]);
-          $stmt = null;
-          if(count($machine->getImg()) > 0) {
-              foreach($machine->getImg() as $img) {
-                  $stmt = $this->conn->prepare('DELETE FROM images WHERE id_machine=:id AND url=:url');
-                  $stmt->execute([':id' => $machine->getId(),
-                                  ':url' => $img]);
-                  $stmt = null;
-                  unlink("../img/machines/{$img}");
-              }
-          }
-      }
-      public function updateImgs($id, $imgs) {
-          foreach($imgs as $img) {
-              $stmt = $this->conn->prepare('INSERT INTO images VALUES (DEFAULT, :id_machine, :url)');
-              $stmt->execute([':id_machine' => $id,
-                              ':url' => $img]);
-              $stmt = null;
-          }
-      }
-      */
   }
 ?>

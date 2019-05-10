@@ -15,7 +15,7 @@
             }
         }
 
-        public function checkData ($data = NULL, $returnPath = '../index.php') {
+        public function checkData ($data = NULL, $returnPath = '../../index.php') {
             $missingData = '';
 
             if ( empty($data) ) {

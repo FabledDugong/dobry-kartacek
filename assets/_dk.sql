@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2019 at 09:31 PM
+-- Generation Time: May 07, 2019 at 04:19 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -55,8 +55,8 @@ INSERT INTO `category` (`id`, `id_parent`, `name`, `description`) VALUES
 
 CREATE TABLE `customer` (
   `id` int(4) NOT NULL,
-  `name` varchar(30) COLLATE utf16_czech_ci NOT NULL,
-  `surname` varchar(30) COLLATE utf16_czech_ci NOT NULL,
+  `f_name` varchar(30) COLLATE utf16_czech_ci NOT NULL,
+  `l_name` varchar(30) COLLATE utf16_czech_ci NOT NULL,
   `email` varchar(50) COLLATE utf16_czech_ci NOT NULL,
   `phone` varchar(20) COLLATE utf16_czech_ci NOT NULL,
   `address` varchar(50) COLLATE utf16_czech_ci NOT NULL,
@@ -142,7 +142,10 @@ INSERT INTO `picture` (`id`, `id_product`, `url`) VALUES
 (1, 1, 'PEN GRIP NAVI BLUE.jpg'),
 (2, 1, 'PEN GRIP NAVI GREEN.jpg'),
 (3, 2, 'PEN GRIP NAVI GREEN.jpg'),
-(4, 3, 'PEN GRIP NAVI RED.jpg');
+(4, 3, 'PEN GRIP NAVI RED.jpg'),
+(5, 4, 'PEN GRIP NAVI RED.jpg'),
+(6, 5, 'PEN GRIP NAVI RED.jpg'),
+(8, 6, 'PEN GRIP NAVI RED.jpg');
 
 -- --------------------------------------------------------
 
@@ -156,21 +159,23 @@ CREATE TABLE `product` (
   `id_manufacturer` int(6) NOT NULL,
   `name` varchar(50) COLLATE utf16_czech_ci NOT NULL,
   `description` varchar(300) COLLATE utf16_czech_ci DEFAULT NULL,
+  `color` varchar(30) COLLATE utf16_czech_ci DEFAULT NULL,
+  `toughness` varchar(30) COLLATE utf16_czech_ci DEFAULT NULL,
   `price` int(5) NOT NULL,
-  `stock` int(4) NOT NULL
+  `stock` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `id_category`, `id_manufacturer`, `name`, `description`, `price`, `stock`) VALUES
-(1, 1, 1, 'Foo', 'Some description', 50, 10),
-(2, 1, 1, 'Foo', 'Some description', 50, 10),
-(3, 2, 1, 'Foo', 'Some description', 70, 10),
-(4, 1, 2, 'Foo', 'Some description', 80, 0),
-(5, 3, 2, 'Foo', 'Some description', 90, 10),
-(6, 3, 3, 'Foo', 'Some description', 100, 0);
+INSERT INTO `product` (`id`, `id_category`, `id_manufacturer`, `name`, `description`, `color`, `toughness`, `price`, `stock`) VALUES
+(1, 1, 1, 'Foo', 'Some description', NULL, NULL, 50, 10),
+(2, 1, 1, 'Foo', 'Some description', 'Red', 'Soft', 50, 10),
+(3, 2, 1, 'Foo', 'Some description', 'Blue', 'Tough', 70, 10),
+(4, 1, 2, 'Foo', 'Some description', NULL, NULL, 80, 0),
+(5, 3, 2, 'Foo', 'Some description', 'Aquamarine', 'Soft', 90, 10),
+(6, 3, 3, 'Foo', 'Some description', NULL, NULL, 100, 0);
 
 -- --------------------------------------------------------
 
@@ -216,8 +221,8 @@ CREATE TABLE `user` (
   `id` int(4) NOT NULL,
   `login` varchar(50) COLLATE utf16_czech_ci NOT NULL,
   `password` varchar(300) COLLATE utf16_czech_ci NOT NULL,
-  `name` varchar(30) COLLATE utf16_czech_ci NOT NULL,
-  `surname` varchar(30) COLLATE utf16_czech_ci NOT NULL,
+  `f_name` varchar(30) COLLATE utf16_czech_ci NOT NULL,
+  `l_name` varchar(30) COLLATE utf16_czech_ci NOT NULL,
   `phone` varchar(20) COLLATE utf16_czech_ci NOT NULL,
   `address` varchar(50) COLLATE utf16_czech_ci NOT NULL,
   `city` varchar(50) COLLATE utf16_czech_ci NOT NULL,
@@ -229,7 +234,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `login`, `password`, `name`, `surname`, `phone`, `address`, `city`, `registered`, `active`) VALUES
+INSERT INTO `user` (`id`, `login`, `password`, `f_name`, `l_name`, `phone`, `address`, `city`, `registered`, `active`) VALUES
 (1, 'root', '$2y$10$HCvA.ftrLeGwFv7aAwOyEOFHSM.YHY6GFSQwYvkmH2d1KdjrTlzJG', '', '', '', '', '', '2019-04-04 20:45:43', 1),
 (5, 'eyy@picovina.com', '$2y$10$vDx0svhLzSyacmTFKQW/T.i7u3KaYWW6ts0NdidefH1aEZ.BHJrAu', 'John', 'Doe', '666 666 666', 'V prdeli 666', 'Suchdol, 275 00', '2019-04-24 19:13:50', 0);
 
@@ -350,7 +355,7 @@ ALTER TABLE `password_reset`
 -- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product`

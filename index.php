@@ -70,8 +70,15 @@ else
                 <a href="#shop">obchod</a>
                 <a href="#contact">kontakt-poradna</a>
                 <?php
+<<<<<<< HEAD
                 if (!isset($_SESSION['user-id']))
                     echo '<a tabindex="-1" data-role="button-open-login">přihlášení</a>';
+=======
+                    if ( !isset($_SESSION['user-id']) )
+                        echo '<a data-role="button-open-login">přihlášení</a>';
+                    else
+                        echo '<a href="#">administrace</a>';
+>>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
                 ?>
                 <a href="assets/php/checkout.php" data-role="button-open-cart" id="ct">košík</a>
             </div>
@@ -123,6 +130,7 @@ else
         </div>
         <div id="products">
             <?php
+<<<<<<< HEAD
             foreach ($products as $prod)
                 echo
                 "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(assets/img/products/{$prod->getPictures()}) no-repeat center center / contain'>
@@ -131,6 +139,14 @@ else
                         <p>{$prod->getPrice()}Kč</p>
                     </div>
                 </div>";
+=======
+                foreach ($products as $p)
+                    echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
+                            <div>
+                                <h4>{$p->getName()}</h4>
+                            </div>
+                         </div>";
+>>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
             ?>
         </div>
         <div id="product-detail" data-id="null">
@@ -213,6 +229,34 @@ else
         </div>
     </section>
 </main>
+<<<<<<< HEAD
+=======
+<footer id="footer">
+    <div id="important">
+        <div>
+            <h5>důležité odkazy</h5>
+            <h6>obchodní podmínky</h6>
+            <h6>zpracování osobních údajů</h6>
+            <h6>o nás</h6>
+            <h6>faq</h6>
+        </div>
+        <div>
+            <h5>jak nakoupit</h5>
+            <h6>možnosti dopravy</h6>
+            <h6>možnosti platby</h6>
+            <h6>reklamace a vrácení</h6>
+        </div>
+    </div>
+    <div id="copy">
+        <h6>© 2019 Dobrý kartáček. All rights reserved.</h6>
+        <h6>Created by JŠ&MZ</h6>
+    </div>
+</footer>
+<?php
+    if ( isset($_SESSION['notification']) )
+        unserialize($_SESSION['notification'])->show();
+?>
+>>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
 <script type="text/javascript" src="assets/js/main.js"></script>
 <script type="text/javascript" src="assets/js/ajax.js"></script>
 </body>

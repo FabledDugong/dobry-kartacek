@@ -383,15 +383,6 @@ input:-webkit-autofill {
         #shop #product-detail .product-control button:last-of-type {
           background: #DE9E33; }
 
-#product1 {
-  background: url("../img/products/PEN GRIP NAVI BLUE.jpg") no-repeat center center/contain; }
-
-#product2 {
-  background: url("../img/products/PEN GRIP NAVI GREEN.jpg") no-repeat center center/contain; }
-
-#product3 {
-  background: url("../img/products/PEN GRIP NAVI RED.jpg") no-repeat center center/contain; }
-
 #contact {
   justify-content: space-between;
   height: 90%;
@@ -604,6 +595,22 @@ input:-webkit-autofill {
           height: 40%; }
   #modal #cart {
     flex-direction: column; }
+
+#notification {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  padding: 5vmin;
+  transform: translateX(-50%);
+  opacity: 0;
+  z-index: 1000;
+  transition: all 0.3s; }
+  #notification.visible {
+    bottom: 5vmin;
+    opacity: 1;
+    transition: all 0.3s; }
+  #notification h3 {
+    color: #fff; }
 
 ::-webkit-scrollbar-track {
   background: #fff; }

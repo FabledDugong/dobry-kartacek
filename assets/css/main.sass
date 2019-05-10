@@ -318,13 +318,6 @@ input
         &:last-of-type
           background: $secondary-color
 
-#product1
-  @include bg-img("../img/products/PEN GRIP NAVI BLUE.jpg")
-#product2
-  @include bg-img("../img/products/PEN GRIP NAVI GREEN.jpg")
-#product3
-  @include bg-img("../img/products/PEN GRIP NAVI RED.jpg")
-
 #contact
   justify-content: space-between
   height: 90%
@@ -537,6 +530,22 @@ input
           height: 40%
   #cart
     flex-direction: column
+
+#notification
+  position: fixed
+  bottom: 0
+  left: 50%
+  padding: 5vmin
+  transform: translateX(-50%)
+  opacity: 0
+  z-index: 1000
+  transition: all .3s
+  &.visible
+    bottom: 5vmin
+    opacity: 1
+    transition: all .3s
+  h3
+    color: #fff
 
 ::-webkit-scrollbar-track
   background: #fff
