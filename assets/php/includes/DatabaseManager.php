@@ -280,7 +280,10 @@
       public function invoice_SelectAll () {
           $query = $this->CONN->prepare(
               'SELECT *
-                         FROM invoice'
+                         FROM invoice
+                         JOIN customer ON invoice.id_customer = customer.id
+                         JOIN products_in_invoice ON invoice.id = products_in_invoice.id_invoice
+                         JOIN product ON pr'
           );
 
           $query->execute();
@@ -289,11 +292,11 @@
           return $data;
       }
 
-      public function invoice_SelectById ($id_invoice) {
+      public function invoice_SelectById ( $id_invoice ) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM invoice
-                         WHERE id = :id_invoice'
+                         WHERE invoice.id = :id_invoice'
           );
 
           $query->execute( [':id_invoice' => $id_invoice] );
@@ -305,7 +308,7 @@
       /** **********************************************************************************************************************************
        *  *********************************************************** USERS ****************************************************************
        *  ********************************************************************************************************************************** */
-      public function user_SelectByLogin ($login) {
+      public function user_SelectByLogin ( $login ) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM user
@@ -318,7 +321,7 @@
           return $data;
       }
 
-      public function user_SelectById ($id) {
+      public function user_SelectById ( $id ) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM user
@@ -331,7 +334,7 @@
           return $data;
       }
 
-      public function user_Login ($login, $password) {
+      public function user_Login ( $login, $password ) {
           $query = $this->CONN->prepare(
               'SELECT id,
                                 password,
@@ -350,7 +353,7 @@
           return true;
       }
 
-      public function user_Register($user) {
+      public function user_Register ( $user ) {
           if ( !empty($this->user_SelectByLogin($user->login)) )
               return false;
 
@@ -377,7 +380,7 @@
               ':l_name'   => $user->l_name,
               ':phone'    => $user->phone,
               ':address'  => $user->address,
-              ':city'     => $user->city,
+              ':city'     => $user->city
           ]);
 
           $data = $this->user_SelectByLogin($user['login']);
@@ -388,7 +391,7 @@
           return $data->id . '-' . $date[1] . '-' . $date[2] . '-' . $time[0] . '-' . $time[1] . '-' . $time[2];
       }
 
-      public function user_SetActive ($token) {
+      public function user_SetActive ( $token ) {
           $token = explode('-', $token);
           $user = $this->user_SelectById($token[0]);
 
@@ -411,6 +414,96 @@
           $query->execute([':id' => $token[0]]);
 
           return true;
+      }
+
+      /** **********************************************************************************************************************************
+       *  ************************************************************ Q&A *****************************************************************
+       *  ********************************************************************************************************************************** */
+      public function qna_insertQuestion ( $from, $question ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO `q&a` 
+                         VALUES (
+                            DEFAULT, 
+                            DEFAULT, 
+                            :email, 
+                            :description,                             
+                            DEFAULT
+                         )'
+          );
+
+          $query->execute([
+              ':email'       => $from,
+              ':description' => $question
+          ]);
+      }
+
+      public function qna_insertAnswer ( $id, $from, $question ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO `q&a` 
+                         VALUES (
+                            DEFAULT, 
+                            DEFAULT, 
+                            :email, 
+                            :description,                             
+                            DEFAULT
+                         )'
+          );
+
+          $query->execute([
+              ':email'       => $from,
+              ':description' => $question
+          ]);
+
+          $id_answer = $this->CONN->lastInsertId();
+
+          $query = $this->CONN->prepare(
+              'UPDATE `q&a`
+                         SET id_answer = :id_answer
+                         WHERE id = :id'
+          );
+
+          $query->execute([
+              ':id_answer'  => $id_answer,
+              ':id'         => $id
+          ]);
+      }
+
+      public function qna_selectAll () {
+          $query = $this->CONN->prepare(
+              'SELECT *
+                         FROM `q&a`'
+          );
+
+          $query->execute();
+          $data = $query->fetchAll();
+
+          return $data;
+      }
+
+      public function qna_selectAllUnanswered () {
+          $query = $this->CONN->prepare(
+              'SELECT *
+                         FROM `q&a`
+                         WHERE id_answer IS NULL'
+          );
+
+          $query->execute();
+          $data = $query->fetchAll();
+
+          return $data;
+      }
+
+      public function qna_selectAllByEmail ( $email ) {
+          $query = $this->CONN->prepare(
+              'SELECT *
+                         FROM `q&a`
+                         WHERE email = :email'
+          );
+
+          $query->execute([':email' => $email]);
+          $data = $query->fetchAll();
+
+          return $data;
       }
   }
 ?>
