@@ -55,5 +55,119 @@ html {
 @font-face {
   src: url("../font/Axis-Extrabold.otf") format("opentype");
   font-family: "Axis"; }
+@font-face {
+  src: url("../font/Roboto-Light.ttf") format("truetype");
+  font-family: "Roboto-Light"; }
+@font-face {
+  src: url("../font/Roboto-Regular.ttf") format("truetype");
+  font-family: "Roboto-Regular"; }
+@font-face {
+  src: url("../font/Axis-Extrabold.otf") format("opentype");
+  font-family: "Axis"; }
+::selection {
+  background: #DE9E33; }
+
+body {
+  overflow-x: hidden;
+  font-family: "Roboto-Regular", sans-serif; }
+
+header, section {
+  display: flex;
+  width: 100vw; }
+
+#navigation {
+  width: 100%;
+  height: 100%;
+  padding: 5vmin 5vmin 0; }
+  #navigation > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    width: 100%;
+    height: 10vh;
+    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+    #navigation > div #brand {
+      display: flex;
+      width: 30%;
+      height: 100%; }
+    #navigation > div #progress {
+      display: flex;
+      width: 70%;
+      height: 100%; }
+      #navigation > div #progress .checkout-phase {
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        height: 100%; }
+        #navigation > div #progress .checkout-phase.active > div {
+          background: #DE9E33;
+          color: #28292D; }
+        #navigation > div #progress .checkout-phase > div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 20%;
+          height: 100%;
+          background: #28292D;
+          font-family: "Axis", sans-serif;
+          font-size: 3vmin;
+          color: white; }
+          #navigation > div #progress .checkout-phase > div:last-of-type {
+            width: 80%;
+            height: 100%;
+            background: transparent;
+            font-size: 2.5vmin;
+            color: #28292D; }
+
+#cart {
+  width: 100%;
+  height: 80vh;
+  padding: 5vmin; }
+  #cart > div {
+    width: 100%;
+    height: 100%;
+    background: white;
+    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+    #cart > div #cart-control {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 10vh;
+      padding: 0 3vmin;
+      background: #28292D;
+      color: white; }
+      #cart > div #cart-control h3 {
+        font-family: "Axis", sans-serif;
+        font-size: 3vmin; }
+      #cart > div #cart-control button {
+        padding: 2vmin;
+        background: #DE9E33;
+        border: none;
+        font-family: "Axis", sans-serif;
+        font-size: 1.75vmin; }
+    #cart > div #cart-content {
+      width: 100%;
+      height: 60vh; }
+      #cart > div #cart-content ul li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 5vmin;
+        padding: 5vmin;
+        border-bottom: 0.1vmin solid #BCBCBC; }
+        #cart > div #cart-content ul li .product-image {
+          width: 5vmin;
+          height: 5vmin;
+          background: url("../img/products/PEN GRIP NAVI RED.jpg") no-repeat center center/contain; }
+        #cart > div #cart-content ul li .product-name {
+          width: 10vmin;
+          height: 5vmin; }
 
 /*# sourceMappingURL=control.css.map */

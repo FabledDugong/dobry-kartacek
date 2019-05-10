@@ -2,22 +2,20 @@
 @import variables
 @import mixins
 
+::selection
+  background: $secondary-color
 body
-  font-family: $content-font
   overflow-x: hidden
+  font-family: $content-font
 header, section, footer
   display: flex
   width: 100vw
-nav
-  display: flex
-  justify-content: space-evenly
-  width: 60%
 h1,h2,h3,h4,h5
   font-family: $title-font
 h1
   margin: 0 0 1vmin 0
-  font-size: 8vmin
   color: $main-color
+  font-size: 8vmin
 h2
   font-size: 5vmin
 h3
@@ -25,105 +23,114 @@ h3
 h4
   font-size: 3vmin
 h5
-  font-size: 1.75vmin
-  color: $dark
+  font-size: 2vmin
 p
   font-size: 2vmin
-  color: $main-color
-a
-  font-family: $title-font
 button
-  width: 100%
-  margin: 0 3vmin 0 0
   padding: 2vmin
   background: $main-color
   border: none
-  box-shadow: 5px 0 25px 1px #BCBCBC
+  @include shadow()
   font-family: $title-font
   font-size: 2.5vmin
   color: #fff
-form
-  input
-    [type="checkbox"]
-      background: transparent
-      border: 0.1vmin solid $dark
-      border-radius: 0
+
+input
+  &:-webkit-autofill
+    background: transparent
+
 .logo
-  width: 10vmin
-  height: 10vmin
-  padding: 2vmin
+  width: 6vmin
+  height: 6vmin
+.partner-logo
+  width: 25vmin
 .icon
   width: 5vmin
   height: 5vmin
 *[data-role]
   cursor: pointer
+
 #header
+  justify-content: space-between
   height: 100vh
+  padding: 5vmin
   background: linear-gradient(#fff, $gray)
   color: #fff
-  div
-    width: 50%
-  #intro
+  > div
+    width: 49%
     display: flex
     flex-direction: column
-    padding: 5vmin
-    div
-      div
-        display: flex
-        flex-direction: row
-        button
-          &:first-of-type
-            background: $secondary-color
-    p
-      margin: 2vmin 0 5vmin 0
-      font-family: $content-font-lighter
-      font-size: 4vmin
-      color: $dark
-    #control-panel
+    #navigation
       display: flex
       flex-direction: row
       align-items: center
       justify-content: space-between
-      //position: -webkit-sticky
-      //position: sticky
-      //top: 0
       width: 100%
       height: 10vmin
       margin: 0 0 5vmin 0
-      background: white
-      border-bottom: 0.1vmin solid $grayer
-      box-shadow: 5px 5px 25px 1px $grayer
-      color: #28292D
+      padding: 0 2vmin
+      background: #fff
+      @include shadow()
+      color: $dark
       z-index: 101
       &.pinned
         position: fixed
-        width: 100%!important
-        margin-left: -5vmin
         top: 0
+        width: 100% !important
+        margin-left: -5vmin
+        padding: 0 5vmin 0 5vmin
         transition: all .3s
-      div
+        font-size: 2vmin
+        #menu
+          width: 50%
+      #brand
+        display: flex
+        width: 40%
+      #menu
         display: flex
         justify-content: space-evenly
-        align-items: center
         width: 60%
-        height: 100%
-      #brand
-        width: fit-content
-        justify-content: flex-start
-      #menu
-        #cart
-          &::after
-            content: '1'
-            display: none
-            position: relative
-            top: 2vmin
-            right: 50%
+        a
+          font-family: $title-font
+          &:hover
+            color: $secondary-color
+            transition: .3s
+          &:not(:hover)
+            color: $dark
+            transition: .3s
+          &#ct
+            &::after
+              content: '|'
+              display: inline-flex
+              position: relative
+              margin: 0 0 0 0.5vmin
+              color: $secondary-color
+    #intro
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      p
+        width: 75%
+        margin: 2vmin 0 0
+        font-family: $content-font-lighter
+        font-size: 4vmin
+        color: $dark
+      div
+        &:last-of-type
+          display: flex
+          flex-direction: column
+          justify-content: space-between
+          width: 50%
+          height: 20%
+          margin: 5vmin 0 0
+          button
+            &:first-of-type
+              background: $secondary-color
 
   .carousel
     overflow: hidden
     position: relative
-    margin: 2.5vmin 5vmin
-    box-shadow: 5px 5px 25px 1px #BCBCBC
+    @include shadow()
     .images
       display: flex
       flex-direction: column
@@ -193,69 +200,81 @@ form
           background: $gray
 
 #shop
-  height: 100%
+  justify-content: space-between
+  height: 90%
   padding: 5vmin
   background: $gray
   #categories
-    z-index: 100
     display: flex
     flex-direction: column
     justify-content: flex-start
     align-items: center
-    width: 20%
+    width: 23%
     height: 100%
     background: #fff
-    box-shadow: 5px 0 25px 1px #BCBCBC
     .category
       display: flex
       justify-content: center
       align-items: center
       width: 100%
-      height: 15%
+      height: 20%
       background: #fff
+      cursor: pointer
+      //@include bg-img('../img/products/PEN GRIP NAVI GREEN_rotated.jpg')
+      text-align: center
       .subcategory
+        @extend .category
+        background: #fff
         display: none
       &.active
         height: 100%
-        border-right: 1vmin solid black
+        cursor: default
+        > div
+          &:first-of-type
+            @extend .category
+            height: 10%
+            background: $dark
+            color: #fff
         .subcategory
           display: flex
           height: 20%
-  #filter
-    z-index: 10
-    display: flex
-    flex-direction: column
-    width: 25%
-    height: 100%
-    background: #fff
-    box-shadow: 5px 0 25px 1px #BCBCBC
+  //#filter
+  //  display: flex
+  //  flex-direction: column
+  //  width: 20%
+  //  height: 100%
+  //  background: #fff
+  //  @include shadow()
   #products
-    z-index: 1
     display: flex
     flex-direction: row
     flex-wrap: wrap
     align-content: flex-start
-    width: 60%
+    width: 75%
     height: 100%
     background: #fff
-    box-shadow: -5px 0 25px 1px #BCBCBC
+    @include shadow()
     .product
       display: flex
       flex-direction: column
       justify-content: center
       align-items: center
-      width: 33.33%
+      width: 25%
       height: 33.33%
       div
         display: none
-        width: 75%
-        height: 75%
-        background: rgba(188,188,188,0.7)
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        width: 100%
+        height: 100%
+        background: rgba(188,188,188,0.5)
+        cursor: pointer
       h4
         display: none
       &:hover
         div
-          display: block
+          display: flex
           -webkit-transition: display 1s
           -moz-transition: display 1s
           -ms-transition: display 1s
@@ -266,30 +285,38 @@ form
   #product-detail
     @extend #products
     display: none
-    flex-direction: column
-    align-items: center
-    div
+    flex-direction: row
+    > div
       display: flex
       flex-direction: column
-      width: 100%
-    .product-image
-      height: 50%
-    //@include bg-img("../img/products/PEN GRIP NAVI BLUE.jpg")
-    .product-content
-      padding: 5vmin
-      .product-info
-        display: flex
-        flex-direction: row
-        p
-          text-align: justify
-      .product-control
-        display: flex
-        flex-direction: row
+      width: 50%
+      height: 100%
+      &:first-of-type
+        justify-content: center
+      &:last-of-type
         justify-content: space-between
-        button
-          width: 35%
-          &[data-role='back']
-            width: 20%
+        padding: 5vmin
+    .product-image
+      height: 75%
+    .product-info
+      > div
+        &:first-of-type
+          margin: 0 0 3vmin 0
+      h4
+        margin: 0 0 1vmin
+        font-size: 5vmin
+      p
+        font-family: $content-font-lighter
+        font-size: 3.5vmin
+    .product-control
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      width: 100%
+      button
+        width: 45%
+        &:last-of-type
+          background: $secondary-color
 
 #product1
   @include bg-img("../img/products/PEN GRIP NAVI BLUE.jpg")
@@ -299,74 +326,134 @@ form
   @include bg-img("../img/products/PEN GRIP NAVI RED.jpg")
 
 #contact
-  flex-direction: row
   justify-content: space-between
-  height: fit-content
+  height: 90%
   padding: 5vmin
   background-color: $gray
-  div
-    width: 100%
-    h2
-      color: $main-color
-    address
-      font-family: $title-font
-      font-size: 3vmin
-      color: #000
-  #help
+  > div
     display: flex
     flex-direction: column
     justify-content: space-between
-    form
+    width: 49%
+    height: 100%
+    #contact-info
+      height: 35%
+      ul
+        li
+          margin: 0.5vmin 0 0
+    #help
       display: flex
       flex-direction: column
       justify-content: space-between
-      align-items: center
+      height: 65%
+      background: white
+      @include shadow()
+      #help-control
+        display: flex
+        flex-direction: column
+        justify-content: center
+        width: 100%
+        height: 25%
+        padding: 2vmin
+        background: $dark
+        color: #fff
+        h3
+          margin: 0 0 1vmin 0
+        p
+          line-height: 1.1
+          font-family: $content-font-lighter
+      form
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: flex-end
+        width: 100%
+        height: 75%
+        padding: 2vmin
+        background: transparent
+        div
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          width: 100%
+          margin: 0 0 2vmin 0
+        input
+          font-family: $title-font
+          &:not([type="submit"])
+            width: 49%
+            height: 5vmin
+            padding: 0 0 0 1vmin
+            background: transparent
+            border-bottom: 0.1vmin solid $grayer
+            outline-color: $main-color
+          &[type="submit"]
+            width: 50%
+            padding: 2vmin
+            background: $main-color
+            color: white
+        textarea
+          width: 100%
+          height: 20vmin
+          padding: 1vmin 0 0 1vmin
+          background: transparent
+          border: 0.1vmin solid $grayer
+          outline-color: $secondary-color
+          font-family: $title-font
+          font-size: 1.5vmin
+          resize: none
+    #important
+      display: flex
+      flex-direction: row
+      justify-content: space-evenly
       width: 100%
-      background: transparent
-      //box-shadow: 0 0 25px 1px #BCBCBC
-      div
+      height: 50%
+      padding: 5vmin 0 0
+      background: #fff
+      color: $dark
+      h5
+        margin: 0 0 1vmin 0
+      ul
+        li
+          margin: 0 0 0.5vmin
+          a
+            &:hover
+              border-bottom: 0.1vmin solid $dark
+            &:not(:hover)
+              border: none
+
+    #partners
+      display: flex
+      flex-direction: column
+      align-items: center
+      height: 35%
+      background: #fff
+      > div
         display: flex
         flex-direction: row
-        justify-content: space-between
-        margin: 0 0 2vmin 0
-      input
-        &:not([type="submit"])
-          width: 49%
-          height: 5vmin
-          padding: 0 0 0 1vmin
-          background: transparent
-          border-bottom: 0.1vmin solid #BCBCBC
-          outline-color: $main-color
-        //box-shadow: 0 0 25px 1px #BCBCBC
-        &[type="submit"]
-          width: 14%
-          padding: 2vmin
-      textarea
-        width: 84%
-        height: 20vmin
-        padding: 1vmin 0 0 1vmin
-        background: transparent
-        border: 0.1vmin solid #BCBCBC
-        outline-color: $main-color
-        font-family: $content-font-lighter
-        font-size: 1.5vmin
-        resize: none
-#footer
-  height: 50vh
-  background: $dark
-  //background: linear-gradient($gray, $grayer)
-  #important
-    display: flex
-    flex-direction: row
-    div
-      width: 50%
+        justify-content: space-evenly
+        align-items: center
+        width: 100%
+        height: 100%
+        opacity: 0.5
     #copy
       display: flex
       flex-direction: column
       justify-content: center
+      align-items: center
       width: 100%
-      height: 25%
+      height: 15%
+      background: $dark
+      color: #fff
+    &:last-of-type
+      @include shadow()
+  h2
+    color: $main-color
+  address
+    font-family: $title-font
+    font-size: 3vmin
+    color: $dark
 
+/* modal styles */
 #modal
   display: none
   z-index: 1000
@@ -380,7 +467,7 @@ form
   h3
     color: $dark
   span
-    font-size: 1.25vmin
+    font-size: 1.5vmin
     color: $grayer
   > div
     display: none
@@ -393,7 +480,7 @@ form
     height: 50%
     padding: 0 0 2vmin 0
     background: white
-    box-shadow: 5px 5px 25px 1px $grayer
+    @include shadow()
     #login-control
       display: flex
       justify-content: flex-end
@@ -423,11 +510,11 @@ form
         padding: 0 0 0 1vmin
         background: transparent
         border-bottom: 0.1vmin solid $grayer
-        outline-color: $main-color
+        outline-color: $secondary-color
         &[type='submit']
-          background: $main-color
+          background: $secondary-color
           border: none
-          box-shadow: 0 0 20px 0 $grayer
+          @include shadow()
           color: #fff
   #signup
     @extend #login
@@ -449,11 +536,12 @@ form
         &:first-of-type
           height: 40%
   #cart
+    flex-direction: column
 
 ::-webkit-scrollbar-track
-  background: transparent
+  background: #fff
 ::-webkit-scrollbar
   width: 0.75vmin
-  background: transparent
+  background: #fff
 ::-webkit-scrollbar-thumb
   background: $dark

@@ -1,8 +1,10 @@
+'use strict'
+
 function loadData (url, value, callback) {
     const xhr = new XMLHttpRequest()
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200)
+        if (xhr.readyState === 4 && xhr.status === 200)
             callback(JSON.parse(xhr.responseText))
     }
 
@@ -27,9 +29,6 @@ function bindLoadDetail () {
                                                                 <div>
                                                                     <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
                                                                     <h5>cena: ${data['price']}</h5>
-                                                                    <h5>typ: ???</h5>
-                                                                    <h5>tvrdost: ???</h5>
-                                                                    <h5>délka štětin: ???</h5>
                                                                     <h5>barva: ???</h5>
                                                                 </div>`
             document.getElementById('products').style.display = 'none'
@@ -51,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
                             </div>
@@ -67,7 +66,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
                             </div>
@@ -84,18 +83,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
     _buy.addEventListener('click', () => {
         const xhr = new XMLHttpRequest(),
-              id = document.getElementById('product-detail').dataset.id,
-              cnt = document.getElementById('cnt').value
+              id = document.getElementById('product-detail').dataset.id
+              // cnt = document.getElementById('cnt').value
 
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200)
+            if (xhr.readyState === 4 && xhr.status === 200)
                 console.log('success')
         }
 
         xhr.open('POST', 'assets/php/addToShoppingCart.php', true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        xhr.send(`id=${id}&cnt=${cnt}`)
+        xhr.send(`id=${id}&cnt=1`/*${cnt}`*/)
     })
-
 })

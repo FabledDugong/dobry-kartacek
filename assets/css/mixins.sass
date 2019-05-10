@@ -1,2 +1,8 @@
+@import variables
+
 @mixin bg-img($img)
   background: url($img) no-repeat center center / contain
+@mixin shadow()
+  -webkit-box-shadow: 5px 5px 25px 1px $grayer
+  -moz-box-shadow: 5px 5px 25px 1px $grayer
+  box-shadow: 5px 5px 25px 1px $grayer

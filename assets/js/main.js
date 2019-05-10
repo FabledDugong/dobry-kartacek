@@ -161,18 +161,18 @@ class Carousel {
 }
 
 //add how many pictures you want
-let imgs = [
+const imgs = [
         "assets/img/pawel-czerwinski-746628-unsplash.jpg",
         "https://images.unsplash.com/photo-1541442636243-5ece4a868784?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         "https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         "https://images.unsplash.com/photo-1551176601-c55f81516ba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         "https://images.unsplash.com/photo-1550957589-fe3f828dfea2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
     ],
-    carousel = new Carousel("#carousel", imgs)
+      carousel = new Carousel("#carousel", imgs)
 
 /* --------------------- */
 
-const menu = document.getElementById('control-panel'),
+const menu = document.getElementById('navigation'),
       menuTop = menu.offsetTop
 window.addEventListener('scroll', () => {
     if ( menuTop <= window.pageYOffset ) {
@@ -193,16 +193,13 @@ window.addEventListener('scroll', () => {
 
 function updateCheckout () {
     let _cart = document.querySelector('[data-role="button-open-cart"]')
-    console.log(_cart)
-    _cart.style.borderBottom = '0.25vmin solid #218F76'
-    _cart.style.setProperty('after', 'display: block')
+    _cart.style.setProperty('after', 'display: inline-flex')
 }
 
 let _buy = document.querySelector('[data-role="button-buy"]')
 _buy.addEventListener('click', () => {
     updateCheckout()
 })
-// console.log(_buy)
 
 let _back = document.querySelector('[data-role="button-back"]')
 _back.addEventListener('click', () => {
@@ -212,39 +209,24 @@ _back.addEventListener('click', () => {
 
 let _categories = [...document.querySelectorAll('.category')],
     _subcategories = [...document.querySelectorAll('.subcategory')]
-    // products = document.querySelector('#products'),
-    // _products = [...document.querySelectorAll('.product')],
-    // _detail = document.querySelector('#product-detail')
 
 function subcCheck () {
     for (let i = 0; i < _categories.length; i++) {
         let t = _categories[i]
-        ! t.classList.contains('active') ? t.style.display = 'none' : t.style.display = 'block'
+        ! t.classList.contains('active') ? t.style.display = 'none' : t.style.display = 'flex'
     }
 }
-
-// function showDetail(product) {
-//     let product_id = product.dataset.id
-//     products.style.display = 'none'
-//     _detail.style.display = 'flex'
-//     console.log(product_id)
-// }
 
 _categories.map(e => e.addEventListener('click', () => {
    e.classList.add('active')
     subcCheck()
 }))
 
-// _products.map(e => e.addEventListener('click', () => {showDetail(e)}))
-
-
-// _categories => n.classList.contains('active')
-
 
 /* ----------modal controls---------- */
 let _modal = document.querySelector('#modal'),
     modal_children = [..._modal.children],
-    modal_close = document.querySelector('[data-role="button-close"]'),
+    modal_close = [...document.querySelectorAll('[data-role="button-modal-close"]')],
     modal_operate = (s, e, a = false) => {
         if (s) {
             _modal.style.display = 'flex'
@@ -264,10 +246,6 @@ let _modal = document.querySelector('#modal'),
                     break;
                 case 'signup':
                     _signup.classList.add('modal-active')
-                    break;
-                case 'cart':
-                    _cart.classList.add('modal-active')
-                    break;
             }
         } else {
             _modal.style.display = 'none'
@@ -281,11 +259,14 @@ let _modal = document.querySelector('#modal'),
     _login = document.querySelector('#login'),
     login_open = document.querySelector('[data-role="button-open-login"]'),
     _signup = document.querySelector('#signup'),
-    signup_open = document.querySelector('[data-role="link-signup"]'),
-    _cart = document.querySelector('#cart'),
-    cart_open = document.querySelector('[data-role="button-open-cart"]')
+    signup_open = document.querySelector('[data-role="link-signup"]')
 
-    // console.log(_login.id)
+/* tabindex off if modal on */
+const menu_items = [...document.getElementById('menu').children]
+
+menu_items.forEach(e => {
+
+})
 
 login_open.addEventListener('click', () => {
     modal_operate(true, _login)
@@ -293,13 +274,10 @@ login_open.addEventListener('click', () => {
 signup_open.addEventListener('click', () => {
     modal_operate(true, _signup, true)
 })
-cart_open.addEventListener('click', () => {
-    modal_operate(true, _cart)
-})
 
-modal_close.addEventListener('click', () => {
+modal_close.map(e => e.addEventListener('click', () => {
     modal_operate(false)
-})
+}))
 window.addEventListener('click', e => {
     if (e.target.getAttribute('id') === 'modal')
         modal_operate(false)
@@ -338,6 +316,6 @@ class Control {
 
 }
 
-const C = new Control()
-const str = '            ycX73?9@B,FH    ]b\'-[tjZ | # @ c QX9.'
+// const C = new Control()
+// const str = '            ycX73?9@B,FH    ]b\'-[tjZ | # @ c QX9.'
 // console.log(C.sanitizeString(str))
