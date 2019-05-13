@@ -24,7 +24,7 @@
     <div id="login">
         <div id="login-control"><img src="assets/img/close.svg" data-role="button-close" alt="close-button" class="icon"></div>
         <h3>přihlásit se</h3>
-        <form action="assets/php/login.php" method="post" name="login-form" id="login-form">
+        <form action="assets/php/user_Login.php" method="post" name="login-form" id="login-form">
             <input type="text" placeholder="E-mail" name="login-acc" id="login-acc" maxlength="30">
             <label for="login-acc">test</label>
             <input type="password" placeholder="Heslo" name="login-pass" id="login-pass">
@@ -36,7 +36,7 @@
     <div id="signup">
         <div id="signup-control"><img src="assets/img/close.svg" data-role="button-close" alt="close-button" class="icon"></div>
         <h3>registrovat se</h3>
-        <form action="assets/php/register.php" method="post" name="signup-form" id="signup-form">
+        <form action="assets/php/user_Register.php" method="post" name="signup-form" id="signup-form">
             <div>
                 <input type="email" placeholder="E-mail" name="signup-acc" id="signup-acc">
                 <label for="signup-acc">test</label>

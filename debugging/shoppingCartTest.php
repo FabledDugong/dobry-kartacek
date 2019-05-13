@@ -36,7 +36,7 @@
                     console.log('success')
             }
 
-            xhr.open('GET', '../assets/php/delShoppingCart.php', true)
+            xhr.open('GET', '../assets/php/sc_Delete.php', true)
             xhr.send()
 
             location.reload()
@@ -50,7 +50,7 @@
                     console.log('success')
             }
 
-            xhr.open('POST', '../assets/php/delFromShoppingCart.php', true)
+            xhr.open('POST', '../assets/php/sc_DeleteProduct.php', true)
             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
             xhr.send(`id=${el.dataset.id}`)

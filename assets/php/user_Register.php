@@ -20,6 +20,7 @@
     }
 
     $mail = new Mail($data['login'], 'no-reply@dobry-kartacek.cz', 'Dobrý Kartáček - potvrzení registrace', $token);
+    $mail->send_RegistrationMail();
     new Notification('Please confirm email.');
 
     header('Location: ../../index.php');
