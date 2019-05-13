@@ -43,7 +43,7 @@ function bindLoadDetail () {
 
         document.getElementById('product-detail').setAttribute('data-id', el.dataset.id)
 
-        loadData('assets/php/loadDetail.php', el.dataset.id, (data) => {
+        loadData('assets/php/product_LoadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
 <<<<<<< HEAD
             document.querySelector('.product-info').innerHTML = `<div>
@@ -91,7 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
         _subCats = [...document.getElementsByClassName('subcategory')]
 
     _cats.map(el => el.addEventListener('click', () => {
-        loadData('assets/php/loadProductsByCategory.php', el.parentNode.dataset.id, (data) => {
+        loadData('assets/php/product_LoadByCategory.php', el.parentNode.dataset.id, (data) => {
             let html = ''
 
             for (let product of data)
@@ -111,7 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }))
 
     _subCats.map(el => el.addEventListener('click', () => {
-        loadData('assets/php/loadProductsBySubCategory.php', el.dataset.id, (data) => {
+        loadData('assets/php/products_LoadBySubCategory.php', el.dataset.id, (data) => {
             let html = ''
 
             for (let product of data)
@@ -144,7 +144,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 console.log('success')
         }
 
-        xhr.open('POST', 'assets/php/addToShoppingCart.php', true)
+        xhr.open('POST', 'assets/php/sc_AddProduct.php', true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 <<<<<<< HEAD

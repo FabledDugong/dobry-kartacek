@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="../assets/php/logout.php">logout</a>
+    <a href="../assets/php/user_Logout.php">logout</a>
     <?php
         if ( isset($_SESSION['notification']) )
             unserialize($_SESSION['notification'])->show();

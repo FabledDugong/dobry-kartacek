@@ -277,13 +277,19 @@
       /** **********************************************************************************************************************************
        *  ********************************************************** INVOICES **************************************************************
        *  ********************************************************************************************************************************** */
+      public function invoice_Insert () {
+          $query = $this->CONN->prepare(
+              ''
+          );
+
+          $query->execute([
+
+          ]);
+      }
+
       public function invoice_SelectAll () {
           $query = $this->CONN->prepare(
-              'SELECT *
-                         FROM invoice
-                         JOIN customer ON invoice.id_customer = customer.id
-                         JOIN products_in_invoice ON invoice.id = products_in_invoice.id_invoice
-                         JOIN product ON pr'
+              'UNION -> protoze dve ruzny tabulky s user datama'
           );
 
           $query->execute();
@@ -294,9 +300,7 @@
 
       public function invoice_SelectById ( $id_invoice ) {
           $query = $this->CONN->prepare(
-              'SELECT *
-                         FROM invoice
-                         WHERE invoice.id = :id_invoice'
+              'Nejdriv selectnout one_time_customer a pak az vsechny data'
           );
 
           $query->execute( [':id_invoice' => $id_invoice] );
@@ -419,7 +423,7 @@
       /** **********************************************************************************************************************************
        *  ************************************************************ Q&A *****************************************************************
        *  ********************************************************************************************************************************** */
-      public function qna_insertQuestion ( $from, $question ) {
+      public function qna_InsertQuestion ( $from, $question ) {
           $query = $this->CONN->prepare(
               'INSERT INTO `q&a` 
                          VALUES (
@@ -437,7 +441,7 @@
           ]);
       }
 
-      public function qna_insertAnswer ( $id, $from, $question ) {
+      public function qna_InsertAnswer ( $id, $from, $question ) {
           $query = $this->CONN->prepare(
               'INSERT INTO `q&a` 
                          VALUES (
@@ -468,7 +472,7 @@
           ]);
       }
 
-      public function qna_selectAll () {
+      public function qna_SelectAll () {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM `q&a`'
@@ -480,7 +484,7 @@
           return $data;
       }
 
-      public function qna_selectAllUnanswered () {
+      public function qna_SelectAllUnanswered () {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM `q&a`
@@ -493,7 +497,7 @@
           return $data;
       }
 
-      public function qna_selectAllByEmail ( $email ) {
+      public function qna_SelectAllByEmail ( $email ) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM `q&a`

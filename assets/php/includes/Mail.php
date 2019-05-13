@@ -20,7 +20,7 @@
                                 <body>
                                     <p>Dobrý den,</p>
                                     <p>na našich webových stránkách byl registrován účet s tímto emailem.</p>
-                                    <p>Prosíme potvrďte registraci kliknutím na následující link: <a href='https://dobry-kartacek.cz/assets/php/registrationConfirmation.php?t={$this->content}'>Potvrdit registraci</a></p>
+                                    <p>Prosíme potvrďte registraci kliknutím na následující link: <a href='https://dobry-kartacek.cz/assets/php/user_Activate.php?t={$this->content}'>Potvrdit registraci</a></p>
                                     <p>Pokud jste se neregistrovali, tento email ignorujte.</p>
                                 </body>
                             </html>";
