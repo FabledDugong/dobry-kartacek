@@ -53,7 +53,7 @@ html {
   src: url("../font/Roboto-Regular.ttf") format("truetype");
   font-family: "Roboto-Regular"; }
 @font-face {
-  src: url("../font/Axis-Extrabold.otf") format("opentype");
+  src: url("../font/Dosis-ExtraBold.ttf") format("truetype");
   font-family: "Axis"; }
 @font-face {
   src: url("../font/Roboto-Light.ttf") format("truetype");
@@ -62,10 +62,10 @@ html {
   src: url("../font/Roboto-Regular.ttf") format("truetype");
   font-family: "Roboto-Regular"; }
 @font-face {
-  src: url("../font/Axis-Extrabold.otf") format("opentype");
+  src: url("../font/Dosis-ExtraBold.ttf") format("truetype");
   font-family: "Axis"; }
 ::selection {
-  background: #DE9E33; }
+  background: #BCBCBC; }
 
 body {
   overflow-x: hidden;
@@ -93,7 +93,9 @@ h4 {
   font-size: 3vmin; }
 
 h5 {
-  font-size: 2vmin; }
+  font-size: 2.5vmin;
+  text-transform: uppercase;
+  color: #52c234; }
 
 p {
   font-size: 2vmin; }
@@ -171,7 +173,7 @@ input:-webkit-autofill {
         #header > div #navigation #menu a {
           font-family: "Axis", sans-serif; }
           #header > div #navigation #menu a:hover {
-            color: #DE9E33;
+            color: #DD3B4E;
             transition: 0.3s; }
           #header > div #navigation #menu a:not(:hover) {
             color: #000;
@@ -181,7 +183,7 @@ input:-webkit-autofill {
             display: inline-flex;
             position: relative;
             margin: 0 0 0 0.5vmin;
-            color: #DE9E33; }
+            color: #DD3B4E; }
     #header > div #intro {
       display: flex;
       flex-direction: column;
@@ -200,7 +202,7 @@ input:-webkit-autofill {
         height: 20%;
         margin: 5vmin 0 0; }
         #header > div #intro div:last-of-type button:first-of-type {
-          background: #DE9E33; }
+          background: #DD3B4E; }
   #header .carousel {
     overflow: hidden;
     position: relative;
@@ -381,7 +383,7 @@ input:-webkit-autofill {
       #shop #product-detail .product-control button {
         width: 45%; }
         #shop #product-detail .product-control button:last-of-type {
-          background: #DE9E33; }
+          background: #DD3B4E; }
 
 #contact {
   justify-content: space-between;
@@ -414,7 +416,7 @@ input:-webkit-autofill {
         width: 100%;
         height: 25%;
         padding: 2vmin;
-        background: #000;
+        background: url("../img/artwork.svg") no-repeat center center/cover;
         color: #fff; }
         #contact > div #help #help-control h3 {
           margin: 0 0 1vmin 0; }
@@ -456,7 +458,7 @@ input:-webkit-autofill {
           padding: 1vmin 0 0 1vmin;
           background: transparent;
           border: 0.1vmin solid #BCBCBC;
-          outline-color: #DE9E33;
+          outline-color: #52c234;
           font-family: "Axis", sans-serif;
           font-size: 1.5vmin;
           resize: none; }
@@ -464,25 +466,26 @@ input:-webkit-autofill {
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
+      align-items: center;
       width: 100%;
-      height: 50%;
-      padding: 5vmin 0 0;
-      background: #fff;
-      color: #000; }
+      height: 35%;
+      background: #000;
+      color: #fff; }
       #contact > div #important h5 {
         margin: 0 0 1vmin 0; }
       #contact > div #important ul li {
-        margin: 0 0 0.5vmin; }
+        margin: 0 0 0.75vmin;
+        font-size: 1.75vmin; }
         #contact > div #important ul li a:hover {
-          border-bottom: 0.1vmin solid #000; }
+          border-bottom: 0.1vmin solid white; }
         #contact > div #important ul li a:not(:hover) {
           border: none; }
     #contact > div #partners {
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 35%;
-      background: #fff; }
+      height: 50%;
+      background: white; }
       #contact > div #partners > div {
         display: flex;
         flex-direction: row;
@@ -498,7 +501,7 @@ input:-webkit-autofill {
       align-items: center;
       width: 100%;
       height: 15%;
-      background: #000;
+      background: #fff;
       color: #fff; }
     #contact > div:last-of-type {
       -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
@@ -570,9 +573,9 @@ input:-webkit-autofill {
         padding: 0 0 0 1vmin;
         background: transparent;
         border-bottom: 0.1vmin solid #BCBCBC;
-        outline-color: #DE9E33; }
+        outline-color: #DD3B4E; }
         #modal #login #login-form input[type='submit'], #modal #signup #login-form input[type='submit'], #modal #signup #signup-form input[type='submit'] {
-          background: #DE9E33;
+          background: #DD3B4E;
           border: none;
           -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
           -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;

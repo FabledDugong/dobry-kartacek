@@ -82,10 +82,10 @@ else
         </nav>
         <div id="intro">
             <div>
-                <h1>dobrý kartáček</h1>
                 <p>
-                    Základem dobrého úsměvu je dobrý kartáček!
+                    Základem dobrého úsměvu je
                 </p>
+                <h1>dobrý kartáček</h1>
             </div>
             <div>
                 <button><a href="">kartáček?</a></button>
@@ -218,7 +218,6 @@ else
             </div>
             <div id="copy">
                 <h6>© 2019 Dobrý kartáček. All rights reserved.</h6>
-                <h6>Created by JŠ&MZ</h6>
             </div>
         </div>
     </section>
