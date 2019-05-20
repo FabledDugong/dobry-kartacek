@@ -215,6 +215,8 @@
                   ':url'        => $picture
               ]);
           }
+
+          return true;
       }
 
       public function product_Delete ( $id ) {
@@ -228,6 +230,8 @@
           );
 
           $query->execute([ ':id' => $id ]);
+
+          return true;
       }
 
       /** **********************************************************************************************************************************
@@ -259,6 +263,57 @@
           return $data;
       }
 
+      public function category_Add ( $name, $description ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO category
+                         VALUES (
+                            DEFAULT,
+                            NULL,
+                            :name,
+                            :description
+                         )'
+          );
+
+          $query->execute([
+              ':name'        => $name,
+              ':description' => $description
+          ]);
+
+          return true;
+      }
+
+      public function subcategory_Add ( $id_parent, $name, $description ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO category
+                         VALUES (
+                            DEFAULT,
+                            :id_parent,
+                            :name,
+                            :description
+                         )'
+          );
+
+          $query->execute([
+              ':id_parent'   => $id_parent,
+              ':name'        => $name,
+              ':description' => $description
+          ]);
+
+          return true;
+      }
+
+      public function category_Delete ( $id ) {
+          $query = $this->CONN->prepare(
+              'DELETE
+                         FROM category
+                         WHERE id = :id'
+          );
+
+          $query->execute([ ':id' => $id ]);
+
+          return true;
+      }
+
       /** **********************************************************************************************************************************
        *  ******************************************************* MANUFACTURERS ************************************************************
        *  ********************************************************************************************************************************** */
@@ -272,6 +327,36 @@
           $data = $query->fetchAll();
 
           return $data;
+      }
+
+      public function manufacturer_Add ( $name, $description ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO manufacturer
+                         VALUES (
+                            DEFAULT,
+                            :name,
+                            :description
+                         )'
+          );
+
+          $query->execute([
+              ':name'        => $name,
+              ':description' => $description
+          ]);
+
+          return true;
+      }
+
+      public function manufacturer_Delete ( $id ) {
+          $query = $this->CONN->prepare(
+              'DELETE
+                         FROM manufacturer
+                         WHERE id = :id'
+          );
+
+          $query->execute([ ':id' => $id ]);
+
+          return true;
       }
 
       /** **********************************************************************************************************************************
@@ -379,6 +464,8 @@
 
           if ( isset($_SESSION['shopping-cart']) )
               unset($_SESSION['shopping-cart']);
+
+          return true;
       }
 
       public function invoice_SelectAll () {
@@ -560,8 +647,31 @@
           return true;
       }
 
-      public function user_ChangePassword ( $orig, $new ) {
+      public function user_ChangePassword ( $id, $orig, $new ) {
+          $query = $this->CONN->prepare(
+              'SELECT password
+                         FROM user
+                         WHERE id = :id'
+          );
 
+          $query->execute([ ':id' => $id ]);
+          $pass = $query->fetchAll()[0]->password;
+
+          if ( !password_verify( $orig, $pass ) )
+              return false;
+
+          $pass = password_hash( $new, PASSWORD_DEFAULT );
+
+          $query = $this->CONN->prepare(
+              'UPDATE user
+                         SET password = :password
+                         WHERE id = :id'
+          );
+
+          $query->execute([
+              ':id'       => $id,
+              ':password' => $pass
+          ]);
 
           return true;
       }

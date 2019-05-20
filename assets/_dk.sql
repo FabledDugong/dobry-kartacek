@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2019 at 07:05 PM
+-- Generation Time: May 20, 2019 at 09:31 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -232,7 +232,7 @@ CREATE TABLE `q&a` (
   `id` int(6) NOT NULL,
   `id_answer` int(6) DEFAULT NULL,
   `email` varchar(50) COLLATE utf16_czech_ci NOT NULL,
-  `description` varchar(1000) COLLATE utf16_czech_ci NOT NULL,
+  `description` varchar(5000) COLLATE utf16_czech_ci NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
 
