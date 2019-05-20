@@ -171,7 +171,7 @@ class Carousel {
 
 //add how many pictures you want
 const imgs = [
-        "assets/img/pawel-czerwinski-746628-unsplash.jpg",
+        "assets/img/ad.svg",
         "https://images.unsplash.com/photo-1541442636243-5ece4a868784?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         "https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         "https://images.unsplash.com/photo-1551176601-c55f81516ba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
@@ -182,19 +182,23 @@ const imgs = [
 /* --------------------- */
 
 const menu = document.getElementById('navigation'),
-      menuTop = menu.offsetTop
+      menuTop = menu.offsetTop,
+      header = document.querySelector('#intro'),
+      tmp = document.createElement('div')
 window.addEventListener('scroll', () => {
     if ( menuTop <= window.pageYOffset ) {
         menu.setAttribute('style', 'width:' + menu.getBoundingClientRect().width + 'px')
         setTimeout(() => {
             menu.classList.add('pinned')
         }, 10)
+        header.insertBefore(tmp,header.children[0])
     } else {
         menu.setAttribute('style', '')
         setTimeout(() => {
             menu.setAttribute('style', 'width: initial')
             menu.classList.remove('pinned')
         }, 10)
+        tmp.remove()
     }
 })
 

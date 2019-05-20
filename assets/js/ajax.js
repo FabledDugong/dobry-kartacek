@@ -45,7 +45,6 @@ function bindLoadDetail () {
 
         loadData('assets/php/product_LoadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
-<<<<<<< HEAD
             document.querySelector('.product-info').innerHTML = `<div>
                                                                     <h4>${data['name']}</h4>
                                                                     <p>${data['description']}</p>
@@ -55,7 +54,6 @@ function bindLoadDetail () {
                                                                     <h5>cena: ${data['price']}</h5>
                                                                     <h5>barva: ???</h5>
                                                                 </div>`
-=======
 
             html += `<div>`
 
@@ -75,7 +73,6 @@ function bindLoadDetail () {
                      </div>`
 
             document.querySelector('.product-info').innerHTML = html
->>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
             document.getElementById('products').style.display = 'none'
             document.getElementById('product-detail').style.display = 'flex'
         })
@@ -95,11 +92,8 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-<<<<<<< HEAD
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>
-=======
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url("assets/img/products/${product['pictures']}") no-repeat center center / contain'>
->>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>`
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
                             </div>
@@ -115,11 +109,8 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-<<<<<<< HEAD
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>
-=======
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url("assets/img/products/${product['pictures']}") no-repeat center center / contain'>
->>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>`
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
                             </div>
@@ -147,12 +138,9 @@ window.addEventListener('DOMContentLoaded', () => {
         xhr.open('POST', 'assets/php/sc_AddProduct.php', true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-<<<<<<< HEAD
         xhr.send(`id=${id}&cnt=1`/*${cnt}`*/)
-=======
         xhr.send(`id=${id}&cnt=${cnt}`)
 
         notification('Product added to shopping cart.');
->>>>>>> 6f29bb49a7360fbd1190ba700f854497b6a412ac
     })
 })

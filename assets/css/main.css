@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   vertical-align: baseline;
   margin: 0;
@@ -75,7 +76,7 @@ header, section, footer {
   display: flex;
   width: 100vw; }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4 {
   font-family: "Axis", sans-serif; }
 
 h1 {
@@ -87,15 +88,14 @@ h2 {
   font-size: 5vmin; }
 
 h3 {
-  font-size: 2.5vmin; }
+  margin: 0 0 1vmin;
+  font-size: 2.5vmin;
+  text-transform: uppercase;
+  letter-spacing: 0.1vmin;
+  color: #52c234; }
 
 h4 {
   font-size: 3vmin; }
-
-h5 {
-  font-size: 2.5vmin;
-  text-transform: uppercase;
-  color: #52c234; }
 
 p {
   font-size: 2vmin; }
@@ -138,7 +138,12 @@ input:-webkit-autofill {
     width: 49%;
     display: flex;
     flex-direction: column; }
+    #header > div#intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; }
     #header > div #navigation {
+      z-index: 101;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -152,7 +157,7 @@ input:-webkit-autofill {
       -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
       box-shadow: 5px 5px 25px 1px #BCBCBC;
       color: #000;
-      z-index: 101; }
+      text-transform: uppercase; }
       #header > div #navigation.pinned {
         position: fixed;
         top: 0;
@@ -168,6 +173,7 @@ input:-webkit-autofill {
         width: 40%; }
       #header > div #navigation #menu {
         display: flex;
+        flex-direction: row;
         justify-content: space-evenly;
         width: 60%; }
         #header > div #navigation #menu a {
@@ -184,25 +190,15 @@ input:-webkit-autofill {
             position: relative;
             margin: 0 0 0 0.5vmin;
             color: #DD3B4E; }
-    #header > div #intro {
+    #header > div div {
       display: flex;
       flex-direction: column;
       justify-content: space-between; }
-      #header > div #intro p {
-        width: 75%;
+      #header > div div p {
         margin: 2vmin 0 0;
         font-family: "Roboto-Light", sans-serif;
-        font-size: 4vmin;
+        font-size: 5vmin;
         color: #000; }
-      #header > div #intro div:last-of-type {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 50%;
-        height: 20%;
-        margin: 5vmin 0 0; }
-        #header > div #intro div:last-of-type button:first-of-type {
-          background: #DD3B4E; }
   #header .carousel {
     overflow: hidden;
     position: relative;
@@ -291,7 +287,10 @@ input:-webkit-autofill {
     align-items: center;
     width: 23%;
     height: 100%;
-    background: #fff; }
+    background: #fff;
+    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    box-shadow: 5px 5px 25px 1px #BCBCBC; }
     #shop #categories .category, #shop #categories .category .subcategory, #shop #categories .category.active > div:first-of-type {
       display: flex;
       justify-content: center;
@@ -301,16 +300,33 @@ input:-webkit-autofill {
       background: #fff;
       cursor: pointer;
       text-align: center; }
+      #shop #categories .category h3, #shop #categories .category .subcategory h3, #shop #categories .category.active > div:first-of-type h3 {
+        color: #000; }
       #shop #categories .category .subcategory, #shop #categories .category.active > div:first-of-type .subcategory {
         background: #fff;
         display: none; }
       #shop #categories .category.active, #shop #categories .category .active.subcategory, #shop #categories .category.active > div.active:first-of-type {
-        height: 100%;
-        cursor: default; }
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%; }
         #shop #categories .category.active > div:first-of-type, #shop #categories .category .active.subcategory > div:first-of-type, #shop #categories .category.active > div.active:first-of-type > div:first-of-type {
           height: 10%;
           background: #000;
-          color: #fff; }
+          cursor: default;
+          color: white; }
+          #shop #categories .category.active > div:first-of-type:hover:before, #shop #categories .category .active.subcategory > div:first-of-type:hover:before, #shop #categories .category.active > div.active:first-of-type > div:first-of-type:hover:before {
+            cursor: pointer; }
+          #shop #categories .category.active > div:first-of-type::before, #shop #categories .category .active.subcategory > div:first-of-type::before, #shop #categories .category.active > div.active:first-of-type > div:first-of-type::before {
+            display: block;
+            content: "➜";
+            transform: rotate(180deg);
+            position: absolute;
+            left: 5.75%;
+            font-size: 3vmin;
+            color: white; }
+          #shop #categories .category.active > div:first-of-type h3, #shop #categories .category .active.subcategory > div:first-of-type h3 {
+            margin: 0;
+            color: white; }
         #shop #categories .category.active .subcategory, #shop #categories .category .active.subcategory .subcategory, #shop #categories .category.active > div.active:first-of-type .subcategory {
           display: flex;
           height: 20%; }
@@ -421,8 +437,7 @@ input:-webkit-autofill {
         #contact > div #help #help-control h3 {
           margin: 0 0 1vmin 0; }
         #contact > div #help #help-control p {
-          line-height: 1.1;
-          font-family: "Roboto-Light", sans-serif; }
+          line-height: 1.1; }
       #contact > div #help form {
         display: flex;
         flex-direction: column;
@@ -451,11 +466,13 @@ input:-webkit-autofill {
             width: 50%;
             padding: 2vmin;
             background: #52c234;
+            font-size: 1.75vmin;
+            text-transform: uppercase;
             color: white; }
         #contact > div #help form textarea {
           width: 100%;
           height: 20vmin;
-          padding: 1vmin 0 0 1vmin;
+          padding: 1vmin;
           background: transparent;
           border: 0.1vmin solid #BCBCBC;
           outline-color: #52c234;
@@ -471,8 +488,6 @@ input:-webkit-autofill {
       height: 35%;
       background: #000;
       color: #fff; }
-      #contact > div #important h5 {
-        margin: 0 0 1vmin 0; }
       #contact > div #important ul li {
         margin: 0 0 0.75vmin;
         font-size: 1.75vmin; }
@@ -486,14 +501,21 @@ input:-webkit-autofill {
       align-items: center;
       height: 50%;
       background: white; }
+      #contact > div #partners h3 {
+        margin: 0;
+        color: #000; }
       #contact > div #partners > div {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
-        height: 100%;
-        opacity: 0.5; }
+        height: 70%; }
+        #contact > div #partners > div:first-of-type {
+          height: 30%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; }
     #contact > div #copy {
       display: flex;
       flex-direction: column;
@@ -502,14 +524,17 @@ input:-webkit-autofill {
       width: 100%;
       height: 15%;
       background: #fff;
-      color: #fff; }
+      color: #000; }
     #contact > div:last-of-type {
       -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
       -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
       box-shadow: 5px 5px 25px 1px #BCBCBC; }
   #contact h2 {
+    margin: 0 0 1vmin;
+    letter-spacing: 0.1vmin;
     color: #52c234; }
   #contact address {
+    margin: 1vmin 0 0;
     font-family: "Axis", sans-serif;
     font-size: 3vmin;
     color: #000; }
@@ -573,9 +598,9 @@ input:-webkit-autofill {
         padding: 0 0 0 1vmin;
         background: transparent;
         border-bottom: 0.1vmin solid #BCBCBC;
-        outline-color: #DD3B4E; }
+        outline-color: #52c234; }
         #modal #login #login-form input[type='submit'], #modal #signup #login-form input[type='submit'], #modal #signup #signup-form input[type='submit'] {
-          background: #DD3B4E;
+          background: #52c234;
           border: none;
           -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
           -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
@@ -600,19 +625,23 @@ input:-webkit-autofill {
     flex-direction: column; }
 
 #notification {
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   bottom: 0;
   left: 50%;
   padding: 5vmin;
   transform: translateX(-50%);
   opacity: 0;
-  z-index: 1000;
   transition: all 0.3s; }
   #notification.visible {
     bottom: 5vmin;
     opacity: 1;
     transition: all 0.3s; }
   #notification h3 {
+    margin: 0;
     color: #fff; }
 
 ::-webkit-scrollbar-track {

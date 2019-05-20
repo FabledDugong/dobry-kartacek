@@ -10,7 +10,7 @@ body
 header, section, footer
   display: flex
   width: 100vw
-h1,h2,h3,h4,h5
+h1,h2,h3,h4
   font-family: $title-font
 h1
   margin: 0 0 1vmin 0
@@ -19,13 +19,13 @@ h1
 h2
   font-size: 5vmin
 h3
-  font-size: 2.5vmin
-h4
-  font-size: 3vmin
-h5
+  margin: 0 0 1vmin
   font-size: 2.5vmin
   text-transform: uppercase
+  letter-spacing: 0.1vmin
   color: $main-color
+h4
+  font-size: 3vmin
 p
   font-size: 2vmin
 button
@@ -62,7 +62,12 @@ input
     width: 49%
     display: flex
     flex-direction: column
+    &#intro
+      display: flex
+      flex-direction: column
+      justify-content: space-between
     #navigation
+      z-index: 101
       display: flex
       flex-direction: row
       align-items: center
@@ -74,7 +79,7 @@ input
       background: #fff
       @include shadow()
       color: $dark
-      z-index: 101
+      text-transform: uppercase
       &.pinned
         position: fixed
         top: 0
@@ -90,6 +95,7 @@ input
         width: 40%
       #menu
         display: flex
+        flex-direction: row
         justify-content: space-evenly
         width: 60%
         a
@@ -107,27 +113,16 @@ input
               position: relative
               margin: 0 0 0 0.5vmin
               color: $secondary-color
-    #intro
+    div
       display: flex
       flex-direction: column
       justify-content: space-between
       p
-        width: 75%
         margin: 2vmin 0 0
         font-family: $content-font-lighter
-        font-size: 4vmin
+        font-size: 5vmin
         color: $dark
       div
-        &:last-of-type
-          display: flex
-          flex-direction: column
-          justify-content: space-between
-          width: 50%
-          height: 20%
-          margin: 5vmin 0 0
-          button
-            &:first-of-type
-              background: $secondary-color
 
   .carousel
     overflow: hidden
@@ -214,6 +209,7 @@ input
     width: 23%
     height: 100%
     background: #fff
+    @include shadow()
     .category
       display: flex
       justify-content: center
@@ -222,31 +218,40 @@ input
       height: 20%
       background: #fff
       cursor: pointer
-      //@include bg-img('../img/products/PEN GRIP NAVI GREEN_rotated.jpg')
       text-align: center
+      h3
+        color: $dark
       .subcategory
         @extend .category
         background: #fff
         display: none
       &.active
+        flex-direction: column
+        justify-content: flex-start
         height: 100%
-        cursor: default
         > div
           &:first-of-type
             @extend .category
             height: 10%
             background: $dark
-            color: #fff
+            cursor: default
+            color: white
+            &:hover:before
+              cursor: pointer
+            &::before
+              display: block
+              content: '\279C'
+              transform: rotate(180deg)
+              position: absolute
+              left: 5.75%
+              font-size: 3vmin
+              color: white
+            h3
+              margin: 0
+              color: white
         .subcategory
           display: flex
           height: 20%
-  //#filter
-  //  display: flex
-  //  flex-direction: column
-  //  width: 20%
-  //  height: 100%
-  //  background: #fff
-  //  @include shadow()
   #products
     display: flex
     flex-direction: row
@@ -356,7 +361,7 @@ input
           margin: 0 0 1vmin 0
         p
           line-height: 1.1
-          font-family: $content-font-lighter
+          //font-family: $content-font-lighter
       form
         display: flex
         flex-direction: column
@@ -385,11 +390,13 @@ input
             width: 50%
             padding: 2vmin
             background: $main-color
+            font-size: 1.75vmin
+            text-transform: uppercase
             color: white
         textarea
           width: 100%
           height: 20vmin
-          padding: 1vmin 0 0 1vmin
+          padding: 1vmin
           background: transparent
           border: 0.1vmin solid $grayer
           outline-color: $main-color
@@ -405,8 +412,6 @@ input
       height: 35%
       background: $dark
       color: #fff
-      h5
-        margin: 0 0 1vmin 0
       ul
         li
           margin: 0 0 0.75vmin
@@ -416,21 +421,28 @@ input
               border-bottom: 0.1vmin solid white
             &:not(:hover)
               border: none
-
     #partners
       display: flex
       flex-direction: column
       align-items: center
       height: 50%
       background: white
+      h3
+        margin: 0
+        color: $dark
       > div
         display: flex
         flex-direction: row
         justify-content: space-evenly
-        align-items: center
+        align-items: flex-start
         width: 100%
-        height: 100%
-        opacity: 0.5
+        height: 70%
+        &:first-of-type
+          height: 30%
+          flex-direction: column
+          justify-content: center
+          align-items: center
+
     #copy
       display: flex
       flex-direction: column
@@ -439,12 +451,15 @@ input
       width: 100%
       height: 15%
       background: #fff
-      color: #fff
+      color: $dark
     &:last-of-type
       @include shadow()
   h2
+    margin: 0 0 1vmin
+    letter-spacing: 0.1vmin
     color: $main-color
   address
+    margin: 1vmin 0 0
     font-family: $title-font
     font-size: 3vmin
     color: $dark
@@ -506,9 +521,9 @@ input
         padding: 0 0 0 1vmin
         background: transparent
         border-bottom: 0.1vmin solid $grayer
-        outline-color: $secondary-color
+        outline-color: $main-color
         &[type='submit']
-          background: $secondary-color
+          background: $main-color
           border: none
           @include shadow()
           color: #fff
@@ -535,19 +550,23 @@ input
     flex-direction: column
 
 #notification
+  z-index: 1000
+  display: flex
+  justify-content: center
+  align-items: center
   position: fixed
   bottom: 0
   left: 50%
   padding: 5vmin
   transform: translateX(-50%)
   opacity: 0
-  z-index: 1000
   transition: all .3s
   &.visible
     bottom: 5vmin
     opacity: 1
     transition: all .3s
   h3
+    margin: 0
     color: #fff
 
 ::-webkit-scrollbar-track

@@ -61,7 +61,7 @@ else
     </div>
 </div>
 <header id="header">
-    <div>
+    <div id="intro">
         <nav id="navigation">
             <div id="brand">
                 <a><img src="assets/img/dk_logo.svg" alt="logo" class="logo"></a>
@@ -70,8 +70,6 @@ else
                 <a href="#shop">obchod</a>
                 <a href="#contact">kontakt-poradna</a>
                 <?php
-                if (!isset($_SESSION['user-id']))
-                    echo '<a tabindex="-1" data-role="button-open-login">přihlášení</a>';
                     if ( !isset($_SESSION['user-id']) )
                         echo '<a data-role="button-open-login">přihlášení</a>';
                     else
@@ -80,7 +78,7 @@ else
                 <a href="assets/php/checkout.php" data-role="button-open-cart" id="ct">košík</a>
             </div>
         </nav>
-        <div id="intro">
+        <div>
             <div>
                 <p>
                     Základem dobrého úsměvu je
@@ -88,13 +86,14 @@ else
                 <h1>dobrý kartáček</h1>
             </div>
             <div>
-                <button><a href="">kartáček?</a></button>
                 <button>eshop</button>
             </div>
         </div>
     </div>
     <div class="carousel" id="carousel">
-        <div class="images"></div>
+        <div class="images">
+            <img src="assets/img/ad.svg" alt="">
+        </div>
         <div class="controls">
             <div class="prev">
                 <img src="assets/img/arrow-up.svg" alt="arrow-up">
@@ -184,7 +183,7 @@ else
                         <input type="email" placeholder="E-mail">
                     </div>
                     <div>
-                        <textarea name="cf-content" placeholder="Vaše zpráva"></textarea>
+                        <textarea name="cf-content" placeholder="Vaše zpráva" maxlength="500"></textarea>
                     </div>
                     <input type="submit" value="Odeslat">
                 </form>
@@ -193,16 +192,16 @@ else
         <div>
             <div id="important">
                 <div>
-                    <h5>důležité odkazy</h5>
+                    <h3>důležité odkazy</h3>
                     <ul>
                         <li><a href="">obchodní podmínky</a></li>
                         <li><a href="">zpracování osobních údajů</a></li>
-                        <li><a href="">o nás</a></li>
-                        <li><a href="">faq</a></li>
+                        <li><a href="">FAQ</a></li>
+<!--                        <li><a href="">faq</a></li>-->
                     </ul>
                 </div>
                 <div>
-                    <h5>jak nakoupit</h5>
+                    <h3>jak nakoupit</h3>
                     <ul>
                         <li><a href="">možnosti dopravy</a></li>
                         <li><a href="">možnosti platby</a></li>
@@ -211,7 +210,9 @@ else
                 </div>
             </div>
             <div id="partners">
-                <h5>spolupracujeme s</h5>
+                <div>
+                    <h3>spolupracujeme s</h3>
+                </div>
                 <div>
                     <a href="http://www.robedent.com/" target="_blank"><img src="assets/img/robedent.png" alt="robedent-logo" class="partner-logo"></a>
                 </div>
