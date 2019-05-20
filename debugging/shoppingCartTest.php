@@ -17,6 +17,8 @@
         foreach ( $cart->getProducts() as $product )
             echo 'product id: ' . $product['id'] . '; count: ' . $product['cnt'] . '; <a href="#" class="delete" data-id="' . $product['id'] . '">delete</a><br>';
 
+        echo $cart->getPrice() . 'kc';
+
         if ( empty($cart->getProducts()) )
             echo "nothing but big emptiness";
     ?>

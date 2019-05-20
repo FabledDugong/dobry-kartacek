@@ -1,0 +1,12 @@
+PHP
+    DatabaseManager.php
+        -> user_ChangePassword
+        -> user_RenewPassword
+    Management files
+    Generating PDF invoice
+
+JS
+    main.js
+        -> completely rework
+    ajax.js
+        -> eee, probably also completely rework

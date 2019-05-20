@@ -3,7 +3,7 @@
         const       HOST = 'localhost',
                     NAME = '_dk',
                     USER = 'root',
-                    PASS = 'De39dbfa;';
+                    PASS = '';
         protected   $CONN;
 
         public function __construct () {

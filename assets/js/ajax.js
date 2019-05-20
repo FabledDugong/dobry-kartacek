@@ -45,23 +45,8 @@ function bindLoadDetail () {
 
         loadData('assets/php/product_LoadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
-            document.querySelector('.product-info').innerHTML = `<div>
-                                                                    <h4>${data['name']}</h4>
-                                                                    <p>${data['description']}</p>
-                                                                </div>
-                                                                <div>
-                                                                    <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
-                                                                    <h5>cena: ${data['price']}</h5>
-                                                                    <h5>barva: ???</h5>
-                                                                </div>`
 
-            html += `<div>`
-
-            for ( let img of data['pictures'] )
-                html += `<img src="assets/img/products/${img['url']}" alt="${data['name']}">`;
-
-            html += `</div>
-                     <div>
+            html += `<div>
                          <h4>${data['name']}</h4>
                          <p>${data['description']}</p>
                      </div>
@@ -69,7 +54,7 @@ function bindLoadDetail () {
                          ${ (data['color'] != null) ? '<h5>barva: ' + data['color'] + '</h5>' : '' }
                          ${ (data['toughness'] != null) ? '<h5>tvrdost: ' + data['toughness'] + '</h5>' : '' }
                          <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
-                         <h5>cena: ${data['price']}</h5>
+                         <h5>cena: ${data['price']}Kč</h5>
                      </div>`
 
             document.querySelector('.product-info').innerHTML = html
@@ -84,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // ---------------------------------
 
-    let _cats = [...document.querySelectorAll('.category > h3')],
+    let _cats = [...document.querySelectorAll('.category > div:not(.subcategory)')],
         _subCats = [...document.getElementsByClassName('subcategory')]
 
     _cats.map(el => el.addEventListener('click', () => {
@@ -92,10 +77,10 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>`
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(\"assets/img/products/${product['pictures']}\") no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
+                                <p>${product['price']}Kč</p>
                             </div>
                          </div>`
 
@@ -109,10 +94,10 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>`
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(\"assets/img/products/${product['pictures']}\") no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
+                                <p>${product['price']}Kč</p>
                             </div>
                          </div>`
 
@@ -139,7 +124,6 @@ window.addEventListener('DOMContentLoaded', () => {
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
         xhr.send(`id=${id}&cnt=1`/*${cnt}`*/)
-        xhr.send(`id=${id}&cnt=${cnt}`)
 
         notification('Product added to shopping cart.');
     })

@@ -92,7 +92,7 @@ else
     </div>
     <div class="carousel" id="carousel">
         <div class="images">
-            <img src="assets/img/ad.svg" alt="">
+            <img src="assets/img/picovina.svg" alt="">
         </div>
         <div class="controls">
             <div class="prev">
@@ -128,18 +128,12 @@ else
             <?php
             foreach ($products as $prod)
                 echo
-                "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(assets/img/products/{$prod->getPictures()}) no-repeat center center / contain'>
+                "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(\"assets/img/products/{$prod->getPictures()}\") no-repeat center center / contain'>
                     <div>
                         <h4>{$prod->getName()}</h4>
                         <p>{$prod->getPrice()}Kč</p>
                     </div>
                 </div>";
-                foreach ($products as $p)
-                    echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(assets/img/products/{$p->getPictures()}) no-repeat center center / contain'>
-                            <div>
-                                <h4>{$p->getName()}</h4>
-                            </div>
-                         </div>";
             ?>
         </div>
         <div id="product-detail" data-id="null">
