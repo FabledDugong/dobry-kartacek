@@ -91,7 +91,13 @@ else
         </div>
     </div>
     <div class="carousel" id="carousel">
+<<<<<<< HEAD
         <div class="images"></div>
+=======
+        <div class="images">
+            <img src="assets/img/picovina.svg" alt="">
+        </div>
+>>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
         <div class="controls">
             <div class="prev">
                 <img src="assets/img/arrow-up.svg" alt="arrow-up">
@@ -132,12 +138,15 @@ else
                         <p>{$prod->getPrice()}Kč</p>
                     </div>
                 </div>";
+<<<<<<< HEAD
                 foreach ($products as $p)
                     echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
                             <div>
                                 <h4>{$p->getName()}</h4>
                             </div>
                          </div>";
+=======
+>>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
             ?>
         </div>
         <div id="product-detail" data-id="null">

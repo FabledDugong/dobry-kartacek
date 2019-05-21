@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 14, 2019 at 12:13 AM
+-- Generation Time: May 20, 2019 at 09:31 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -60,9 +60,16 @@ CREATE TABLE `customer` (
   `email` varchar(50) COLLATE utf16_czech_ci NOT NULL,
   `phone` varchar(20) COLLATE utf16_czech_ci NOT NULL,
   `address` varchar(50) COLLATE utf16_czech_ci NOT NULL,
-  `city` varchar(30) COLLATE utf16_czech_ci NOT NULL,
-  `zip` varchar(10) COLLATE utf16_czech_ci NOT NULL
+  `city` varchar(30) COLLATE utf16_czech_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `f_name`, `l_name`, `email`, `phone`, `address`, `city`) VALUES
+(1, 'John', 'Doe', 'john.doe@gmail.com', '123456789', 'Pici co ja vim 3', 'NY, 1000'),
+(2, 'Jane', 'Doe', 'jane.doe@gmail.com', '987654321', 'Pici co ja vim 31', 'LA, 100');
 
 -- --------------------------------------------------------
 
@@ -74,7 +81,7 @@ CREATE TABLE `invoice` (
   `id` int(6) NOT NULL,
   `id_customer` int(4) NOT NULL,
   `one_time_customer` tinyint(1) NOT NULL,
-  `serial_number` varchar(10) COLLATE utf16_czech_ci NOT NULL,
+  `serial_number` varchar(12) COLLATE utf16_czech_ci NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `price` int(5) NOT NULL,
   `type_of_delivery` varchar(20) COLLATE utf16_czech_ci NOT NULL DEFAULT 'Česká pošta',
@@ -86,7 +93,11 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`id`, `id_customer`, `one_time_customer`, `serial_number`, `date`, `price`, `type_of_delivery`, `payed`) VALUES
-(1, 1, 0, 'A1036D79C8', '2019-03-22 19:48:44', 150, 'Česká pošta', 0);
+(18, 1, 0, '20190520-1', '2019-05-20 18:26:36', 50, 'Česká pošta', 0),
+(19, 2, 1, '20190520-2', '2019-05-20 18:39:57', 500, 'Česká pošta', 0),
+(20, 1, 0, '20190520-3', '2019-05-20 18:50:33', 50, 'Česká pošta', 0),
+(21, 1, 0, '20190520-4', '2019-05-20 18:53:30', 100, 'Česká pošta', 0),
+(22, 1, 0, '20190520-5', '2019-05-20 18:56:32', 50, 'Česká pošta', 0);
 
 -- --------------------------------------------------------
 
@@ -195,7 +206,21 @@ CREATE TABLE `products_in_invoice` (
 --
 
 INSERT INTO `products_in_invoice` (`id`, `id_invoice`, `id_product`, `count`) VALUES
-(1, 1, 1, 3);
+(1, 1, 1, 3),
+(8, 13, 1, 1),
+(9, 13, 2, 1),
+(10, 14, 1, 1),
+(11, 14, 2, 1),
+(12, 15, 1, 1),
+(13, 15, 2, 1),
+(14, 16, 1, 1),
+(15, 16, 2, 1),
+(16, 17, 1, 1),
+(17, 18, 1, 1),
+(18, 20, 2, 1),
+(19, 21, 1, 1),
+(20, 21, 1, 1),
+(21, 22, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -207,7 +232,7 @@ CREATE TABLE `q&a` (
   `id` int(6) NOT NULL,
   `id_answer` int(6) DEFAULT NULL,
   `email` varchar(50) COLLATE utf16_czech_ci NOT NULL,
-  `description` varchar(1000) COLLATE utf16_czech_ci NOT NULL,
+  `description` varchar(5000) COLLATE utf16_czech_ci NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
 
@@ -298,8 +323,6 @@ ALTER TABLE `product`
 --
 ALTER TABLE `products_in_invoice`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_invoice` (`id_invoice`),
-  ADD UNIQUE KEY `id_product` (`id_product`),
   ADD UNIQUE KEY `id` (`id`);
 
 --
@@ -331,13 +354,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `manufacturer`
@@ -355,7 +378,7 @@ ALTER TABLE `password_reset`
 -- AUTO_INCREMENT for table `picture`
 --
 ALTER TABLE `picture`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -367,7 +390,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `products_in_invoice`
 --
 ALTER TABLE `products_in_invoice`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `q&a`

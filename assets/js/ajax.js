@@ -58,6 +58,7 @@ function bindLoadDetail () {
 
         loadData('assets/php/product_LoadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
+<<<<<<< HEAD
             document.querySelector('.product-info').innerHTML = `<div>
                                                                     <h4>${data['name']}</h4>
                                                                     <p>${data['description']}</p>
@@ -73,6 +74,8 @@ function bindLoadDetail () {
             // for ( let img of data['pictures'] )
             //     html += `<img src="assets/img/products/${img['url']}" alt="${data['name']}">`;
             // html += `</div>`
+=======
+>>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
 
             html += `<div>
                          <h4>${data['name']}</h4>
@@ -80,6 +83,7 @@ function bindLoadDetail () {
                      </div>
                      <hr>
                      <div>
+<<<<<<< HEAD
                          <table>
                             ${(data['color'] != null) ? '<tr><td><h5>barva</h5></td><td><h5>' + data['color'] + '</h5></td></tr>' : ''}
                             ${(data['toughness'] != null) ? '<tr><td><h5>tvrdost</h5></td><td><h5>' + data['toughness'] + '</h5></td></tr>' : ''}
@@ -97,6 +101,12 @@ function bindLoadDetail () {
                                 <td><h6><mark>${data['price']}</mark> Kč</h6></td>
                             </tr>      
                          </table>
+=======
+                         ${ (data['color'] != null) ? '<h5>barva: ' + data['color'] + '</h5>' : '' }
+                         ${ (data['toughness'] != null) ? '<h5>tvrdost: ' + data['toughness'] + '</h5>' : '' }
+                         <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
+                         <h5>cena: ${data['price']}Kč</h5>
+>>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
                      </div>`
 
             document.querySelector('.product-info').innerHTML = html
@@ -111,7 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // ---------------------------------
 
-    let _cats = [...document.querySelectorAll('.category > h3')],
+    let _cats = [...document.querySelectorAll('.category > div:not(.subcategory)')],
         _subCats = [...document.getElementsByClassName('subcategory')]
 
     _cats.map(el => el.addEventListener('click', () => {
@@ -119,10 +129,10 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>`
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(\"assets/img/products/${product['pictures']}\") no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
+                                <p>${product['price']}Kč</p>
                             </div>
                          </div>`
 
@@ -136,10 +146,10 @@ window.addEventListener('DOMContentLoaded', () => {
             let html = ''
 
             for (let product of data)
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(../img/products/${product['pictures']}) no-repeat center center / contain'>`
-                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(assets/img/products/${product['pictures']}) no-repeat center center / contain'>
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(\"assets/img/products/${product['pictures']}\") no-repeat center center / contain'>
                             <div>
                                 <h4>${product['name']}</h4>
+                                <p>${product['price']}Kč</p>
                             </div>
                          </div>`
 
@@ -165,7 +175,11 @@ window.addEventListener('DOMContentLoaded', () => {
         xhr.open('POST', 'assets/php/sc_AddProduct.php', true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+<<<<<<< HEAD
         xhr.send(`id=${id}&cnt=${cnt}`)
+=======
+        xhr.send(`id=${id}&cnt=1`/*${cnt}`*/)
+>>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
 
         notification('Produkt přidán do košíku.', 'SUCCESS');
     })

@@ -6,5 +6,8 @@
     else
         $cart = unserialize($_SESSION['shopping-cart']);
 
-    $cart->addProduct($_POST['id'], $_POST['cnt']);
+    $DM = new DatabaseManager();
+    $p = $DM->product_SelectById( $_POST['id'] );
+
+    $cart->addProduct($_POST['id'], $p->getPrice(), $_POST['cnt']);
 ?>

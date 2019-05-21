@@ -5,9 +5,13 @@
       }
 
       /** **********************************************************************************************************************************
+<<<<<<< HEAD
        *  ********************************************************** PRODUCTS ***************************************************************
+=======
+       *  ********************************************************* PRODUCTS ***************************************************************
+>>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
        *  ********************************************************************************************************************************** */
-      public function product_SelectById ($id) {
+      public function product_SelectById ( $id ) {
           $result = NULL;
 
           $query = $this->CONN->prepare(
@@ -74,7 +78,7 @@
           return $data;
       }
 
-      public function product_SelectAllByCategory ($id_category) {
+      public function product_SelectAllByCategory ( $id_category ) {
           $query = $this->CONN->prepare(
               'SELECT product.*,
                                 picture.url
@@ -109,13 +113,13 @@
           return $data;
       }
 
-      public function product_SelectAllBySubCategory ($id_category) {
+      public function product_SelectAllBySubCategory ( $id_category ) {
           $query = $this->CONN->prepare(
               'SELECT product.*,
                                 picture.url
                          FROM product
                          LEFT JOIN picture ON product.id = picture.id_product
-                         WHERE id_category = :idCategory
+                         WHERE id_category = :id_category
                          GROUP BY product.id'
           );
 
@@ -140,7 +144,7 @@
           return $data;
       }
 
-      public function product_SelectAllByManufacturer ($id_manufacturer) {
+      public function product_SelectAllByManufacturer ( $id_manufacturer ) {
           $query = $this->CONN->prepare(
               'SELECT product.*,
                                 picture.url
@@ -171,7 +175,7 @@
           return $data;
       }
 
-      public function product_Insert (Product $product) {
+      public function product_Insert ( Product $product ) {
           $query = $this->CONN->prepare(
               'INSERT INTO product 
                          VALUES (
@@ -215,9 +219,11 @@
                   ':url'        => $picture
               ]);
           }
+
+          return true;
       }
 
-      public function product_Delete ($id) {
+      public function product_Delete ( $id ) {
           foreach($this->product_SelectById($id)->getPictures() as $picture)
               unlink("../../img/products/{$picture}");
 
@@ -228,6 +234,8 @@
           );
 
           $query->execute([ ':id' => $id ]);
+
+          return true;
       }
 
       /** **********************************************************************************************************************************
@@ -246,7 +254,7 @@
           return $data;
       }
 
-      public function category_SelectSub ($id_parent) {
+      public function category_SelectSub ( $id_parent ) {
           $query = $this->CONN->prepare(
               'SELECT *
                          FROM category
@@ -257,6 +265,57 @@
           $data = $query->fetchAll();
 
           return $data;
+      }
+
+      public function category_Add ( $name, $description ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO category
+                         VALUES (
+                            DEFAULT,
+                            NULL,
+                            :name,
+                            :description
+                         )'
+          );
+
+          $query->execute([
+              ':name'        => $name,
+              ':description' => $description
+          ]);
+
+          return true;
+      }
+
+      public function subcategory_Add ( $id_parent, $name, $description ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO category
+                         VALUES (
+                            DEFAULT,
+                            :id_parent,
+                            :name,
+                            :description
+                         )'
+          );
+
+          $query->execute([
+              ':id_parent'   => $id_parent,
+              ':name'        => $name,
+              ':description' => $description
+          ]);
+
+          return true;
+      }
+
+      public function category_Delete ( $id ) {
+          $query = $this->CONN->prepare(
+              'DELETE
+                         FROM category
+                         WHERE id = :id'
+          );
+
+          $query->execute([ ':id' => $id ]);
+
+          return true;
       }
 
       /** **********************************************************************************************************************************
@@ -274,22 +333,180 @@
           return $data;
       }
 
-      /** **********************************************************************************************************************************
-       *  ********************************************************** INVOICES **************************************************************
-       *  ********************************************************************************************************************************** */
-      public function invoice_Insert () {
+      public function manufacturer_Add ( $name, $description ) {
           $query = $this->CONN->prepare(
-              ''
+              'INSERT INTO manufacturer
+                         VALUES (
+                            DEFAULT,
+                            :name,
+                            :description
+                         )'
           );
 
           $query->execute([
-
+              ':name'        => $name,
+              ':description' => $description
           ]);
+
+          return true;
+      }
+
+      public function manufacturer_Delete ( $id ) {
+          $query = $this->CONN->prepare(
+              'DELETE
+                         FROM manufacturer
+                         WHERE id = :id'
+          );
+
+          $query->execute([ ':id' => $id ]);
+
+          return true;
+      }
+
+      /** **********************************************************************************************************************************
+       *  ********************************************************** INVOICES **************************************************************
+       *  ********************************************************************************************************************************** */
+      public function invoice_Insert ( $products, $price, $delivery = "Česká pošta", $t_user = null ) {
+          $query = $this->CONN->prepare(
+              'INSERT INTO invoice 
+                         VALUES (
+                            DEFAULT, 
+                            :id_customer, 
+                            :one_time, 
+                            :serial_number, 
+                            DEFAULT, 
+                            :price, 
+                            :delivery,
+                            DEFAULT
+                         )'
+          );
+
+          $sn = date("Ymd");
+
+          $query_last = $this->CONN->prepare(
+              'SELECT serial_number
+                         FROM invoice
+                         WHERE serial_number LIKE concat(:date,\'\',\'-%\')
+                         ORDER BY serial_number DESC
+                         LIMIT 1'
+          );
+
+          $query_last->execute( [':date' => $sn] );
+
+          if ( $row = $query_last->fetchAll() )
+              $sn .= '-' . ( explode('-', $row[0]->serial_number)[1] + 1 );
+          else
+              $sn .= '-1';
+
+          $id_invoice = null;
+          $id_user = null;
+
+          if ( isset($_SESSION['user-id']) ) {
+              $id_user = $_SESSION['user-id'];
+
+              $query->execute([
+                  ':id_customer'    => $id_user,
+                  ':one_time'       => 0,
+                  ':serial_number'  => $sn,
+                  ':price'          => $price,
+                  ':delivery'       => $delivery
+              ]);
+
+              $id_invoice = $this->CONN->lastInsertId();
+          } else {
+              $query_insert_user = $this->CONN->prepare(
+                  'INSERT INTO customer 
+                             VALUES (
+                                DEFAULT, 
+                                :f_name, 
+                                :l_name, 
+                                :email, 
+                                :phone, 
+                                :address, 
+                                :city
+                             )'
+              );
+
+              $query_insert_user->execute([
+                  ':f_name'  => $t_user->f_name,
+                  ':l_name'  => $t_user->l_name,
+                  ':email'   => $t_user->email,
+                  ':phone'   => $t_user->phone,
+                  ':address' => $t_user->address,
+                  ':city'    => $t_user->city
+              ]);
+
+              $id_user = $this->CONN->lastInsertId();
+
+              $query->execute([
+                  ':id_customer'    => $id_user,
+                  ':one_time'       => 1,
+                  ':serial_number'  => $sn,
+                  ':price'          => $price,
+                  ':delivery'       => $delivery
+              ]);
+
+              $id_invoice = $this->CONN->lastInsertId();
+          }
+
+          $query = $this->CONN->prepare(
+              'INSERT INTO products_in_invoice 
+                         VALUES (
+                            DEFAULT, 
+                            :id_invoice, 
+                            :id_product,
+                            :cnt
+                         )'
+          );
+
+          foreach ( $products as $p )
+              $query->execute([
+                  ':id_invoice' => $id_invoice,
+                  ':id_product' => $p['id'],
+                  ':cnt'        => $p['cnt']
+              ]);
+
+          if ( isset($_SESSION['shopping-cart']) )
+              unset($_SESSION['shopping-cart']);
+
+          return true;
       }
 
       public function invoice_SelectAll () {
           $query = $this->CONN->prepare(
-              'UNION -> protoze dve ruzny tabulky s user datama'
+              'SELECT *
+                         FROM (
+                              SELECT invoice.serial_number,
+                                    invoice.date,
+                                    invoice.price,
+                                    invoice.type_of_delivery,
+                                    invoice.payed,
+                                    user.f_name,
+                                    user.l_name,
+                                    user.login as email,
+                                    user.phone,
+                                    user.address,
+                                    user.city
+                             FROM invoice
+                             JOIN user ON invoice.id_customer = user.id
+                             WHERE invoice.one_time_customer = 0
+                             UNION
+                             SELECT invoice.serial_number,
+                                    invoice.date,
+                                    invoice.price,
+                                    invoice.type_of_delivery,
+                                    invoice.payed,
+                                    customer.f_name,
+                                    customer.l_name,
+                                    customer.email,
+                                    customer.phone,
+                                    customer.address,
+                                    customer.city
+                             FROM invoice
+                             JOIN customer ON invoice.id_customer = customer.id
+                             WHERE invoice.one_time_customer = 1
+                         ) invoices
+                         ORDER BY invoices.serial_number ASC'
           );
 
           $query->execute();
@@ -298,12 +515,26 @@
           return $data;
       }
 
-      public function invoice_SelectById ( $id_invoice ) {
+
+
+      public function invoice_SelectAllByUserId ( $id ) {
           $query = $this->CONN->prepare(
-              'Nejdriv selectnout one_time_customer a pak az vsechny data'
+              'SELECT invoice.serial_number,
+                                invoice.date,
+                                invoice.price,
+                                invoice.type_of_delivery,
+                                invoice.payed,
+                                user.f_name,
+                                user.l_name,
+                                user.login as email,
+                                user.phone,
+                                user.address,
+                                user.city
+                         FROM invoice
+                         JOIN user ON invoice.id_customer = user.id AND user.id = :id'
           );
 
-          $query->execute( [':id_invoice' => $id_invoice] );
+          $query->execute( [':id' => $id] );
           $data = $query->fetchAll();
 
           return $data;
@@ -416,6 +647,35 @@
           );
 
           $query->execute([':id' => $token[0]]);
+
+          return true;
+      }
+
+      public function user_ChangePassword ( $id, $orig, $new ) {
+          $query = $this->CONN->prepare(
+              'SELECT password
+                         FROM user
+                         WHERE id = :id'
+          );
+
+          $query->execute([ ':id' => $id ]);
+          $pass = $query->fetchAll()[0]->password;
+
+          if ( !password_verify( $orig, $pass ) )
+              return false;
+
+          $pass = password_hash( $new, PASSWORD_DEFAULT );
+
+          $query = $this->CONN->prepare(
+              'UPDATE user
+                         SET password = :password
+                         WHERE id = :id'
+          );
+
+          $query->execute([
+              ':id'       => $id,
+              ':password' => $pass
+          ]);
 
           return true;
       }

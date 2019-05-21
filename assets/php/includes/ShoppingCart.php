@@ -9,22 +9,27 @@
             $_SESSION['shopping-cart'] = serialize($this);
         }
 
-        public function addProduct ($id, $cnt = 1) {
+        public function addProduct ( $id, $price, $cnt = 1 ) {
             array_push(
                 $this->products,
                 [
-                    "id" => $id,
-                    "cnt" => $cnt
+                    "id"    => $id,
+                    "price" => $price,
+                    "cnt"   => $cnt
                 ]
             );
+
+            $this->price += ( $price * $cnt );
 
             $_SESSION['shopping-cart'] = serialize($this);
         }
 
-        public function delProduct ($id) {
+        public function delProduct ( $id ) {
             for ($i = 0; $i < sizeof($this->products); $i++)
                 if ( $this->products[$i]['id'] === $id )
                     break;
+
+            $this->price -= ( $this->products[$i]["price"] * $this->products[$i]["cnt"] );
 
             array_splice(
                 $this->products,
