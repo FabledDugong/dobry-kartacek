@@ -171,15 +171,11 @@ class Carousel {
 
 //add how many pictures you want
 const imgs = [
-<<<<<<< HEAD
-        "assets/img/action.svg",
-=======
-        "assets/img/picovina.svg",
->>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
-        "https://images.unsplash.com/photo-1541442636243-5ece4a868784?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-        "https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-        "https://images.unsplash.com/photo-1551176601-c55f81516ba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-        "https://images.unsplash.com/photo-1550957589-fe3f828dfea2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+        "assets/img/action.svg"
+        // "https://images.unsplash.com/photo-1541442636243-5ece4a868784?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+        // "https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+        // "https://images.unsplash.com/photo-1551176601-c55f81516ba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
+        // "https://images.unsplash.com/photo-1550957589-fe3f828dfea2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
     ],
       carousel = new Carousel("#carousel", imgs)
 
@@ -223,28 +219,6 @@ _back.addEventListener('click', () => {
     document.getElementById('products').style.display = 'flex'
     document.getElementById('product-detail').style.display = 'none'
 })
-
-let _categories = [...document.querySelectorAll('.category')]
-
-function subcCheck () {
-    for (let i = 0; i < _categories.length; i++) {
-        let t = _categories[i]
-        ! t.classList.contains('active') ? t.style.display = 'none' : t.style.display = 'flex'
-    }
-}
-
-_categories.map(e => e.addEventListener('click', () => {
-    e.classList.add('active')
-    let back_category = document.querySelector('.category.active div:first-of-type')
-    function b (ev) {
-        console.log('test')
-        ev.classList.remove('active')
-        subcCheck()
-    }
-    back_category.addEventListener('click', b(e))
-    subcCheck()
-}))
-
 
 /* ----------modal controls---------- */
 let _modal = document.querySelector('#modal'),

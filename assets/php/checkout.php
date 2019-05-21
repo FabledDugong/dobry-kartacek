@@ -95,7 +95,7 @@ else
                 console.log('success')
         }
 
-        xhr.open('POST', 'delFromShoppingCart.php', true)
+        xhr.open('POST', 'sc_DeleteProduct.php', true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
         xhr.send(`id=${el.dataset.id}`)

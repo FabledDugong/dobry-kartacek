@@ -50,6 +50,8 @@ input
 .logo
   width: 6vmin
   height: 6vmin
+.logo_full
+  width: 40vmin
 .partner-logo
   width: 25vmin
 .icon
@@ -80,7 +82,6 @@ input
       justify-content: space-between
       width: 100%
       height: 10vmin
-      margin: 0 0 5vmin 0
       padding: 0 2vmin
       background: #fff
       @include shadow()
@@ -124,11 +125,9 @@ input
       flex-direction: column
       justify-content: space-between
       p
-        margin: 2vmin 0 0
         font-family: $content-font-lighter
         font-size: 5vmin
         color: $dark
-      div
 
   .carousel
     overflow: hidden
@@ -225,16 +224,26 @@ input
       background: #fff
       cursor: pointer
       text-align: center
+      &:hover
+        h3
+          color: $main-color
+          transition: all 0.25s
+      &:not(:hover)
+        h3
+          color: inherit
+          transition: all 0.25s
       h3
         color: $dark
       .subcategory
         @extend .category
-        background: #fff
         display: none
+        background: #fff
+        pointer-events: all
       &.active
         flex-direction: column
         justify-content: flex-start
         height: 100%
+        pointer-events: none !important
         > div
           &:first-of-type
             @extend .category
@@ -242,7 +251,7 @@ input
             background: $dark
             cursor: default
             color: white
-            pointer-events: none
+            pointer-events: none !important
             &:hover:before
               cursor: pointer
             &::before
@@ -316,6 +325,13 @@ input
       > div
         &:first-of-type
           margin: 0 0 3vmin 0
+          > div
+            display: flex
+            flex-direction: row
+            align-items: flex-end
+            h5
+              margin: 0 0 1vmin 1vmin
+              font-family: $title-font-lighter
         &:last-of-type
           table
             width: 100%
@@ -352,7 +368,7 @@ input
               height: 2.5vmin
               padding: 2.5vmin 1vmin
               background: transparent
-              border-bottom: 0.1vmin solid $grayer
+              border-bottom: 0.1vmin solid $dark
               outline-color: $main-color
               font-family: $title-font
               text-align: right
@@ -364,9 +380,9 @@ input
                   margin: 0
             label
               margin: 1vmin 0 0
-              font-size: 1.25vmin
+              font-family: $title-font
+              font-size: 1.5vmin
               text-align: right
-              color: $grayer
         button
           width: 45%
           &:first-of-type

@@ -15,7 +15,7 @@ else
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Dobrý kartáček</title>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 </head>
 <body>
@@ -79,25 +79,22 @@ else
             </div>
         </nav>
         <div>
-            <div>
-                <p>
-                    Základem dobrého úsměvu je
-                </p>
-                <h1>dobrý kartáček</h1>
-            </div>
+            <p>
+                Základem dobrého úsměvu je
+            </p>
+            <h1>dobrý kartáček</h1>
+        </div>
+        <div>
+            <img src="assets/img/dk_logo_full.svg" alt="logo_full" class="logo_full">
+        </div>
+        <div>
             <div>
                 <button>eshop</button>
             </div>
         </div>
     </div>
     <div class="carousel" id="carousel">
-<<<<<<< HEAD
         <div class="images"></div>
-=======
-        <div class="images">
-            <img src="assets/img/picovina.svg" alt="">
-        </div>
->>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
         <div class="controls">
             <div class="prev">
                 <img src="assets/img/arrow-up.svg" alt="arrow-up">
@@ -138,15 +135,12 @@ else
                         <p>{$prod->getPrice()}Kč</p>
                     </div>
                 </div>";
-<<<<<<< HEAD
                 foreach ($products as $p)
                     echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
                             <div>
                                 <h4>{$p->getName()}</h4>
                             </div>
                          </div>";
-=======
->>>>>>> 0aa3b1040308d38bce85863f76176e9d629abf88
             ?>
         </div>
         <div id="product-detail" data-id="null">
@@ -211,8 +205,7 @@ else
                     <ul>
                         <li><a href="">obchodní podmínky</a></li>
                         <li><a href="">zpracování osobních údajů</a></li>
-                        <li><a href="">FAQ</a></li>
-<!--                        <li><a href="">faq</a></li>-->
+                        <li><a href="">o nás</a></li>
                     </ul>
                 </div>
                 <div>
