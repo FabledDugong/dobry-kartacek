@@ -10,7 +10,7 @@ body
 header, section, footer
   display: flex
   width: 100vw
-h1,h2,h3,h4
+h1,h2,h3,h4,h5,h6
   font-family: $title-font
 h1
   margin: 0 0 1vmin 0
@@ -19,13 +19,18 @@ h1
 h2
   font-size: 5vmin
 h3
-  margin: 0 0 1vmin
   font-size: 2.5vmin
   text-transform: uppercase
   letter-spacing: 0.1vmin
   color: $main-color
 h4
   font-size: 3vmin
+h5,h6
+  font-size: 2.5vmin
+  text-transform: uppercase
+mark
+  background: none
+  color: $main-color
 p
   font-size: 2vmin
 button
@@ -35,6 +40,7 @@ button
   @include shadow()
   font-family: $title-font
   font-size: 2.5vmin
+  text-transform: uppercase
   color: #fff
 
 input
@@ -236,6 +242,7 @@ input
             background: $dark
             cursor: default
             color: white
+            pointer-events: none
             &:hover:before
               cursor: pointer
             &::before
@@ -246,8 +253,8 @@ input
               left: 5.75%
               font-size: 3vmin
               color: white
+              pointer-events: all
             h3
-              margin: 0
               color: white
         .subcategory
           display: flex
@@ -309,27 +316,69 @@ input
       > div
         &:first-of-type
           margin: 0 0 3vmin 0
+        &:last-of-type
+          table
+            width: 100%
+            tr
+              display: flex
+              flex-direction: row
+              justify-content: space-between
+              margin: 0 0 1vmin
       h4
         margin: 0 0 1vmin
         font-size: 5vmin
       p
         font-family: $content-font-lighter
-        font-size: 3.5vmin
+        font-size: 2.5vmin
+        text-align: justify
     .product-control
       display: flex
-      flex-direction: row
+      flex-direction: column
       justify-content: space-between
       width: 100%
-      button
-        width: 45%
-        &:last-of-type
-          background: $secondary-color
+      height: 17.5vh
+      > div
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        &:first-of-type
+          justify-content: flex-end
+          > div
+            display: flex
+            flex-direction: column
+            width: 45%
+            input
+              width: 100%
+              height: 2.5vmin
+              padding: 2.5vmin 1vmin
+              background: transparent
+              border-bottom: 0.1vmin solid $grayer
+              outline-color: $main-color
+              font-family: $title-font
+              text-align: right
+              &[type='number']
+                -moz-appearance: textfield
+                &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+                  display: none
+                  -webkit-appearance: none
+                  margin: 0
+            label
+              margin: 1vmin 0 0
+              font-size: 1.25vmin
+              text-align: right
+              color: $grayer
+        button
+          width: 45%
+          &:first-of-type
+            background: $secondary-color
 
 #contact
   justify-content: space-between
   height: 90%
   padding: 5vmin
   background-color: $gray
+  h3
+    margin: 0 0 1vmin
   > div
     display: flex
     flex-direction: column
@@ -357,8 +406,6 @@ input
         padding: 2vmin
         background: url('../img/artwork.svg') no-repeat center center / cover
         color: #fff
-        h3
-          margin: 0 0 1vmin 0
         p
           line-height: 1.1
           //font-family: $content-font-lighter
@@ -428,7 +475,6 @@ input
       height: 50%
       background: white
       h3
-        margin: 0
         color: $dark
       > div
         display: flex
@@ -566,7 +612,6 @@ input
     opacity: 1
     transition: all .3s
   h3
-    margin: 0
     color: #fff
 
 ::-webkit-scrollbar-track

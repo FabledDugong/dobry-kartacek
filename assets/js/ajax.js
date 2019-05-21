@@ -14,10 +14,23 @@ function loadData (url, value, callback) {
     xhr.send(`param=${value}`)
 }
 
-function notification (msg, type = 'DE9E33', duration = 3000) {
+function notification (msg, type, duration = 3000) {
     if ( document.getElementById('notification') == undefined ) {
         let _box = document.createElement('div'),
             _txt = document.createElement('h3')
+
+        switch (type) {
+            default:
+            case 'INFO':
+                type = 'DE9E33'
+                break;
+            case 'SUCCESS':
+                type = '28a745'
+                break;
+            case 'ERROR':
+                type = 'dc3545'
+                break;
+        }
 
         _txt.innerHTML = msg
         _box.appendChild(_txt)
@@ -55,21 +68,35 @@ function bindLoadDetail () {
                                                                     <h5>barva: ???</h5>
                                                                 </div>`
 
-            html += `<div>`
+            /* multiple images */
+            // html += `<div>`
+            // for ( let img of data['pictures'] )
+            //     html += `<img src="assets/img/products/${img['url']}" alt="${data['name']}">`;
+            // html += `</div>`
 
-            for ( let img of data['pictures'] )
-                html += `<img src="assets/img/products/${img['url']}" alt="${data['name']}">`;
-
-            html += `</div>
-                     <div>
+            html += `<div>
                          <h4>${data['name']}</h4>
                          <p>${data['description']}</p>
                      </div>
+                     <hr>
                      <div>
-                         ${ (data['color'] != null) ? '<h5>barva: ' + data['color'] + '</h5>' : '' }
-                         ${ (data['toughness'] != null) ? '<h5>tvrdost: ' + data['toughness'] + '</h5>' : '' }
-                         <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
-                         <h5>cena: ${data['price']}</h5>
+                         <table>
+                            ${(data['color'] != null) ? '<tr><td><h5>barva</h5></td><td><h5>' + data['color'] + '</h5></td></tr>' : ''}
+                            ${(data['toughness'] != null) ? '<tr><td><h5>tvrdost</h5></td><td><h5>' + data['toughness'] + '</h5></td></tr>' : ''}
+                            <tr>
+                                <td><h5>skladem</h5></td>
+                                <td><h6 style='color: ${ (data['stock'] > 0) ? '#52c234' : '#DD3B4E' }'>${ (data['stock'] > 0) ? 'ano' : 'ne' }</h6></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td><h5>cena bez dph</h5></td>
+                                <td><h6><mark>${data['price']-((data['price']/100)*21)}</mark> Kč</h6></td>
+                            </tr>                   
+                            <tr>
+                                <td><h5>cena</h5></td>
+                                <td><h6><mark>${data['price']}</mark> Kč</h6></td>
+                            </tr>      
+                         </table>
                      </div>`
 
             document.querySelector('.product-info').innerHTML = html
@@ -127,8 +154,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     _buy.addEventListener('click', () => {
         const xhr = new XMLHttpRequest(),
-              id = document.getElementById('product-detail').dataset.id
-              // cnt = document.getElementById('cnt').value
+              id = document.getElementById('product-detail').dataset.id,
+              cnt = document.getElementById('cnt').value
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200)
@@ -138,9 +165,8 @@ window.addEventListener('DOMContentLoaded', () => {
         xhr.open('POST', 'assets/php/sc_AddProduct.php', true)
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        xhr.send(`id=${id}&cnt=1`/*${cnt}`*/)
         xhr.send(`id=${id}&cnt=${cnt}`)
 
-        notification('Product added to shopping cart.');
+        notification('Produkt přidán do košíku.', 'SUCCESS');
     })
 })

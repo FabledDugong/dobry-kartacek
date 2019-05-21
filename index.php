@@ -91,9 +91,7 @@ else
         </div>
     </div>
     <div class="carousel" id="carousel">
-        <div class="images">
-            <img src="assets/img/ad.svg" alt="">
-        </div>
+        <div class="images"></div>
         <div class="controls">
             <div class="prev">
                 <img src="assets/img/arrow-up.svg" alt="arrow-up">
@@ -128,14 +126,14 @@ else
             <?php
             foreach ($products as $prod)
                 echo
-                "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(assets/img/products/{$prod->getPictures()}) no-repeat center center / contain'>
+                "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(\"assets/img/products/{$prod->getPictures()}\") no-repeat center center / contain'>
                     <div>
                         <h4>{$prod->getName()}</h4>
                         <p>{$prod->getPrice()}Kč</p>
                     </div>
                 </div>";
                 foreach ($products as $p)
-                    echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(assets/img/products/{$p->getPictures()}) no-repeat center center / contain'>
+                    echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
                             <div>
                                 <h4>{$p->getName()}</h4>
                             </div>
@@ -149,8 +147,16 @@ else
             <div>
                 <div class="product-info"></div>
                 <div class="product-control">
-                    <button data-role="button-back">zpět</button>
-                    <button data-role="button-buy">do košíku</button>
+                    <div>
+                        <div>
+                            <input type="number" value="1" name="cnt" id="cnt">
+                            <label for="cnt">počet kusů</label>
+                        </div>
+                    </div>
+                    <div>
+                        <button data-role="button-back">zpět</button>
+                        <button data-role="button-buy">do košíku</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -218,7 +224,7 @@ else
                 </div>
             </div>
             <div id="copy">
-                <h6>© 2019 Dobrý kartáček. All rights reserved.</h6>
+                <span>© 2019 Dobrý kartáček. All rights reserved.</span>
             </div>
         </div>
     </section>
