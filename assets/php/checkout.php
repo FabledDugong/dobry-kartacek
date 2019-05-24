@@ -27,19 +27,19 @@ else
                 <div class="checkout-phase active">
                     <div>1</div>
                     <div>
-                        <a href="">košík</a>
+                        <a class="active" data-tab='1'>košík</a>
                     </div>
                 </div>
                 <div class="checkout-phase">
                     <div>2</div>
                     <div>
-                        <a href="">doprava a platba</a>
+                        <a data-tab='2'>doprava a platba</a>
                     </div>
                 </div>
                 <div class="checkout-phase">
                     <div>3</div>
                     <div>
-                        <a href="">dodací údaje</a>
+                        <a data-tab='3'>dodací údaje</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@ else
                 <h3>cena</h3>
                 <button>pokračovat</button>
             </div>
-            <div id="cart-content">
+            <div id="cart-content" class="tab active">
                 <ul>
                     <?php
                         foreach ($cart->getProducts() as $product)
@@ -65,43 +65,33 @@ else
                         echo "nothing but big emptiness";
                  ?>
             </div>
+            <div id="cart-content" class="tab">
+                <ul>
+                    <?php
+                    foreach ($cart->getProducts() as $product)
+                        echo '<li><div class="product-image"></div><div class="product-name">' . 'jmeno a link' . '</div>product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';<a href="#" class="delete" data-id="' . $product['id'] . '">delete</a></li>';
+                    ?>
+                </ul
+                <?php
+                if (empty($cart->getProducts()))
+                    echo "nothing but big emptiness";
+                ?>
+            </div>
+            <div id="cart-content" class="tab">
+                <ul>
+                    <?php
+                    foreach ($cart->getProducts() as $product)
+                        echo '<li><div class="product-image"></div><div class="product-name">' . 'jmeno a link' . '</div>product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';<a href="#" class="delete" data-id="' . $product['id'] . '">delete</a></li>';
+                    ?>
+                </ul
+                <?php
+                if (empty($cart->getProducts()))
+                    echo "nothing but big emptiness";
+                ?>
+            </div>
         </div>
     </section>
 </main>
-<script type="text/javascript">
-    'use strict'
-
-    let _delete = [...document.getElementsByClassName('delete')]
-        // _destroy = document.getElementById('destroy')
-    // _destroy.addEventListener('click', () => {
-    //     const xhr = new XMLHttpRequest()
-    //
-    //     xhr.onreadystatechange = function () {
-    //         if (xhr.readyState === 4 && xhr.status === 200)
-    //             console.log('success')
-    //     }
-    //
-    //     xhr.open('GET', 'delShoppingCart.php', true)
-    //     xhr.send()
-    //
-    //     location.reload()
-    // })
-
-    _delete.map(el => el.addEventListener('click', () => {
-        const xhr = new XMLHttpRequest()
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4 && xhr.status === 200)
-                console.log('success')
-        }
-
-        xhr.open('POST', 'sc_DeleteProduct.php', true)
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-        xhr.send(`id=${el.dataset.id}`)
-
-        location.reload()
-    }))
-</script>
+<script type="text/javascript" src="../js/checkout.js"></script>
 </body>
 </html>

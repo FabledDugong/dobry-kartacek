@@ -73,21 +73,25 @@ else
                     if ( !isset($_SESSION['user-id']) )
                         echo '<a data-role="button-open-login">přihlášení</a>';
                     else
+//                        if admin =>administrace
+//                        if () {
+//
+//                        }
                         echo '<a href="#">administrace</a>';
                 ?>
                 <a href="assets/php/checkout.php" data-role="button-open-cart" id="ct">košík</a>
             </div>
         </nav>
         <div>
-            <p>
-                Základem dobrého úsměvu je
-            </p>
-            <h1>dobrý kartáček</h1>
-        </div>
-        <div>
-            <img src="assets/img/dk_logo_full.svg" alt="logo_full" class="logo_full">
-        </div>
-        <div>
+            <div>
+                <h1>DOBRÝ KARTÁČEK</h1>
+                <p>
+                    je základem každého dobrého úsměvu.
+                </p>
+            </div>
+            <div>
+                <img src="assets/img/dk_logo_full.svg" alt="logo_full" class="logo_full">
+            </div>
             <div>
                 <button>eshop</button>
             </div>
