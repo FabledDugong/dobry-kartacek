@@ -19,8 +19,9 @@ class Carousel {
         this.img.active.src = _content[0]
         this.img.active.alt = 0
 
-        this.img.next.src = _content[1]
-        this.img.next.alt = 1
+        let tmp_cnt = ( this.len < 2 ) ? 0 : 1
+        this.img.next.src = _content[tmp_cnt]
+        this.img.next.alt = tmp_cnt
 
         for(let i in this.img)
             document.querySelector(_target + ' .images').appendChild(this.img[i])

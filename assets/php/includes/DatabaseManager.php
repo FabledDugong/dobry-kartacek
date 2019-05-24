@@ -573,7 +573,8 @@
           $query = $this->CONN->prepare(
               'SELECT id,
                                 password,
-                                active
+                                active,
+                                admin
                          FROM user
                          WHERE login = :login'
           );
@@ -585,6 +586,7 @@
               return false;
 
           $_SESSION['user-id'] = $data->id;
+          $_SESSION['user-admin'] = $data->admin;
           return true;
       }
 
