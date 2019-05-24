@@ -107,40 +107,47 @@ function bindLoadDetail () {
     }))
 }
 
+
 window.addEventListener('DOMContentLoaded', () => {
     bindLoadDetail()
 
     // ---------------------------------
 
     let _cats = [...document.querySelectorAll('.category > div:not(.subcategory)')],
-        _subCats = [...document.getElementsByClassName('subcategory')]
+        _subCats = [...document.getElementsByClassName('subcategory')],
+        _opened = false
 
-    function cat_control (d) {
-        if (d === 'f') {
-            _cats.forEach( e => {
-                if ( ! e.parentNode.classList.contains('active') )
-                    e.parentNode.style.display = 'none'
-            })
-        } else if (d === 'b') {
-            _cats.forEach( e => {
-                if ( e.parentNode.classList.contains('active') ){
-                    e.parentNode.classList.remove('active')
-                } else {
-                    e.parentNode.style.display = 'flex'
-                }
-            })
-        }
-    }
 
     _cats.map(el => el.addEventListener('click', () => {
 
-        el.parentNode.classList.add('active')
-        cat_control('f')
+        el.parentNode.classList.toggle('active')
 
-        const _cat_back = document.querySelector('.category.active div:first-of-type')
-        _cat_back.addEventListener('click', () => {
-            cat_control('b')
-        })
+        let _sCats = [...document.querySelectorAll( '.category.active > .subcategory' )],
+            _sCats2 = [...document.querySelectorAll('.category > div:not(.subcategory)')]
+
+        if ( !_opened ) {
+            for ( let cat of _sCats )
+                if ( !el.parentNode.classList.contains( 'active' ) )
+                    cat.parentNode.style.display = 'none'
+                else
+                    cat.parentNode.style.display = 'flex'
+
+            for ( let cat of _sCats2 )
+                if ( !cat.parentNode.classList.contains( 'active' ) )
+                    cat.parentNode.style.display = 'none'
+                else
+                    cat.parentNode.style.display = 'flex'
+
+            _opened = true;
+        } else {
+            for ( let cat of _sCats )
+                cat.parentNode.style.display = 'none'
+
+            for ( let cat of _sCats2 )
+                cat.parentNode.style.display = 'flex'
+
+            _opened = false;
+        }
 
         loadData('assets/php/product_LoadByCategory.php', el.parentNode.dataset.id, (data) => {
             let html = ''
