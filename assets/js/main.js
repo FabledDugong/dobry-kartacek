@@ -1,5 +1,7 @@
 'use strict'
 
+'use strict'
+
 class Carousel {
     constructor(_target, _content) {
         this.target = _target
@@ -180,14 +182,14 @@ const imgs = [
         // "https://images.unsplash.com/photo-1551176601-c55f81516ba9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         // "https://images.unsplash.com/photo-1550957589-fe3f828dfea2?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
     ],
-      carousel = new Carousel("#carousel", imgs)
+    carousel = new Carousel("#carousel", imgs)
 
 /* --------------------- */
 
 const menu = document.getElementById('navigation'),
-      menuTop = menu.offsetTop,
-      header = document.querySelector('#intro'),
-      tmp = document.createElement('div')
+    menuTop = menu.offsetTop,
+    header = document.querySelector('#intro'),
+    tmp = document.createElement('div')
 window.addEventListener('scroll', () => {
     if ( menuTop <= window.pageYOffset ) {
         menu.setAttribute('style', 'width:' + menu.getBoundingClientRect().width + 'px')
@@ -236,7 +238,7 @@ let _modal = document.querySelector('#modal'),
                     console.log(el)
                     if (el.classList.contains('modal-active'))
                         console.log('true')
-                        el.classList.remove('modal-active')
+                    el.classList.remove('modal-active')
                 })
             }
             console.log(e.getAttribute('id'))
@@ -302,7 +304,7 @@ class Control {
     }
 
     parsefs(type) {
-        
+
         switch (type) {
             case 'email':
                 break;
@@ -311,7 +313,7 @@ class Control {
             default:
                 break;
         }
-        
+
     }
 
 }
@@ -319,3 +321,222 @@ class Control {
 // const C = new Control()
 // const str = '            ycX73?9@B,FH    ]b\'-[tjZ | # @ c QX9.'
 // console.log(C.sanitizeString(str))
+
+
+
+
+
+'use strict'
+
+function loadData (url, data, callback) {
+    const xhr = new XMLHttpRequest()
+    let args = ''
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log ( xhr.responseText )
+
+            callback(JSON.parse(xhr.responseText))
+        }
+    }
+
+    xhr.open('POST', url, true)
+    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+
+    for ( let key in data )
+        args += ( key + '=' + data[key] + '&' )
+
+    xhr.send( args.slice( 0, -1 ) )
+}
+
+function notification (msg, type, duration = 3000) {
+    if ( document.getElementById('notification') == undefined ) {
+        let _box = document.createElement('div'),
+            _txt = document.createElement('h3')
+
+        switch (type) {
+            default:
+            case 'INFO':
+                type = 'DE9E33'
+                break;
+            case 'SUCCESS':
+                type = '28a745'
+                break;
+            case 'ERROR':
+                type = 'dc3545'
+                break;
+        }
+
+        _txt.innerHTML = msg
+        _box.appendChild(_txt)
+        _box.id = 'notification'
+        _box.style.background = '#' + type
+
+        document.body.appendChild(_box)
+
+        setTimeout(() => { _box.classList.add('visible') }, 100)
+        setTimeout(() => { document.getElementById('notification').classList.remove('visible') }, duration)
+    } else {
+        document.querySelector('#notification h3').innerHTML = msg
+        setTimeout(() => { document.getElementById('notification').classList.add('visible') }, 100)
+        setTimeout(() => { document.getElementById('notification').classList.remove('visible') }, duration)
+    }
+}
+
+function bindLoadDetail () {
+    let _prods = [...document.getElementsByClassName('product')]
+
+    _prods.map(el => el.addEventListener('click', () => {
+        let html = ''
+
+        document.getElementById('product-detail').setAttribute('data-id', el.dataset.id)
+
+        loadData('assets/php/handlers/product/select_by_id.php', {'id' : el.dataset.id}, (data) => {
+            document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0] + '") no-repeat center center / contain')
+            document.querySelector('.product-info').innerHTML = `<div>
+                                                                    <h4>${data['name']}</h4>
+                                                                    <p>${data['description']}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
+                                                                    <h5>cena: ${data['price']}</h5>
+                                                                    <h5>barva: ???</h5>
+                                                                </div>`
+
+            /* multiple images */
+            // html += `<div>`
+            // for ( let img of data['pictures'] )
+            //     html += `<img src="assets/img/products/${img['url']}" alt="${data['name']}">`;
+            // html += `</div>`
+
+            html += `<div>
+                         <div>
+                            <h4>${data['name']}</h4>
+                            ${(data['color'] != null) ? '<h5>' + data['color'] + '</h5>' : ''}
+                         </div>
+                         <p>${data['description']}</p>
+                     </div>
+                     <div>
+                         <table>
+                            ${(data['toughness'] != null) ? '<tr><td><h5>tvrdost</h5></td><td><h5>' + data['toughness'] + '</h5></td></tr>' : ''}
+                            <tr>
+                                <td><h5>skladem</h5></td>
+                                <td><h6 style='color: ${ (data['stock'] > 0) ? '#52c234' : '#DD3B4E' }'>${ (data['stock'] > 0) ? 'ano' : 'ne' }</h6></td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td><h5>cena bez dph</h5></td>
+                                <td><h6><mark>${data['price']-((data['price']/100)*21)}</mark> Kč</h6></td>
+                            </tr>                   
+                            <tr>
+                                <td><h5>cena</h5></td>
+                                <td><h6><mark>${data['price']}</mark> Kč</h6></td>
+                            </tr>      
+                         </table>
+                     </div>`
+
+            document.querySelector('.product-info').innerHTML = html
+            document.getElementById('products').style.display = 'none'
+            document.getElementById('product-detail').style.display = 'flex'
+        })
+    }))
+}
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    bindLoadDetail()
+
+    // ---------------------------------
+
+    let _cats = [...document.querySelectorAll('.category > div:not(.subcategory)')],
+        _subCats = [...document.getElementsByClassName('subcategory')],
+        _opened = false
+
+
+    _cats.map(el => el.addEventListener('click', () => {
+
+        el.parentNode.classList.toggle('active')
+
+        let _sCats = [...document.querySelectorAll( '.category.active > .subcategory' )],
+            _sCats2 = [...document.querySelectorAll('.category > div:not(.subcategory)')]
+
+        if ( !_opened ) {
+            for ( let cat of _sCats )
+                if ( !el.parentNode.classList.contains( 'active' ) )
+                    cat.parentNode.style.display = 'none'
+                else
+                    cat.parentNode.style.display = 'flex'
+
+            for ( let cat of _sCats2 )
+                if ( !cat.parentNode.classList.contains( 'active' ) )
+                    cat.parentNode.style.display = 'none'
+                else
+                    cat.parentNode.style.display = 'flex'
+
+            _opened = true;
+        } else {
+            for ( let cat of _sCats )
+                cat.parentNode.style.display = 'none'
+
+            for ( let cat of _sCats2 )
+                cat.parentNode.style.display = 'flex'
+
+            _opened = false;
+        }
+
+        loadData('assets/php/handlers/product/select_by_category.php', {'id_category' : el.parentNode.dataset.id}, (data) => {
+            let html = ''
+
+            for (let product of data)
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(\"assets/img/products/${product['pictures']}\") no-repeat center center / contain'>
+                            <div>
+                                <h4>${product['name']}</h4>
+                                <p>${product['price']}Kč</p>
+                            </div>
+                         </div>`
+
+            document.getElementById('products').innerHTML = html;
+            bindLoadDetail()
+        })
+    }))
+
+    _subCats.map(el => el.addEventListener('click', () => {
+        loadData('assets/php/handlers/product/select_by_category.php', {'id_category' : el.dataset.id}, (data) => {
+            let html = ''
+
+            for (let product of data)
+                html += `<div class='product' id='product${product['id']}' data-id='${product['id']}' style='background: url(\"assets/img/products/${product['pictures']}\") no-repeat center center / contain'>
+                            <div>
+                                <h4>${product['name']}</h4>
+                                <p>${product['price']}Kč</p>
+                            </div>
+                         </div>`
+
+            document.getElementById('products').innerHTML = html;
+            bindLoadDetail()
+        })
+    }))
+
+    // ---------------------------------
+
+    let _buy =  document.querySelector('[data-role="button-buy"]')
+
+    _buy.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest(),
+            id = document.getElementById('product-detail').dataset.id,
+            cnt = document.getElementById('cnt').value
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200)
+                console.log('success')
+        }
+
+        xhr.open('POST', 'assets/php/sc_AddProduct.php', true)
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr.send(`id=${id}&cnt=${cnt}`)
+
+        notification('Produkt přidán do košíku.', 'SUCCESS');
+    })
+})

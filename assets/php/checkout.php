@@ -1,11 +1,4 @@
-<?php
-include 'includes/config.php';
-
-if (!isset($_SESSION['shopping-cart']))
-    $cart = new ShoppingCart();
-else
-    $cart = unserialize($_SESSION['shopping-cart']);
-?>
+<?php require_once 'includes/Initiate.php'; ?>
 <!doctype html>
 <html lang="cs">
 <head>
@@ -56,37 +49,52 @@ else
             <div id="cart-content" class="tab active">
                 <ul>
                     <?php
-                        foreach ($cart->getProducts() as $product)
-                        echo '<li><div class="product-image"></div><div class="product-name">' . 'jmeno a link' . '</div>product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';<a href="#" class="delete" data-id="' . $product['id'] . '">delete</a></li>';
+                        foreach ( $sc -> products as $p )
+                            echo '<li>
+                                    <div class="product-image"></div>
+                                    <div class="product-name">' . 'jmeno a link' . '</div>
+                                    product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';
+                                    <a href="#" class="delete" data-id="' . $product['id'] . '">delete</a>
+                                  </li>';
                     ?>
                 </ul
                 <?php
-                    if (empty($cart->getProducts()))
-                        echo "nothing but big emptiness";
-                 ?>
-            </div>
-            <div id="cart-content" class="tab">
-                <ul>
-                    <?php
-                    foreach ($cart->getProducts() as $product)
-                        echo '<li><div class="product-image"></div><div class="product-name">' . 'jmeno a link' . '</div>product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';<a href="#" class="delete" data-id="' . $product['id'] . '">delete</a></li>';
-                    ?>
-                </ul
-                <?php
-                if (empty($cart->getProducts()))
-                    echo "nothing but big emptiness";
+                    if ( empty( $sc -> products ) )
+                        echo "Košík je prázdný";
                 ?>
             </div>
-            <div id="cart-content" class="tab">
+            <div id="cart-content" class="tab active">
                 <ul>
                     <?php
-                    foreach ($cart->getProducts() as $product)
-                        echo '<li><div class="product-image"></div><div class="product-name">' . 'jmeno a link' . '</div>product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';<a href="#" class="delete" data-id="' . $product['id'] . '">delete</a></li>';
+                        foreach ( $sc -> products as $p )
+                            echo '<li>
+                                    <div class="product-image"></div>
+                                    <div class="product-name">' . 'jmeno a link' . '</div>
+                                    product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';
+                                    <a href="#" class="delete" data-id="' . $product['id'] . '">delete</a>
+                                  </li>';
                     ?>
                 </ul
                 <?php
-                if (empty($cart->getProducts()))
-                    echo "nothing but big emptiness";
+                    if ( empty( $sc -> products ) )
+                        echo "Košík je prázdný";
+                ?>
+            </div>
+            <div id="cart-content" class="tab active">
+                <ul>
+                    <?php
+                        foreach ( $sc -> products as $p )
+                            echo '<li>
+                                    <div class="product-image"></div>
+                                    <div class="product-name">' . 'jmeno a link' . '</div>
+                                    product id: ' . $product['id'] . '; count: ' . $product['cnt'] . ';
+                                    <a href="#" class="delete" data-id="' . $product['id'] . '">delete</a>
+                                  </li>';
+                    ?>
+                </ul
+                <?php
+                    if ( empty( $sc -> products ) )
+                        echo "Košík je prázdný";
                 ?>
             </div>
         </div>

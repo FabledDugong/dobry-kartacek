@@ -1,0 +1,33 @@
+{
+
+  "DATABASE" : {
+
+    "HOST"        : "localhost",
+
+    "NAME"        : "_dk2",
+
+    "USER"        : "root",
+
+    "PASSWORD"    : ""
+
+  },
+
+  "COLORS" : {
+
+    "MAIN"        : "#52c234",
+
+    "SECONDARY"   : "#dd3b4e",
+
+    "ERROR"       : "#dc3545",
+
+    "SUCCESS"     : "#28a745"
+
+  },
+
+  "DEFAULT_EMAIL" : "no-reply@dobry-kartacek.cz",
+
+  "DOMAIN"        : "http://localhost",
+
+  "CRYPT_KEY"     : "def0000053c349f3ebac3e54f164b8a9ab04ca5681a602eee598cad1d8d0b6a2c30f3104f1d220a1e1eac880174b4c1c1e54fe423b92e466ba5bffeaaa16d31f32f0c315"
+
+}

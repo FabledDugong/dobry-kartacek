@@ -1,13 +1,10 @@
 <?php
-require_once 'assets/php/includes/config.php';
-$DM = new DatabaseManager();
-$products = $DM->product_SelectAll();
-$categories = $DM->category_SelectTop();
 
-if (!isset($_SESSION['shopping-cart']))
-    $cart = new ShoppingCart();
-else
-    $cart = unserialize($_SESSION['shopping-cart']);
+    require_once 'assets/php/includes/Initiate.php';
+
+    $products = $DM -> product_SelectAll();
+    $categories = $DM -> category_SelectMain();
+
 ?>
 <html lang="cs">
 <head>
@@ -25,34 +22,35 @@ else
         <div id="login-control"><img src="assets/img/close.svg" data-role="button-modal-close" alt="close-button"
                                      class="icon"></div>
         <h3>přihlásit se</h3>
-        <form action="assets/php/user_Login.php" method="post" name="login-form" id="login-form">
-            <input type="text" placeholder="E-mail" name="login-acc" id="login-acc" maxlength="30">
+        <form action="assets/php/handlers/user/login.php" method="post" name="login-form" id="login-form">
+            <input type="text" placeholder="E-mail" name="login" id="login-acc" maxlength="30">
             <label for="login-acc">test</label>
-            <input type="password" placeholder="Heslo" name="login-pass" id="login-pass">
+            <input type="password" placeholder="Heslo" name="password" id="login-pass">
             <label for="login-pass">wrong?</label>
             <input type="submit" value="Přihlásit se">
         </form>
         <span>Nechcete nakupovat anonymně? <u data-role="link-signup">Registrujte se!</u></span>
     </div>
     <div id="signup">
-        <div id="signup-control"><img src="assets/img/close.svg" data-role="button-modal-close" alt="close-button"
-                                      class="icon"></div>
+        <div id="signup-control">
+            <img src="assets/img/close.svg" data-role="button-modal-close" alt="close-button" class="icon">
+        </div>
         <h3>registrovat se</h3>
-        <form action="assets/php/user_Register.php" method="post" name="signup-form" id="signup-form">
+        <form action="assets/php/handlers/user/insert.php" method="post" name="signup-form" id="signup-form">
             <div>
-                <input type="email" placeholder="E-mail" name="signup-acc" id="signup-acc">
+                <input type="email" placeholder="E-mail" name="email" id="signup-acc">
                 <label for="signup-acc">test</label>
-                <input type="password" placeholder="Heslo" name="signup-pass" id="signup-pass">
+                <input type="password" placeholder="Heslo" name="password" id="signup-pass">
                 <label for="signup-pass">wrong?</label>
                 <input type="password" placeholder="Potvrzení hesla" id="signup-pass2">
                 <label for="signup-pass">match?</label>
             </div>
             <div>
                 <!--                <label for="signup-fname">Křestn</label>-->
-                <input type="text" placeholder="Jméno a příjmení" name="signup-name" id="signup-name">
-                <input type="text" placeholder="Ulice, č. popisné" name="signup-address" id="signup-address">
-                <input type="text" placeholder="Město, PSČ" name="signup-address2" id="signup-address2">
-                <input type="text" placeholder="Telefonní číslo" name="signup-phone" id="signup-phone">
+                <input type="text" placeholder="Jméno a příjmení" name="full_name" id="signup-name">
+                <input type="text" placeholder="Ulice, č. popisné" name="address" id="signup-address">
+                <input type="text" placeholder="Město, PSČ" name="city" id="signup-address2">
+                <input type="text" placeholder="Telefonní číslo" name="phone" id="signup-phone">
                 <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
                 <input type="submit" value="Potvrdit registraci">
             </div>
@@ -70,13 +68,9 @@ else
                 <a href="#shop">obchod</a>
                 <a href="#contact">kontakt-poradna</a>
                 <?php
-                    if ( !isset($_SESSION['user-id']) )
+                    if ( !isset( $_SESSION['user'] ) )
                         echo '<a data-role="button-open-login">přihlášení</a>';
-                    else
-//                        if admin =>administrace
-//                        if () {
-//
-//                        }
+                    else if ( $_SESSION['user']['admin'] )
                         echo '<a href="#">administrace</a>';
                 ?>
                 <a href="assets/php/checkout.php" data-role="button-open-cart" id="ct">košík</a>
@@ -114,37 +108,31 @@ else
     <section id="shop">
         <div id="categories">
             <?php
-            foreach ($categories as $cat) {
-                $subCategories = $DM->category_SelectSub($cat->id);
+                foreach ( $categories as $c ) {
+                    $subs = $DM -> category_SelectSub( $c -> id );
 
-                echo "<div class='category' data-id='{$cat->id}'>
-                                <div><h3>{$cat->name}</h3></div>";
+                    echo "<div class='category' data-id='{$c -> id}'>
+                                <div><h3>{$c -> name}</h3></div>";
 
-                foreach ($subCategories as $subCat)
-                    echo "<div class='subcategory' data-id='{$subCat->id}'>
-                                <h3>{$subCat->name}</h3>
+                    foreach ( $subs as $s )
+                        echo "<div class='subcategory' data-id='{$s -> id}'>
+                                <h3>{$s -> name}</h3>
                               </div>";
 
-                echo "</div>";
-            }
+                    echo "</div>";
+                }
             ?>
         </div>
         <div id="products">
             <?php
-            foreach ($products as $prod)
-                echo
-                "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(\"assets/img/products/{$prod->getPictures()}\") no-repeat center center / contain'>
+                foreach ( $products as $p )
+                    echo
+                    "<div class='product' id='product{$p -> id}' data-id='{$p -> id}' style='background: url(\"assets/img/products/{$p -> pictures}\") no-repeat center center / contain'>
                     <div>
-                        <h4>{$prod->getName()}</h4>
-                        <p>{$prod->getPrice()}Kč</p>
+                        <h4>{$p -> name}</h4>
+                        <p>{$p -> price}Kč</p>
                     </div>
                 </div>";
-                foreach ($products as $p)
-                    echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
-                            <div>
-                                <h4>{$p->getName()}</h4>
-                            </div>
-                         </div>";
             ?>
         </div>
         <div id="product-detail" data-id="null">
@@ -235,11 +223,6 @@ else
         </div>
     </section>
 </main>
-<?php
-    if ( isset($_SESSION['notification']) )
-        unserialize($_SESSION['notification'])->show();
-?>
 <script type="text/javascript" src="assets/js/main.js"></script>
-<script type="text/javascript" src="assets/js/ajax.js"></script>
 </body>
 </html>

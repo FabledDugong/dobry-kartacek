@@ -1,55 +1,90 @@
 <?php
-    class ShoppingCart extends DatabaseManager{
-        private $products;
-        private $price;
 
-        public function __construct(){
-            $this->products = [];
-            $this->price = 0;
-            $_SESSION['shopping-cart'] = serialize($this);
+    class ShoppingCart extends Connection {
+
+        public $products;
+        public $price;
+
+        public function __construct () {
+
+            $this -> products   = [];
+            $this -> price      = 0;
+
+            $_SESSION['shopping-cart'] = serialize( $this );
+
         }
 
-        public function addProduct ( $id, $price, $cnt = 1 ) {
+        public function AddProduct ( $id, $count = 1 ) {
+
             array_push(
-                $this->products,
+
+                $this -> products,
+
                 [
-                    "id"    => $id,
-                    "price" => $price,
-                    "cnt"   => $cnt
+                    'id'    => $id,
+                    'count' => $count
                 ]
+
             );
 
-            $this->price += ( $price * $cnt );
+            $this -> connect();
 
-            $_SESSION['shopping-cart'] = serialize($this);
+            $query = $this -> exec(
+
+                'SELECT price 
+                 FROM product 
+                 WHERE id = :id',
+
+                [
+                    ':id' => $id
+                ]
+
+            );
+
+            $this -> conn = null;
+
+            $this -> price += ( $query[0] -> price * $count );
+
+            $_SESSION['shopping-cart'] = serialize( $this );
+
         }
 
-        public function delProduct ( $id ) {
-            for ($i = 0; $i < sizeof($this->products); $i++)
-                if ( $this->products[$i]['id'] === $id )
+        public function DeleteProduct ( $id ) {
+
+            for ( $i = 0; $i < sizeof( $this->products ); $i++ )
+                if ( $this -> products[$i]['id'] === $id )
                     break;
 
-            $this->price -= ( $this->products[$i]["price"] * $this->products[$i]["cnt"] );
+            $this -> connect();
 
-            array_splice(
-                $this->products,
-                $i,
-                1
+            $query = $this -> exec(
+
+                'SELECT price 
+                 FROM product 
+                 WHERE id = :id',
+
+                [
+                    ':id' => $id
+                ]
+
             );
 
-            $_SESSION['shopping-cart'] = serialize($this);
+            $this -> conn = null;
+
+            $this -> price -= ( $query[0] -> price * $this -> products[$i]['count'] );
+
+            unset( $this -> products[$i] );
+
+            $_SESSION['shopping-cart'] = serialize( $this );
+
         }
 
-        public function delShoppingCart () {
-            unset($_SESSION['shopping-cart']);
+        public function Delete () {
+
+            unset( $_SESSION['shopping-cart'] );
+
         }
 
-        public function getPrice (){
-            return $this->price;
-        }
-
-        public function getProducts () {
-            return $this->products;
-        }
     }
+
 ?>

@@ -1,33 +1,34 @@
 <?php
-    DEFINE('INFO', '#DE9E33');
-    DEFINE('SUCCESS', '#28a745');
-    DEFINE('ERROR', '#dc3545');
+
+    DEFINE( 'NOTIFICATION', $GLOBALS['settings'] -> COLORS -> MAIN );
+    DEFINE( 'SUCCESS', $GLOBALS['settings'] -> COLORS -> SUCCESS );
+    DEFINE( 'ERROR', $GLOBALS['settings'] -> COLORS -> ERROR );
 
     class Notification{
+
         private $msg;
         private $type;
         private $duration;
 
-        public function __construct ($msg, $type = INFO, $duration = 3000) {
-            $this->msg = $msg;
-            $this->type = $type;
-            $this->duration = $duration;
-            $_SESSION['notification'] = serialize($this);
+        public function __construct ( $msg, $type = '#666', $duration = 3000 ) {
+
+            $this -> msg                = $msg;
+            $this -> type               = $type;
+            $this -> duration           = $duration;
+            $_SESSION['notification']   = serialize( $this );
+
         }
 
-        public function show () {
-            $str = "<div id='notification' style='background: {$this->type}'>
-                        <h3>{$this->msg}</h3>
-                    </div>
-                    <script>
-                        (setTimeout(() => {
-                            document.getElementById('notification').classList.add('visible')
-                            setTimeout(() => { document.getElementById('notification').classList.remove('visible') }, {$this->duration})
-                         }, 100) )()
-                    </script>";
+        public function display () {
 
-            unset($_SESSION['notification']);
-            echo $str;
+            echo '<script> 
+                    notification( ' . $this -> msg . ', ' . $this -> type . ', ' . $this -> duration . ' )
+                  </script>';
+
+            unset( $_SESSION['notification'] );
+
         }
+
     }
+
 ?>

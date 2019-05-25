@@ -621,19 +621,41 @@ input
   display: flex
   justify-content: center
   align-items: center
+  text-align: center
   position: fixed
   bottom: 0
   left: 50%
-  padding: 5vmin
+  padding: 5vmin 10vmin
   transform: translateX(-50%)
   opacity: 0
-  transition: all .3s
+  transition: all .5s ease-in-out
   &.visible
     bottom: 5vmin
     opacity: 1
-    transition: all .3s
+    transition: all .5s ease-in-out
   h3
+    margin: 0
     color: #fff
+
+#loading
+  z-index: 1000
+  position: fixed
+  bottom: 5vmin
+  right: 5vmin
+  width: 10vmin
+  height: 10vmin
+  border-radius: 50%
+  border-top: 3px solid
+  opacity: 0
+  transition: opacity 1s ease-in-out
+  transform: rotate(0deg)
+  animation: 1s infinite linear rotate
+
+@keyframes rotate
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
 
 ::-webkit-scrollbar-track
   background: #fff
