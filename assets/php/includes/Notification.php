@@ -17,10 +17,10 @@
 
         public function display () {
 
-            echo '<script defer> 
+            echo '<script> 
                     setTimeout( () => {
                         Notification( "' . $this -> msg . '", "' . $this -> type . '", ' . $this -> duration . ' );
-                    }, 100 );
+                    }, 10 )
                   </script>';
 
             unset( $_SESSION['notification'] );

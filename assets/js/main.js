@@ -187,25 +187,36 @@ const imgs = [
 /* --------------------- */
 
 const menu = document.getElementById('navigation'),
-    menuTop = menu.offsetTop,
-    header = document.querySelector('#intro'),
-    tmp = document.createElement('div')
-window.addEventListener('scroll', () => {
-    if ( menuTop <= window.pageYOffset ) {
-        menu.setAttribute('style', 'width:' + menu.getBoundingClientRect().width + 'px')
-        setTimeout(() => {
-            menu.classList.add('pinned')
-        }, 10)
-        header.insertBefore(tmp,header.children[0])
-    } else {
-        menu.setAttribute('style', '')
-        setTimeout(() => {
-            menu.setAttribute('style', 'width: initial')
-            menu.classList.remove('pinned')
-        }, 10)
-        tmp.remove()
-    }
-})
+      menuTop = menu.offsetTop;
+
+window.addEventListener( 'scroll', () => {
+
+    if ( menuTop <= window.pageYOffset )
+        menu.classList.add( 'pinned' );
+    else
+        menu.classList.remove( 'pinned' );
+
+} );
+
+//     menuTop = menu.offsetTop,
+//     header = document.querySelector('#intro'),
+//     tmp = document.createElement('div')
+// window.addEventListener('scroll', () => {
+//     if ( menuTop <= window.pageYOffset ) {
+//         menu.setAttribute('style', 'width:' + menu.getBoundingClientRect().width + 'px')
+//         setTimeout(() => {
+//             menu.classList.add('pinned')
+//         }, 10)
+//         header.insertBefore(tmp,header.children[0])
+//     } else {
+//         menu.setAttribute('style', '')
+//         setTimeout(() => {
+//             menu.setAttribute('style', 'width: initial')
+//             menu.classList.remove('pinned')
+//         }, 10)
+//         tmp.remove()
+//     }
+// })
 
 /* --------------------- */
 

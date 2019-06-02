@@ -81,54 +81,14 @@ input
     &#intro
       display: flex
       flex-direction: column
-      justify-content: space-between
+      justify-content: flex-end
     > div
       display: flex
       flex-direction: column
       justify-content: flex-start
       align-items: center
       width: 100%
-      height: 70vh
-    #navigation
-      z-index: 101
-      display: flex
-      flex-direction: row
-      align-items: center
-      justify-content: space-between
-      width: 100%
-      height: 10vh
-      padding: 0 2vmin
-      background: #fff
-      @include shadow()
-      color: black
-      text-transform: uppercase
-      &.pinned
-        position: fixed
-        top: 0
-        width: 100% !important
-        margin-left: -5vmin
-        padding: 0 5vmin 0 5vmin
-        transition: all .3s
-        font-size: 2vmin
-        #menu
-          width: 50%
-      #brand
-        display: flex
-        width: 40%
-      #menu
-        display: flex
-        flex-direction: row
-        justify-content: space-evenly
-        width: 60%
-        a
-          font-family: $title-font
-          &:hover
-            color: $secondary-color
-            transition: .3s
-          &:not(:hover)
-            color: black
-            transition: .3s
-
+      height: 50vh
   .carousel
     overflow: hidden
     position: relative
@@ -200,6 +160,48 @@ input
         margin: 1vmin 0
         &.active
           background: $main-color
+
+#navigation
+  z-index: 101
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+  width: 46%
+  height: 10vh
+  padding: 0 2vmin
+  background: #fff
+  @include shadow()
+  color: black
+  text-transform: uppercase
+  position: absolute
+  top: 5vmin
+  left: 5vmin
+  transition: .3s width ease-in-out, .3s left ease-in-out
+  &.pinned
+    width: 100%
+    position: fixed
+    top: 0
+    left: 0
+    font-size: 2vmin
+    #menu
+      width: 50%
+  #brand
+    display: flex
+    width: 40%
+  #menu
+    display: flex
+    flex-direction: row
+    justify-content: space-evenly
+    width: 60%
+    a
+      font-family: $title-font
+      &:hover
+        color: $secondary-color
+        transition: .3s
+      &:not(:hover)
+        color: black
+        transition: .3s
 
 #shop
   justify-content: space-between

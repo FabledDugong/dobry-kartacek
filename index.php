@@ -65,26 +65,25 @@
         </form>
     </div>
 </div>
+<nav id="navigation">
+    <div id="brand">
+        <a><img src="assets/img/dk_logo.svg" alt="logo" class="logo"></a>
+    </div>
+    <div id="menu">
+        <a href="#shop">obchod</a>
+        <a href="#contact">kontakt-poradna</a>
+        <?php
+            if ( !isset( $_SESSION['user'] ) )
+                echo '<a data-role="button-open-login">přihlášení</a>';
+
+            else if ( $_SESSION['user']['admin'] )
+                echo '<a href="assets/php/Administration.php">administrace</a>';
+        ?>
+        <a href="assets/php/Checkout.php" data-role="button-open-cart" id="ct">košík</a>
+    </div>
+</nav>
 <header id="header">
     <div id="intro">
-        <nav id="navigation">
-            <div id="brand">
-                <a><img src="assets/img/dk_logo.svg" alt="logo" class="logo"></a>
-            </div>
-            <div id="menu">
-                <a href="#shop">obchod</a>
-                <a href="#contact">kontakt-poradna</a>
-                <?php
-                    if ( !isset( $_SESSION['user'] ) )
-                        echo '<a data-role="button-open-login">přihlášení</a>';
-
-                    else if ( $_SESSION['user']['admin'] )
-                        echo '<a href="assets/php/Administration.php">administrace</a>';
-                ?>
-                <a href="assets/php/Checkout.php" data-role="button-open-cart" id="ct">košík</a>
-            </div>
-        </nav>
-
         <div>
             <div>
                 <h1>Dobrý<br>kartáček</h1>
