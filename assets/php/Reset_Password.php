@@ -1,6 +1,6 @@
 <?php
 
-    require_once $_SERVER['HTTP_REFERER'] . '/assets/php/handlers/user/confirm_password_reset.php';
+    require_once $_SESSION['HTTP_REFERER'] . '/assets/php/handlers/user/confirm_password_reset.php';
 
 ?>
 <html>

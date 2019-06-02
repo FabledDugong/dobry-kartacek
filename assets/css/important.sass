@@ -1,0 +1,146 @@
+@import reset
+@import variables
+@import mixins
+
+::-webkit-scrollbar-track
+  background: transparent !important
+::-webkit-scrollbar
+  width: 0.75vmin
+  background: transparent !important
+::-webkit-scrollbar-thumb
+  background: black
+
+body
+  overflow: hidden
+  display: flex
+  flex-direction: row
+  width: 100vw
+  height: 100%
+  font-family: $content-font
+section
+  display: flex !important
+  flex-direction: column !important
+  width: 100% !important
+  height: fit-content !important
+  padding: 0 0 5vmin !important
+  h2
+    font-size: 4vmin
+    text-transform: uppercase
+  h3
+    margin: 1vmin 0 1vmin
+  h4
+    margin: 1vmin 0 1vmin
+    font-size: 2vmin
+    text-transform: uppercase
+    color: $secondary-color
+    &:first-of-type
+      margin-top: 0
+  p
+    margin: 0 0 2.5vmin
+    line-height: 1.25
+    text-align: justify
+    &:last-of-type
+      margin: 0
+  ol
+    margin: 0 0 2.5vmin 5vmin
+    list-style: outside lower-alpha
+    line-height: 1.25
+    font-size: 2vmin
+    >ol
+      list-style: outside lower-roman
+  .methods
+    display: flex
+    flex-direction: row
+    margin: 2.5vmin 0 0
+    .method
+      display: flex
+      flex-direction: column
+      width: 33.33%
+      margin: 0 5vmin 0 0
+      padding: 2.5vmin
+      border: 0.1vmin solid $main-color
+      h4
+        color: $grayer
+      p
+        line-height: 1.1
+      ul
+        margin: 1vmin 0 0 2.5vmin
+        li
+          margin: 0 0 0.75vmin
+          line-height: 1.1
+          font-size: 1.75vmin
+      mark
+        color: $secondary-color
+main
+  overflow-y: scroll !important
+  width: 75%
+  height: 100% !important
+  padding: 5vmin 5vmin 5vmin 0
+#navigation
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: flex-start
+  width: 25%
+  height: 90vh
+  margin: 5vmin
+  padding: 2.5vmin
+  background: $gray
+  @include shadow()
+  >div
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 10%
+  #brand
+    justify-content: center
+  #menu
+    overflow-y: scroll
+    height: 75%
+    padding: 2.5% 0
+    &::-webkit-scrollbar
+      width: 0.5vmin !important
+    &::-webkit-scrollbar-thumb
+      background: $grayer
+  #copy
+    justify-content: center
+    align-items: center
+    font-size: 1.5vmin
+    text-align: center
+    color: $grayer
+    span
+      display: block
+      margin: 0 0 0.25vmin
+      &:last-of-type
+        margin: 0
+  ul
+    li
+      margin: 0 0 1vmin
+      font-family: $title-font
+      font-size: 2vmin
+      text-transform: uppercase
+      &.active
+        ul
+          display: block
+        a
+          color: $main-color
+      a
+        &:hover
+          color: $main-color
+          transition: color .5s
+        &:not(:hover)
+          transition: color .5s
+      ul
+        display: none
+        margin: 1vmin 0 0
+        li
+          margin-left: 1.5vmin
+          font-size: 1.75vmin
+          ul
+            li
+              font-size: 1.5vmin
+          a
+            color: $grayer !important
+.icon
+  width: 5vmin
+  height: 5vmin

@@ -34,6 +34,8 @@
 
         }
 
+        public function getSinglePicture () { return $this -> pictures[0]; }
+
     }
 
 ?>

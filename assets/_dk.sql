@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2019 at 08:44 PM
+-- Generation Time: Jun 02, 2019 at 08:43 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `_dk`
+-- Database: `_dk2`
 --
 
 -- --------------------------------------------------------
@@ -50,6 +50,13 @@ CREATE TABLE `customer` (
   `address` varchar(1000) COLLATE utf16_czech_ci NOT NULL,
   `city` varchar(1000) COLLATE utf16_czech_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `f_name`, `l_name`, `email`, `phone`, `address`, `city`) VALUES
+(1, 'def5020098d49acfe4d0a72fb658362ac6c75086f15c0da1c8302bde76cc23d955fe287112b23ea5d25415ca28676d18f8a63135d449eb315a402bb558d96940dc8340569da7b3ecba12c0b9ae7527a9e1168c157804d11b', 'def50200b1a58e3d4979cebce1dd2b756cb6a387a9cb37d1734e58250e7964f45d436e71f73c65510783b81f17cf6b8da0146f24a3315e0a678d481413d3b66481aca938c0e6e8a03fa0986db52743b373b4d8d82eebf27f', 'def5020098d49acfe4d0a72fb658362ac6c75086f15c0da1c8302bde76cc23d955fe287112b23ea5d25415ca28676d18f8a63135d449eb315a402bb558d96940dc8340569da7b3ecba12c0b9ae7527a9e1168c157804d11b', 'def50200b1a58e3d4979cebce1dd2b756cb6a387a9cb37d1734e58250e7964f45d436e71f73c65510783b81f17cf6b8da0146f24a3315e0a678d481413d3b66481aca938c0e6e8a03fa0986db52743b373b4d8d82eebf27f', 'def5020098d49acfe4d0a72fb658362ac6c75086f15c0da1c8302bde76cc23d955fe287112b23ea5d25415ca28676d18f8a63135d449eb315a402bb558d96940dc8340569da7b3ecba12c0b9ae7527a9e1168c157804d11b', 'def50200dbad89561ddfaa24ba75eb14c51dcd4d547ea5a0f8dc4515ef2ae6879d000d10896c83d7c7c92f9aac5f2c870b8f865eb4ef055556d927946820b43e47139cdeec942182f59019201f37f965845c30de8c8d816c');
 
 -- --------------------------------------------------------
 
@@ -196,6 +203,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_czech_ci;
 
 --
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `id_customer`, `login`, `password`, `registration_time`, `active`, `admin`) VALUES
+(1, 1, 'def50200a1a37dcc274eee4b0a0916856d4588cf05975e0baf9ded6f984afe8acf7852bd060224fd524ee173b4ed69f5d37886b3f88af2e3caa943645afed5e2f6874a4a9319aa8ee548eaaa84fafb32faa9b48888fed3f4', '$2y$10$ogWq8IRWiOSF0oR7yTkmJe.eL5nMSpMI0RGbz0nsGIKLrclesMLmy', '2019-05-24 23:38:01', 1, 1);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -309,7 +323,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `invoice`
@@ -369,7 +383,7 @@ ALTER TABLE `qna`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

@@ -1,6 +1,5 @@
 <?php
-
-    require_once $_SERVER['HTTP_REFERER'] . '/assets/php/includes/Autoloader.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/dobry-kartacek/assets/php/includes/Autoloader.php';
 
     $DM = new DatabaseManager();
 

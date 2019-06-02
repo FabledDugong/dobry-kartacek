@@ -32,28 +32,20 @@ _delete.map(el => el.addEventListener('click', () => {
     location.reload()
 }))
 
-const   _tabs = [...document.getElementsByClassName('tab')],
-    _tabs_control = [...document.querySelectorAll('#progress a')]
+/* tabs */
+const   _tabs = [ ...document.querySelectorAll( '#checkout #checkout-control .tab' ) ],
+        _content = [ ...document.querySelectorAll( '#checkout #checkout-content .tab-content' ) ]
 
-_tabs_control.map( e => e.addEventListener('click', () => {
+_tabs.map( e => e.addEventListener( 'click', () => {
 
-    ((tab) => {
-        _tabs.forEach(el => {
-            if (el.dataset.tab === tab)
-                el.classList.add('active')
-            else
-                el.classList.remove('active')
-        })
-    })(e.dataset.tab)
+    for ( let c of _content )
+        ( e.dataset.target === c.id )
+            ? c.style.display = 'flex'
+            : c.style.display = 'none'
 
+    for ( let t of _tabs )
+        ( t === e )
+            ? t.classList.add('active')
+            : t.classList.remove('active')
 
-    // _tabs.forEach(el => {
-    //     if (el.classList.contains('active')) {
-    //         el.classList.toggle('active')
-    //     } else
-    //         el.classList.toggle('active')
-    // })
-}))
-
-
-console.log(_tabs_control)
+} ) )

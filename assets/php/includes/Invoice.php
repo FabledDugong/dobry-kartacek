@@ -8,7 +8,7 @@
         private $customer;
         private $owner;
 
-        public function __construct( $sc, $customer ){
+        public function __construct ( $sc, $customer ) {
 
             parent::__construct();
 

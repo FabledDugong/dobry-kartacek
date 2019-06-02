@@ -1,6 +1,6 @@
 <?php
 
-    require_once $_SERVER['HTTP_REFERER'] . '/assets/php/includes/Autoloader.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/dobry-kartacek/assets/php/includes/Autoloader.php';
 
     $DM = new DatabaseManager();
 
@@ -9,8 +9,8 @@
     $DM -> user_Insert(
         new User(
             null,
-            explode( ' ', $_POST['full_name'] )[0],
-            explode( ' ', $_POST['full_name'] )[1],
+            explode( ' ', $_POST['full-name'] )[0],
+            explode( ' ', $_POST['full-name'] )[1],
             $_POST['email'],
             $_POST['phone'],
             $_POST['address'],
