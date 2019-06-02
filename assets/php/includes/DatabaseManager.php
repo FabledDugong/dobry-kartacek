@@ -916,8 +916,6 @@
 
             $this -> authorize_admin();
 
-            $key = \Defuse\Crypto\Key::loadFromAsciiSafeString( $GLOBALS['settings'] -> CRYPT_KEY );
-
             $data = $this -> exec(
 
                 'SELECT login
@@ -931,7 +929,7 @@
             $admins = [];
 
             foreach ( $data as $a )
-                $admins[] = \Defuse\Crypto\Crypto::decrypt( $a -> login, $key );
+                $admins[] = $a;
 
             return $admins;
 
