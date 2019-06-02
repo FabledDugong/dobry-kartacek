@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2019 at 08:51 PM
+-- Generation Time: Jun 02, 2019 at 11:29 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -207,7 +207,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `id_customer`, `login`, `password`, `registration_time`, `active`, `admin`) VALUES
-(1, 1, 'root', '$2y$10$ogWq8IRWiOSF0oR7yTkmJe.eL5nMSpMI0RGbz0nsGIKLrclesMLmy', '2019-05-24 23:38:01', 1, 1);
+(1, 1, 'def5020098d49acfe4d0a72fb658362ac6c75086f15c0da1c8302bde76cc23d955fe287112b23ea5d25415ca28676d18f8a63135d449eb315a402bb558d96940dc8340569da7b3ecba12c0b9ae7527a9e1168c157804d11b', '$2y$10$ogWq8IRWiOSF0oR7yTkmJe.eL5nMSpMI0RGbz0nsGIKLrclesMLmy', '2019-05-24 23:38:01', 1, 1);
 
 --
 -- Indexes for dumped tables

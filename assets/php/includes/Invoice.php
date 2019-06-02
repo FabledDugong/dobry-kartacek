@@ -14,7 +14,7 @@
 
             $this -> sc         = $sc;
             $this -> customer   = $customer;
-            $this -> owner      = json_decode( file_get_contents( $GLOBALS['settings'] -> DOMAIN . '/assets/php/includes/Owner.json' ) );
+            $this -> owner      = json_decode( file_get_contents( $_SERVER['DOCUMENT_ROOT'] . '/dobry-kartacek/assets/php/includes/Owner.json' ) );
 
             $this -> generate();
 

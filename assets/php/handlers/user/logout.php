@@ -5,6 +5,6 @@
 
     $DM -> user_Logout();
 
-    $DM -> redirect( '/index.php', 'Byli jste odhlášeni', SUCCESS );
+    $DM -> redirect( '/index.php', 'Byli jste odhlášeni', NOTIFICATION );
 
 ?>

@@ -916,6 +916,8 @@
 
             $this -> authorize_admin();
 
+            $key = \Defuse\Crypto\Key::loadFromAsciiSafeString( $GLOBALS['settings'] -> CRYPT_KEY );
+
             $data = $this -> exec(
 
                 'SELECT login
@@ -929,7 +931,7 @@
             $admins = [];
 
             foreach ( $data as $a )
-                $admins[] = $a;
+                $admins[] = Defuse\Crypto\Crypto::decrypt( $a, $key );
 
             return $admins;
 
@@ -1125,27 +1127,40 @@
 //------------------------------------------------------------------------------------------------------------------------------------------------
         public function user_Login ( $login, $password ) {
 
-            $user = $this -> exec(
+            $key = \Defuse\Crypto\Key::loadFromAsciiSafeString( $GLOBALS['settings'] -> CRYPT_KEY );
+
+            $user = null;
+
+            $users = $this -> exec(
 
                 'SELECT id,
+                        login,
                         password,
                         admin,
                         active
-                 FROM user
-                 WHERE login = :login',
+                 FROM user',
 
-                [
-                    ':login' => $login
-                ]
+                []
 
             );
 
-            if ( !password_verify( $password, $user[0] -> password ) || !$user[0] -> active )
+            foreach ( $users as $u )
+            {
+                $email = \Defuse\Crypto\Crypto::decrypt( $u -> login, $key );
+
+                if ( $email == $login )
+                {
+                    $user = $u;
+                    break;
+                }
+            }
+
+            if ( $user == null || !password_verify( $password, $user -> password ) || !$user -> active )
                 return false;
 
             $_SESSION['user'] = [
-                'id'    => $user[0] -> id,
-                'admin' => $user[0] -> admin
+                'id'    => $user -> id,
+                'admin' => $user -> admin
             ];
 
             return true;

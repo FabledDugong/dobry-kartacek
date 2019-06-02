@@ -1,9 +1,5 @@
 <?php
 
-    DEFINE( 'NOTIFICATION', $GLOBALS['settings'] -> COLORS -> MAIN );
-    DEFINE( 'SUCCESS', $GLOBALS['settings'] -> COLORS -> SUCCESS );
-    DEFINE( 'ERROR', $GLOBALS['settings'] -> COLORS -> ERROR );
-
     class Notification{
 
         private $msg;
@@ -21,8 +17,10 @@
 
         public function display () {
 
-            echo '<script> 
-                    notification( ' . $this -> msg . ', ' . $this -> type . ', ' . $this -> duration . ' )
+            echo '<script defer> 
+                    setTimeout( () => {
+                        Notification( "' . $this -> msg . '", "' . $this -> type . '", ' . $this -> duration . ' );
+                    }, 100 );
                   </script>';
 
             unset( $_SESSION['notification'] );

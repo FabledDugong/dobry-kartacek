@@ -237,6 +237,9 @@
         </div>
     </section>
 </main>
+<noscript>
+    <div id="wait"></div>
+</noscript>
 <script type="text/javascript" src="assets/js/main.js"></script>
 </body>
 </html>

@@ -210,12 +210,14 @@ Carousel.prototype.swap = function ()
 Carousel.prototype.prev = function ()
 {
     this.ACTIVE = ( this.ACTIVE === 0 ) ? this.IMGS.urls.length - 1 : this.ACTIVE - 1;
+    this.TARGET.style.pointerEvents = 'none';
     this.IMGS.wrapper.style.top = this.IMGS.wrapper.clientHeight + 'px';
 }
 
 Carousel.prototype.next = function ()
 {
     this.ACTIVE = ( this.ACTIVE === this.IMGS.urls.length - 1 ) ? 0 : this.ACTIVE + 1;
+    this.TARGET.style.pointerEvents = 'none';
     this.IMGS.wrapper.style.top = '-' + this.IMGS.wrapper.clientHeight + 'px';
 }
 
