@@ -81,8 +81,51 @@ header, section {
   display: flex;
   width: 100vw; }
 
+h2 {
+  font-family: "Dosis-ExtraBold", sans-serif;
+  font-size: 3vmin;
+  text-transform: uppercase;
+  color: black; }
+
 a {
   text-transform: uppercase; }
+
+.logo {
+  width: 6vmin;
+  height: 6vmin; }
+
+#checkout {
+  width: 100%;
+  height: 85vh;
+  padding: 5vmin; }
+  #checkout > div {
+    width: 100%;
+    background: white;
+    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
+    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+  #checkout #checkout-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: black;
+    font-family: "Dosis-ExtraBold", sans-serif;
+    text-transform: uppercase; }
+    #checkout #checkout-control .tab {
+      padding: 3vmin;
+      font-size: 2vmin;
+      color: white;
+      cursor: pointer; }
+      #checkout #checkout-control .tab.active {
+        color: #52c234; }
+  #checkout #checkout-content .tab-content {
+    display: none;
+    flex-direction: column; }
+    #checkout #checkout-content .tab-content > div {
+      display: flex;
+      flex-direction: column; }
+    #checkout #checkout-content .tab-content:first-of-type {
+      display: flex; }
 
 #navigation {
   width: 100%;
@@ -100,11 +143,11 @@ a {
     box-shadow: 5px 5px 25px 1px #BCBCBC; }
     #navigation > div #brand {
       display: flex;
-      width: 30%;
+      width: 10%;
       height: 100%; }
     #navigation > div #progress {
       display: flex;
-      width: 70%;
+      width: 90%;
       height: 100%; }
       #navigation > div #progress a.active {
         color: #52c234;
@@ -119,14 +162,14 @@ a {
         height: 100%; }
         #navigation > div #progress .checkout-phase.active > div {
           background: #52c234;
-          color: #000; }
+          color: black; }
         #navigation > div #progress .checkout-phase > div {
           display: flex;
           justify-content: center;
           align-items: center;
           width: 20%;
           height: 100%;
-          background: #000;
+          background: black;
           font-family: "Dosis-ExtraBold", sans-serif;
           font-size: 3vmin;
           color: white; }
@@ -135,7 +178,7 @@ a {
             height: 100%;
             background: transparent;
             font-size: 2.5vmin;
-            color: #000; }
+            color: black; }
 
 #cart {
   width: 100%;
@@ -155,7 +198,7 @@ a {
       width: 100%;
       height: 15%;
       padding: 0 3vmin;
-      background: #000;
+      background: black;
       color: white; }
       #cart > div #cart-control h3 {
         font-family: "Dosis-ExtraBold", sans-serif;
@@ -199,6 +242,6 @@ a {
   background: #fff; }
 
 ::-webkit-scrollbar-thumb {
-  background: #000; }
+  background: black; }
 
 /*# sourceMappingURL=control.css.map */

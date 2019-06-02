@@ -172,8 +172,6 @@ class Carousel {
 
 //add how many pictures you want
 const imgs = [
-        "assets/img/campaign.svg",
-        "assets/img/campaign_1.svg",
         "assets/img/campaign.svg"
         // "https://images.unsplash.com/photo-1541442636243-5ece4a868784?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
         // "https://images.unsplash.com/photo-1457030642598-b037296c9296?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",

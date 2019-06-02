@@ -44,12 +44,19 @@
             unset($_SESSION['shopping-cart']);
         }
 
-        public function getPrice (){
+        public function getPrice () {
             return $this->price;
         }
 
         public function getProducts () {
             return $this->products;
+        }
+
+        public function isEmpty () {
+            if (sizeof($this->products) > 0)
+                return false;
+            else
+                return true;
         }
     }
 ?>

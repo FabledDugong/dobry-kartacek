@@ -58,15 +58,6 @@ function bindLoadDetail () {
 
         loadData('assets/php/product_LoadDetail.php', el.dataset.id, (data) => {
             document.querySelector('.product-image').setAttribute('style', 'background: url("assets/img/products/' + data['pictures'][0]['url'] + '") no-repeat center center / contain')
-            document.querySelector('.product-info').innerHTML = `<div>
-                                                                    <h4>${data['name']}</h4>
-                                                                    <p>${data['description']}</p>
-                                                                </div>
-                                                                <div>
-                                                                    <h5>${ (data['stock'] > 0) ? 'skladem' : 'není skladem' }</h5>
-                                                                    <h5>cena: ${data['price']}</h5>
-                                                                    <h5>barva: ???</h5>
-                                                                </div>`
 
             /* multiple images */
             // html += `<div>`
@@ -85,17 +76,17 @@ function bindLoadDetail () {
                          <table>
                             ${(data['toughness'] != null) ? '<tr><td><h5>tvrdost</h5></td><td><h5>' + data['toughness'] + '</h5></td></tr>' : ''}
                             <tr>
-                                <td><h5>skladem</h5></td>
-                                <td><h6 style='color: ${ (data['stock'] > 0) ? '#52c234' : '#DD3B4E' }'>${ (data['stock'] > 0) ? 'ano' : 'ne' }</h6></td>
+                                <td>skladem</td>
+                                <td><mark style='color: ${ (data['stock'] > 0) ? '#52c234' : '#DD3B4E' }'>${ (data['stock'] > 0) ? 'ano' : 'ne' }</mark></td>
                             </tr>
                             <tr></tr>
                             <tr>
-                                <td><h5>cena bez dph</h5></td>
-                                <td><h6><mark>${data['price']-((data['price']/100)*21)}</mark> Kč</h6></td>
+                                <td>cena bez dph</td>
+                                <td><mark>${data['price']-((data['price']/100)*21)}</mark> Kč</td>
                             </tr>                   
                             <tr>
-                                <td><h5>cena</h5></td>
-                                <td><h6><mark>${data['price']}</mark> Kč</h6></td>
+                                <td>cena</td>
+                                <td><mark>${data['price']}</mark> Kč</td>
                             </tr>      
                          </table>
                      </div>`
@@ -184,12 +175,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // ---------------------------------
 
-    let _buy =  document.querySelector('[data-role="button-buy"]')
+    const   _buy =  document.querySelector('[data-role="button-buy"]'),
+            _sc = document.getElementById('ct')
 
     _buy.addEventListener('click', () => {
-        const xhr = new XMLHttpRequest(),
-              id = document.getElementById('product-detail').dataset.id,
-              cnt = document.getElementById('cnt').value
+        const   xhr = new XMLHttpRequest(),
+                id = document.getElementById('product-detail').dataset.id,
+                cnt = document.getElementById('cnt').value,
+                name = document.querySelectorAll('.product-info h4')
 
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4 && xhr.status === 200)
@@ -203,4 +196,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
         notification('Produkt přidán do košíku.', 'SUCCESS');
     })
+
+    // const x = new XMLHttpRequest()
+    // x.onreadystatechange = function () {
+    //     if (xhr.readyState === 4 && xhr.status === 200)
+    //         console.log('success')
+    // }
+    //
+    // x.open('GET', 'assets/php/sc_Empty', true)
+    // x.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+    // x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    // x.send()
+    //
+    // if (!x)
 })

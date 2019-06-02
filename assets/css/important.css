@@ -1,0 +1,220 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  -moz-box-sizing: border-box; }
+
+@font-face {
+  src: url("../font/Roboto-Light.ttf") format("truetype");
+  font-family: "Roboto-Light"; }
+@font-face {
+  src: url("../font/Roboto-Regular.ttf") format("truetype");
+  font-family: "Roboto-Regular"; }
+@font-face {
+  src: url("../font/Dosis-ExtraBold.ttf") format("truetype");
+  font-family: "Dosis-ExtraBold"; }
+@font-face {
+  src: url("../font/Dosis-Medium.ttf") format("truetype");
+  font-family: "Dosis-Medium"; }
+@font-face {
+  src: url("../font/Roboto-Light.ttf") format("truetype");
+  font-family: "Roboto-Light"; }
+@font-face {
+  src: url("../font/Roboto-Regular.ttf") format("truetype");
+  font-family: "Roboto-Regular"; }
+@font-face {
+  src: url("../font/Dosis-ExtraBold.ttf") format("truetype");
+  font-family: "Dosis-ExtraBold"; }
+@font-face {
+  src: url("../font/Dosis-Medium.ttf") format("truetype");
+  font-family: "Dosis-Medium"; }
+::-webkit-scrollbar-track {
+  background: transparent !important; }
+
+::-webkit-scrollbar {
+  width: 0.75vmin;
+  background: transparent !important; }
+
+::-webkit-scrollbar-thumb {
+  background: black; }
+
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100%;
+  font-family: "Roboto-Regular", sans-serif; }
+
+section {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100% !important;
+  height: fit-content !important;
+  padding: 0 0 5vmin !important; }
+  section h2 {
+    font-size: 4vmin;
+    text-transform: uppercase; }
+  section h3 {
+    margin: 1vmin 0 1vmin; }
+  section h4 {
+    margin: 1vmin 0 1vmin;
+    font-size: 2vmin;
+    text-transform: uppercase;
+    color: #DD3B4E; }
+    section h4:first-of-type {
+      margin-top: 0; }
+  section p {
+    margin: 0 0 2.5vmin;
+    line-height: 1.25;
+    text-align: justify; }
+    section p:last-of-type {
+      margin: 0; }
+  section ol {
+    margin: 0 0 2.5vmin 5vmin;
+    list-style: outside lower-alpha;
+    line-height: 1.25;
+    font-size: 2vmin; }
+    section ol > ol {
+      list-style: outside lower-roman; }
+  section .methods {
+    display: flex;
+    flex-direction: row;
+    margin: 2.5vmin 0 0; }
+    section .methods .method {
+      display: flex;
+      flex-direction: column;
+      width: 33.33%;
+      margin: 0 5vmin 0 0;
+      padding: 2.5vmin;
+      border: 0.1vmin solid #52c234; }
+      section .methods .method h4 {
+        color: #BCBCBC; }
+      section .methods .method p {
+        line-height: 1.1; }
+      section .methods .method ul {
+        margin: 1vmin 0 0 2.5vmin; }
+        section .methods .method ul li {
+          margin: 0 0 0.75vmin;
+          line-height: 1.1;
+          font-size: 1.75vmin; }
+      section .methods .method mark {
+        color: #DD3B4E; }
+
+main {
+  overflow-y: scroll !important;
+  width: 75%;
+  height: 100% !important;
+  padding: 5vmin 5vmin 5vmin 0; }
+
+#navigation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 25%;
+  height: 90vh;
+  margin: 5vmin;
+  padding: 2.5vmin;
+  background: #EAEAEA;
+  -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+  -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+  box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
+  #navigation > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 10%; }
+  #navigation #brand {
+    justify-content: center; }
+  #navigation #menu {
+    overflow-y: scroll;
+    height: 75%;
+    padding: 2.5% 0; }
+    #navigation #menu::-webkit-scrollbar {
+      width: 0.5vmin !important; }
+    #navigation #menu::-webkit-scrollbar-thumb {
+      background: #BCBCBC; }
+  #navigation #copy {
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vmin;
+    text-align: center;
+    color: #BCBCBC; }
+    #navigation #copy span {
+      display: block;
+      margin: 0 0 0.25vmin; }
+      #navigation #copy span:last-of-type {
+        margin: 0; }
+  #navigation ul li {
+    margin: 0 0 1vmin;
+    font-family: "Dosis-ExtraBold", sans-serif;
+    font-size: 2vmin;
+    text-transform: uppercase; }
+    #navigation ul li.active ul {
+      display: block; }
+    #navigation ul li.active a {
+      color: #52c234; }
+    #navigation ul li a:hover {
+      color: #52c234;
+      transition: color 0.5s; }
+    #navigation ul li a:not(:hover) {
+      transition: color 0.5s; }
+    #navigation ul li ul {
+      display: none;
+      margin: 1vmin 0 0; }
+      #navigation ul li ul li {
+        margin-left: 1.5vmin;
+        font-size: 1.75vmin; }
+        #navigation ul li ul li ul li {
+          font-size: 1.5vmin; }
+        #navigation ul li ul li a {
+          color: #BCBCBC !important; }
+
+.icon {
+  width: 5vmin;
+  height: 5vmin; }
+
+/*# sourceMappingURL=important.css.map */

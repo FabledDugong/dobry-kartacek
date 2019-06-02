@@ -14,8 +14,9 @@ h1,h2,h3,h4,h5,h6
   font-family: $title-font
 h1
   margin: 0 0 1vmin 0
-  color: $main-color
   font-size: 8vmin
+  text-transform: uppercase
+  color: $main-color
 h2
   font-size: 5vmin
 h3
@@ -25,7 +26,7 @@ h3
   color: $main-color
 h4
   font-size: 3vmin
-h5,h6
+h5
   font-size: 2.5vmin
   text-transform: uppercase
 mark
@@ -34,6 +35,8 @@ mark
 p
   font-size: 2vmin
 button
+  width: 100%
+  margin: 5vmin 0 0 0
   padding: 2vmin
   background: $main-color
   border: none
@@ -66,6 +69,11 @@ input
   padding: 5vmin
   background: linear-gradient(#fff, $gray)
   color: #fff
+  p
+    width: 75%
+    font-family: $content-font-lighter
+    font-size: 5.5vmin
+    color: black
   > div
     width: 49%
     display: flex
@@ -74,6 +82,13 @@ input
       display: flex
       flex-direction: column
       justify-content: space-between
+    > div
+      display: flex
+      flex-direction: column
+      justify-content: flex-start
+      align-items: center
+      width: 100%
+      height: 70vh
     #navigation
       z-index: 101
       display: flex
@@ -85,7 +100,7 @@ input
       padding: 0 2vmin
       background: #fff
       @include shadow()
-      color: $dark
+      color: black
       text-transform: uppercase
       &.pinned
         position: fixed
@@ -111,28 +126,8 @@ input
             color: $secondary-color
             transition: .3s
           &:not(:hover)
-            color: $dark
+            color: black
             transition: .3s
-          &#ct
-            &::after
-              content: '|'
-              display: inline-flex
-              position: relative
-              margin: 0 0 0 0.5vmin
-              color: $secondary-color
-    > div
-      display: flex
-      flex-direction: column
-      justify-content: center
-      align-items: center
-      width: 100%
-      height: 70vh
-      button
-        width: 50%
-      p
-        font-family: $content-font-lighter
-        font-size: 5vmin
-        color: $dark
 
   .carousel
     overflow: hidden
@@ -199,12 +194,12 @@ input
         display: block
         width: 1.5vmin
         height: 1.5vmin
-        background: $dark
+        background: white
         border-radius: 50%
         cursor: pointer
         margin: 1vmin 0
         &.active
-          background: $gray
+          background: $main-color
 
 #shop
   justify-content: space-between
@@ -238,7 +233,7 @@ input
           color: inherit
           transition: all 0.25s
       h3
-        color: $dark
+        color: black
       .subcategory
         @extend .category
         display: none
@@ -253,7 +248,7 @@ input
           &:first-of-type
             @extend .category
             height: 10%
-            background: $dark
+            background: black
             cursor: default
             color: white
             pointer-events: none !important
@@ -289,25 +284,34 @@ input
       align-items: center
       width: 25%
       height: 33.33%
-      div
+      padding: 3vmin
+      >div
         display: none
         flex-direction: column
         justify-content: center
         align-items: center
         width: 100%
         height: 100%
-        background: rgba(188,188,188,0.5)
+        border: 0.1vmin solid $main-color
         cursor: pointer
+        >div
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+          width: 100%
+          margin: 1vmin 0 0
+          padding: 1vmin
+          background: $main-color
+          border: none
+          color: white
       h4
         display: none
+        text-align: center
+      p
+        font-family: $title-font-lighter
       &:hover
         div
           display: flex
-          -webkit-transition: display 1s
-          -moz-transition: display 1s
-          -ms-transition: display 1s
-          -o-transition: display 1s
-          transition: display 1s
         h4
           display: block
   #product-detail
@@ -327,6 +331,7 @@ input
     .product-image
       height: 75%
     .product-info
+      height: 65%
       > div
         &:first-of-type
           margin: 0 0 3vmin 0
@@ -345,6 +350,12 @@ input
               flex-direction: row
               justify-content: space-between
               margin: 0 0 1vmin
+              &:last-of-type
+                margin: 0
+              td
+                font-family: $title-font
+                font-size: 2.5vmin
+                text-transform: uppercase
       h4
         margin: 0 0 1vmin
         font-size: 5vmin
@@ -355,9 +366,9 @@ input
     .product-control
       display: flex
       flex-direction: column
-      justify-content: space-between
+      justify-content: flex-end
       width: 100%
-      height: 17.5vh
+      height: 35%
       > div
         display: flex
         flex-direction: row
@@ -365,15 +376,19 @@ input
         &:first-of-type
           justify-content: flex-end
           > div
+            height: 100%
             display: flex
-            flex-direction: column
+            flex-direction: row
+            justify-content: space-between
+            align-items: center
             width: 45%
+            margin: 0 0 5vmin
             input
-              width: 100%
-              height: 2.5vmin
-              padding: 2.5vmin 1vmin
+              width: 25%
+              height: 3vmin
+              padding: 1vmin
               background: transparent
-              border-bottom: 0.1vmin solid $dark
+              border: 0.1vmin solid $main-color
               outline-color: $main-color
               font-family: $title-font
               text-align: right
@@ -384,10 +399,10 @@ input
                   -webkit-appearance: none
                   margin: 0
             label
-              margin: 1vmin 0 0
               font-family: $title-font
               font-size: 1.5vmin
               text-align: right
+              text-transform: uppercase
         button
           width: 45%
           &:first-of-type
@@ -399,7 +414,7 @@ input
   padding: 5vmin
   background-color: $gray
   h3
-    margin: 0 0 1vmin
+    margin: 0 0 0.75vmin
   > div
     display: flex
     flex-direction: column
@@ -410,7 +425,9 @@ input
       height: 35%
       ul
         li
-          margin: 0.5vmin 0 0
+          margin: 0 0 0.75vmin
+          &:last-of-type
+            margin: 0
     #help
       display: flex
       flex-direction: column
@@ -478,7 +495,7 @@ input
       align-items: center
       width: 100%
       height: 35%
-      background: $dark
+      background: black
       color: #fff
       ul
         li
@@ -496,7 +513,7 @@ input
       height: 50%
       background: white
       h3
-        color: $dark
+        color: black
       > div
         display: flex
         flex-direction: row
@@ -518,7 +535,7 @@ input
       width: 100%
       height: 15%
       background: #fff
-      color: $dark
+      color: black
     &:last-of-type
       @include shadow()
   h2
@@ -529,7 +546,7 @@ input
     margin: 1vmin 0 0
     font-family: $title-font
     font-size: 3vmin
-    color: $dark
+    color: black
 
 /* modal styles */
 #modal
@@ -543,7 +560,7 @@ input
   height: 100%
   background: $gray
   h3
-    color: $dark
+    color: black
   span
     font-size: 1.5vmin
     color: $grayer
@@ -567,7 +584,7 @@ input
       height: 5vmin
       margin: 0 0 2vmin 0
       padding: 0 1.5vmin 0 0
-      background: $dark
+      background: black
       .icon
         width: 2vmin
         height: 2vmin
@@ -580,7 +597,7 @@ input
       height: 75%
       padding: 3vmin 5vmin
       label
-        display: none
+        display: flex
         font-size: 1.25vmin
         color: $grayer
       input
@@ -589,6 +606,10 @@ input
         background: transparent
         border-bottom: 0.1vmin solid $grayer
         outline-color: $main-color
+        &[type="checkbox"]
+          width: 1.25vmin
+          height: 1.25vmin
+          margin: 0 0.5vmin 0 0
         &[type='submit']
           background: $main-color
           border: none
@@ -597,24 +618,43 @@ input
   #signup
     @extend #login
     width: 50%
-    height: 70%
+    height: 60%
     padding: 0
+    a
+      text-decoration: underline
+      &:hover
+        color: $main-color
+        -webkit-transition: color .5s
+        -moz-transition: color .5s
+        -ms-transition: color .5s
+        -o-transition: color .5s
+        transition: color .5s
+      &:not(:hover)
+        color: $grayer
+        -webkit-transition: color .5s
+        -moz-transition: color .5s
+        -ms-transition: color .5s
+        -o-transition: color .5s
+        transition: color .5s
     #signup-control
       @extend #login-control
     #signup-form
       @extend #login-form
       flex-direction: row
       justify-content: space-between
-      div
+      height: 100%
+      >div
         display: flex
         flex-direction: column
         justify-content: space-between
         width: 47%
-        height: 90%
+        height: 100%
+        >div
+          display: flex
+          flex-direction: row
+          height: 1.5vmin
         &:first-of-type
           height: 40%
-  #cart
-    flex-direction: column
 
 #notification
   z-index: 1000
@@ -641,4 +681,4 @@ input
   width: 0.75vmin
   background: #fff
 ::-webkit-scrollbar-thumb
-  background: $dark
+  background: black

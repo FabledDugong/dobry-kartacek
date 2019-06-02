@@ -1,0 +1,194 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  font: inherit;
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-variant-ligatures: none;
+  -webkit-font-variant-ligatures: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%; }
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  -moz-box-sizing: border-box; }
+
+@font-face {
+  src: url("../font/Roboto-Light.ttf") format("truetype");
+  font-family: "Roboto-Light"; }
+@font-face {
+  src: url("../font/Roboto-Regular.ttf") format("truetype");
+  font-family: "Roboto-Regular"; }
+@font-face {
+  src: url("../font/Dosis-ExtraBold.ttf") format("truetype");
+  font-family: "Dosis-ExtraBold"; }
+@font-face {
+  src: url("../font/Dosis-Medium.ttf") format("truetype");
+  font-family: "Dosis-Medium"; }
+@font-face {
+  src: url("../font/Roboto-Light.ttf") format("truetype");
+  font-family: "Roboto-Light"; }
+@font-face {
+  src: url("../font/Roboto-Regular.ttf") format("truetype");
+  font-family: "Roboto-Regular"; }
+@font-face {
+  src: url("../font/Dosis-ExtraBold.ttf") format("truetype");
+  font-family: "Dosis-ExtraBold"; }
+@font-face {
+  src: url("../font/Dosis-Medium.ttf") format("truetype");
+  font-family: "Dosis-Medium"; }
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100%;
+  font-family: "Roboto-Regular", sans-serif; }
+
+section {
+  display: none;
+  flex-direction: column; }
+  section h2 {
+    font-family: "Dosis-ExtraBold", sans-serif;
+    font-size: 5vmin;
+    text-transform: uppercase; }
+  section h3 {
+    margin: 1vmin 0 1vmin;
+    font-family: "Dosis-ExtraBold", sans-serif;
+    font-size: 2.5vmin;
+    text-transform: uppercase;
+    letter-spacing: 0.1vmin;
+    color: #52c234; }
+  section h4 {
+    margin: 1vmin 0 1vmin;
+    font-family: "Dosis-ExtraBold", sans-serif;
+    font-size: 2vmin;
+    text-transform: uppercase;
+    color: #DD3B4E; }
+  section > div {
+    width: 75%;
+    padding: 2.5vmin; }
+    section > div table {
+      width: 100%;
+      font-family: "Dosis-ExtraBold", sans-serif;
+      text-transform: uppercase; }
+    section > div form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 10vmin; }
+      section > div form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; }
+      section > div form input {
+        width: 45%;
+        padding: 1vmin;
+        border-bottom: 0.1vmin solid #BCBCBC;
+        outline-color: #52c234;
+        font-family: "Dosis-ExtraBold", sans-serif; }
+        section > div form input[type="submit"] {
+          align-self: flex-end;
+          width: 45%;
+          border: none;
+          background: #52c234;
+          text-transform: uppercase;
+          color: white; }
+  section:nth-child(1) {
+    display: flex; }
+
+#profile-control {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20%;
+  height: 90vh;
+  margin: 5vmin;
+  padding: 2.5vmin;
+  background: #EAEAEA;
+  -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+  -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+  box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
+  #profile-control > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 10%; }
+  #profile-control #brand {
+    justify-content: center; }
+  #profile-control #menu {
+    display: flex;
+    height: 75%;
+    padding: 2.5% 0;
+    font-family: "Dosis-ExtraBold", sans-serif;
+    font-size: 2vmin;
+    text-transform: uppercase; }
+    #profile-control #menu ul .tab {
+      margin: 0 0 1vmin;
+      cursor: pointer; }
+      #profile-control #menu ul .tab.active {
+        color: #52c234; }
+      #profile-control #menu ul .tab:last-of-type {
+        margin: 0; }
+      #profile-control #menu ul .tab:hover {
+        color: #52c234;
+        transition: color 0.5s; }
+      #profile-control #menu ul .tab:not(:hover) {
+        transition: color 0.5s; }
+    #profile-control #menu ul #logout {
+      color: #DD3B4E; }
+  #profile-control #copy {
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5vmin;
+    text-align: center;
+    color: #BCBCBC; }
+    #profile-control #copy span {
+      display: block;
+      margin: 0 0 0.25vmin; }
+      #profile-control #copy span:last-of-type {
+        margin: 0; }
+
+main {
+  width: 80%;
+  height: 100%;
+  padding: 5vmin 5vmin 5vmin 0; }
+
+.logo {
+  width: 6vmin;
+  height: 6vmin; }
+
+/*# sourceMappingURL=profile.css.map */

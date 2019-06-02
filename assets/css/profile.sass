@@ -1,0 +1,119 @@
+@import "reset"
+@import "variables"
+@import "mixins"
+
+body
+  overflow: hidden
+  display: flex
+  flex-direction: row
+  width: 100vw
+  height: 100%
+  font-family: $content-font
+section
+  display: none
+  flex-direction: column
+  h2
+    font-family: $title-font
+    font-size: 5vmin
+    text-transform: uppercase
+  h3
+    margin: 1vmin 0 1vmin
+    font-family: $title-font
+    font-size: 2.5vmin
+    text-transform: uppercase
+    letter-spacing: 0.1vmin
+    color: $main-color
+  h4
+    margin: 1vmin 0 1vmin
+    font-family: $title-font
+    font-size: 2vmin
+    text-transform: uppercase
+    color: $secondary-color
+  >div
+    width: 75%
+    padding: 2.5vmin
+    table
+      width: 100%
+      font-family: $title-font
+      text-transform: uppercase
+    form
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      height: 10vmin
+      div
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+      input
+        width: 45%
+        padding: 1vmin
+        border-bottom: 0.1vmin solid $grayer
+        outline-color: $main-color
+        font-family: $title-font
+        &[type="submit"]
+          align-self: flex-end
+          width: 45%
+          border: none
+          background: $main-color
+          text-transform: uppercase
+          color: white
+  &:nth-child(1)
+    display: flex
+#profile-control
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  width: 20%
+  height: 90vh
+  margin: 5vmin
+  padding: 2.5vmin
+  background: $gray
+  @include shadow()
+  >div
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 10%
+  #brand
+    justify-content: center
+  #menu
+    display: flex
+    height: 75%
+    padding: 2.5% 0
+    font-family: $title-font
+    font-size: 2vmin
+    text-transform: uppercase
+    ul
+      .tab
+        margin: 0 0 1vmin
+        cursor: pointer
+        &.active
+          color: $main-color
+        &:last-of-type
+          margin: 0
+        &:hover
+          color: $main-color
+          transition: color .5s
+        &:not(:hover)
+          transition: color .5s
+      #logout
+        color: $secondary-color
+  #copy
+    justify-content: center
+    align-items: center
+    font-size: 1.5vmin
+    text-align: center
+    color: $grayer
+    span
+      display: block
+      margin: 0 0 0.25vmin
+      &:last-of-type
+        margin: 0
+main
+  width: 80%
+  height: 100%
+  padding: 5vmin 5vmin 5vmin 0
+.logo
+  width: 6vmin
+  height: 6vmin

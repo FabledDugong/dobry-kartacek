@@ -8,6 +8,9 @@ if (!isset($_SESSION['shopping-cart']))
     $cart = new ShoppingCart();
 else
     $cart = unserialize($_SESSION['shopping-cart']);
+
+//echo password_hash('S8Sob5hKpRMhce3g', PASSWORD_DEFAULT)
+
 ?>
 <html lang="cs">
 <head>
@@ -17,20 +20,25 @@ else
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dobrý kartáček</title>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#000000">
+    <meta name="apple-mobile-web-app-title" content="Dobr&yacute; kart&aacute;ček">
+    <meta name="application-name" content="Dobr&yacute; kart&aacute;ček">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-<!--Heslo musí být alespoň 10 znaků dlouhé. Musí obsahovat alespoň jedno velké písmeno, jednu číslici a jeden symbol.-->
 <div id="modal">
     <div id="login">
         <div id="login-control"><img src="assets/img/close.svg" data-role="button-modal-close" alt="close-button"
                                      class="icon"></div>
         <h3>přihlásit se</h3>
         <form action="assets/php/user_Login.php" method="post" name="login-form" id="login-form">
-            <input type="text" placeholder="E-mail" name="login-acc" id="login-acc" maxlength="30">
-            <label for="login-acc">test</label>
-            <input type="password" placeholder="Heslo" name="login-pass" id="login-pass">
-            <label for="login-pass">wrong?</label>
-            <input type="submit" value="Přihlásit se">
+            <input required type="text" placeholder="E-mail" name="login-acc" id="login-acc" maxlength="30">
+            <input required type="password" placeholder="Heslo" name="login-pass" id="login-pass">
+            <input required type="submit" value="Přihlásit se">
         </form>
         <span>Nechcete nakupovat anonymně? <u data-role="link-signup">Registrujte se!</u></span>
     </div>
@@ -41,23 +49,28 @@ else
         <form action="assets/php/user_Register.php" method="post" name="signup-form" id="signup-form">
             <div>
                 <input type="email" placeholder="E-mail" name="signup-acc" id="signup-acc">
-                <label for="signup-acc">test</label>
+<!--                <label for="signup-acc"></label>-->
                 <input type="password" placeholder="Heslo" name="signup-pass" id="signup-pass">
-                <label for="signup-pass">wrong?</label>
+<!--                <label for="signup-pass"></label>-->
                 <input type="password" placeholder="Potvrzení hesla" id="signup-pass2">
-                <label for="signup-pass">match?</label>
+<!--                <label for="signup-pass"></label>-->
             </div>
             <div>
-                <!--                <label for="signup-fname">Křestn</label>-->
-                <input type="text" placeholder="Jméno a příjmení" name="signup-name" id="signup-name">
-                <input type="text" placeholder="Ulice, č. popisné" name="signup-address" id="signup-address">
-                <input type="text" placeholder="Město, PSČ" name="signup-address2" id="signup-address2">
-                <input type="text" placeholder="Telefonní číslo" name="signup-phone" id="signup-phone">
-                <input type="checkbox" id="consent-personal"><label for="consent-personal">co je do pici</label>
+                <input required type="text" placeholder="Jméno a příjmení" name="signup-name" id="signup-name">
+                <input required type="text" placeholder="Ulice, č. popisné" name="signup-address" id="signup-address">
+                <input required type="text" placeholder="Město, PSČ" name="signup-address2" id="signup-address2">
+                <input required type="text" placeholder="Telefonní číslo" name="signup-phone" id="signup-phone">
+                <div>
+                    <input type="checkbox" id="consent-terms">
+                    <label for="consent-terms">Souhlasím s &#160;<a href="important.html#terms">Obchodními podmínkami</a>.</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="consent-personal">
+                    <label for="consent-personal">Souhlasím se &#160;<a href="important.html#data">Zpracováním osobních údajů.</a></label>
+                </div>
                 <input type="submit" value="Potvrdit registraci">
             </div>
         </form>
-        <span>Nejaky hovna o GDPR</span>
     </div>
 </div>
 <header id="header">
@@ -70,31 +83,32 @@ else
                 <a href="#shop">obchod</a>
                 <a href="#contact">kontakt-poradna</a>
                 <?php
-                    if ( !isset($_SESSION['user-id']) )
-                        echo '<a data-role="button-open-login">přihlášení</a>';
-                    else
+                if ( !isset($_SESSION['user-id']) )
+                    echo '<a data-role="button-open-login">přihlášení</a>';
+                else
 //                        if admin =>administrace
 //                        if () {
 //
 //                        }
-                        echo '<a href="#">administrace</a>';
+                    echo '<a href="debugging/loginTest.php">administrace</a>';
                 ?>
                 <a href="assets/php/checkout.php" data-role="button-open-cart" id="ct">košík</a>
             </div>
         </nav>
+
         <div>
             <div>
-                <h1>DOBRÝ KARTÁČEK</h1>
+                <h1>Dobrý<br>kartáček</h1>
                 <p>
                     je základem každého dobrého úsměvu.
                 </p>
             </div>
             <div>
-                <img src="assets/img/dk_logo_full.svg" alt="logo_full" class="logo_full">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-            <div>
-                <button>eshop</button>
-            </div>
+            <button>eshop</button>
         </div>
     </div>
     <div class="carousel" id="carousel">
@@ -131,20 +145,29 @@ else
         </div>
         <div id="products">
             <?php
-            foreach ($products as $prod)
+            foreach ($products as $prod) {
+                $instock = ($prod->getStock() > 0) ? 'Skladem' : 'Není skladem';
                 echo
                 "<div class='product' id='product{$prod->getId()}' data-id='{$prod->getId()}' style='background: url(\"assets/img/products/{$prod->getPictures()}\") no-repeat center center / contain'>
                     <div>
                         <h4>{$prod->getName()}</h4>
-                        <p>{$prod->getPrice()}Kč</p>
+                        <div>
+                            <p>{$prod->getPrice()} Kč</p>
+                            <p>{$instock}</p>
+                        </div>
                     </div>
                 </div>";
+            }
+
+            /*
                 foreach ($products as $p)
                     echo "<div class='product' id='product{$p->getId()}' data-id='{$p->getId()}' style='background: url(\"assets/img/products/{$p->getPictures()}\") no-repeat center center / contain'>
                             <div>
                                 <h4>{$p->getName()}</h4>
                             </div>
                          </div>";
+            */
+
             ?>
         </div>
         <div id="product-detail" data-id="null">
@@ -156,8 +179,8 @@ else
                 <div class="product-control">
                     <div>
                         <div>
-                            <input type="number" value="1" name="cnt" id="cnt">
                             <label for="cnt">počet kusů</label>
+                            <input type="number" value="1" name="cnt" id="cnt">
                         </div>
                     </div>
                     <div>
@@ -176,9 +199,9 @@ else
                 <address>
                     <ul>
                         <li>Tomáš Benák</li>
-                        <li>Jilmová 70</li>
-                        <li>Holubice</li>
-                        <li>252 65</li>
+                        <li>Víta Nejedlého 655</li>
+                        <li>Chrudim</li>
+                        <li>537 01</li>
                     </ul>
                 </address>
             </div>
@@ -207,17 +230,17 @@ else
                 <div>
                     <h3>důležité odkazy</h3>
                     <ul>
-                        <li><a href="">obchodní podmínky</a></li>
-                        <li><a href="">zpracování osobních údajů</a></li>
+                        <li><a href="important.html#terms" target="_blank">obchodní podmínky</a></li>
+                        <li><a href="important.html#data">zpracování osobních údajů</a></li>
                         <li><a href="">o nás</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3>jak nakoupit</h3>
                     <ul>
-                        <li><a href="">možnosti dopravy</a></li>
-                        <li><a href="">možnosti platby</a></li>
-                        <li><a href="">reklamace a vrácení</a></li>
+                        <li><a href="important.html#options">možnosti dopravy</a></li>
+                        <li><a href="important.html#options">možnosti platby</a></li>
+                        <li><a href="important.html#complaints">reklamace a vrácení</a></li>
                     </ul>
                 </div>
             </div>
@@ -230,7 +253,7 @@ else
                 </div>
             </div>
             <div id="copy">
-                <span>© 2019 Dobrý kartáček. All rights reserved.</span>
+                <span>© 2019 Dobrý kartáček. Všechna práva vyhrazena.</span>
             </div>
         </div>
     </section>

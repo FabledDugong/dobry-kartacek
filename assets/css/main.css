@@ -87,8 +87,9 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   margin: 0 0 1vmin 0;
-  color: #52c234;
-  font-size: 8vmin; }
+  font-size: 8vmin;
+  text-transform: uppercase;
+  color: #52c234; }
 
 h2 {
   font-size: 5vmin; }
@@ -102,7 +103,7 @@ h3 {
 h4 {
   font-size: 3vmin; }
 
-h5, h6 {
+h5 {
   font-size: 2.5vmin;
   text-transform: uppercase; }
 
@@ -114,12 +115,14 @@ p {
   font-size: 2vmin; }
 
 button {
+  width: 100%;
+  margin: 5vmin 0 0 0;
   padding: 2vmin;
   background: #52c234;
   border: none;
-  -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-  -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-  box-shadow: 5px 5px 25px 1px #BCBCBC;
+  -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+  -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+  box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
   font-family: "Dosis-ExtraBold", sans-serif;
   font-size: 2.5vmin;
   text-transform: uppercase;
@@ -151,6 +154,11 @@ input:-webkit-autofill {
   padding: 5vmin;
   background: linear-gradient(#fff, #EAEAEA);
   color: #fff; }
+  #header p {
+    width: 75%;
+    font-family: "Roboto-Light", sans-serif;
+    font-size: 5.5vmin;
+    color: black; }
   #header > div {
     width: 49%;
     display: flex;
@@ -159,6 +167,13 @@ input:-webkit-autofill {
       display: flex;
       flex-direction: column;
       justify-content: space-between; }
+    #header > div > div {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      height: 70vh; }
     #header > div #navigation {
       z-index: 101;
       display: flex;
@@ -169,10 +184,10 @@ input:-webkit-autofill {
       height: 10vh;
       padding: 0 2vmin;
       background: #fff;
-      -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-      -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-      box-shadow: 5px 5px 25px 1px #BCBCBC;
-      color: #000;
+      -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      color: black;
       text-transform: uppercase; }
       #header > div #navigation.pinned {
         position: fixed;
@@ -198,33 +213,14 @@ input:-webkit-autofill {
             color: #DD3B4E;
             transition: 0.3s; }
           #header > div #navigation #menu a:not(:hover) {
-            color: #000;
+            color: black;
             transition: 0.3s; }
-          #header > div #navigation #menu a#ct::after {
-            content: "|";
-            display: inline-flex;
-            position: relative;
-            margin: 0 0 0 0.5vmin;
-            color: #DD3B4E; }
-    #header > div > div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 70vh; }
-      #header > div > div button {
-        width: 50%; }
-      #header > div > div p {
-        font-family: "Roboto-Light", sans-serif;
-        font-size: 5vmin;
-        color: #000; }
   #header .carousel {
     overflow: hidden;
     position: relative;
-    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+    -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
     #header .carousel .images {
       display: flex;
       width: 100%;
@@ -288,12 +284,12 @@ input:-webkit-autofill {
         display: block;
         width: 1.5vmin;
         height: 1.5vmin;
-        background: #000;
+        background: white;
         border-radius: 50%;
         cursor: pointer;
         margin: 1vmin 0; }
         #header .carousel .status .bar.active {
-          background: #EAEAEA; }
+          background: #52c234; }
 
 #shop {
   justify-content: space-between;
@@ -308,9 +304,9 @@ input:-webkit-autofill {
     width: 23%;
     height: 100%;
     background: #fff;
-    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+    -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
     #shop #categories .category, #shop #categories .category .subcategory, #shop #categories .category.active > div:first-of-type {
       display: flex;
       justify-content: center;
@@ -327,7 +323,7 @@ input:-webkit-autofill {
         color: inherit;
         transition: all 0.25s; }
       #shop #categories .category h3, #shop #categories .category .subcategory h3, #shop #categories .category.active > div:first-of-type h3 {
-        color: #000; }
+        color: black; }
       #shop #categories .category .subcategory, #shop #categories .category.active > div:first-of-type .subcategory {
         display: none;
         background: #fff;
@@ -339,7 +335,7 @@ input:-webkit-autofill {
         pointer-events: none !important; }
         #shop #categories .category.active > div:first-of-type, #shop #categories .category .active.subcategory > div:first-of-type, #shop #categories .category.active > div.active:first-of-type > div:first-of-type {
           height: 10%;
-          background: #000;
+          background: black;
           cursor: default;
           color: white;
           pointer-events: none !important; }
@@ -367,34 +363,43 @@ input:-webkit-autofill {
     width: 75%;
     height: 100%;
     background: #fff;
-    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+    -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
     #shop #products .product, #shop #product-detail .product {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       width: 25%;
-      height: 33.33%; }
-      #shop #products .product div, #shop #product-detail .product div {
+      height: 33.33%;
+      padding: 3vmin; }
+      #shop #products .product > div, #shop #product-detail .product > div {
         display: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
-        background: rgba(188, 188, 188, 0.5);
+        border: 0.1vmin solid #52c234;
         cursor: pointer; }
+        #shop #products .product > div > div, #shop #product-detail .product > div > div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+          margin: 1vmin 0 0;
+          padding: 1vmin;
+          background: #52c234;
+          border: none;
+          color: white; }
       #shop #products .product h4, #shop #product-detail .product h4 {
-        display: none; }
+        display: none;
+        text-align: center; }
+      #shop #products .product p, #shop #product-detail .product p {
+        font-family: "Dosis-Medium", sans-serif; }
       #shop #products .product:hover div, #shop #product-detail .product:hover div {
-        display: flex;
-        -webkit-transition: display 1s;
-        -moz-transition: display 1s;
-        -ms-transition: display 1s;
-        -o-transition: display 1s;
-        transition: display 1s; }
+        display: flex; }
       #shop #products .product:hover h4, #shop #product-detail .product:hover h4 {
         display: block; }
   #shop #product-detail {
@@ -412,35 +417,43 @@ input:-webkit-autofill {
         padding: 5vmin; }
     #shop #product-detail .product-image {
       height: 75%; }
-    #shop #product-detail .product-info > div:first-of-type {
-      margin: 0 0 3vmin 0; }
-      #shop #product-detail .product-info > div:first-of-type > div {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-end; }
-        #shop #product-detail .product-info > div:first-of-type > div h5 {
-          margin: 0 0 1vmin 1vmin;
-          font-family: "Dosis-Medium", sans-serif; }
-    #shop #product-detail .product-info > div:last-of-type table {
-      width: 100%; }
-      #shop #product-detail .product-info > div:last-of-type table tr {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin: 0 0 1vmin; }
-    #shop #product-detail .product-info h4 {
-      margin: 0 0 1vmin;
-      font-size: 5vmin; }
-    #shop #product-detail .product-info p {
-      font-family: "Roboto-Light", sans-serif;
-      font-size: 2.5vmin;
-      text-align: justify; }
+    #shop #product-detail .product-info {
+      height: 65%; }
+      #shop #product-detail .product-info > div:first-of-type {
+        margin: 0 0 3vmin 0; }
+        #shop #product-detail .product-info > div:first-of-type > div {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end; }
+          #shop #product-detail .product-info > div:first-of-type > div h5 {
+            margin: 0 0 1vmin 1vmin;
+            font-family: "Dosis-Medium", sans-serif; }
+      #shop #product-detail .product-info > div:last-of-type table {
+        width: 100%; }
+        #shop #product-detail .product-info > div:last-of-type table tr {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin: 0 0 1vmin; }
+          #shop #product-detail .product-info > div:last-of-type table tr:last-of-type {
+            margin: 0; }
+          #shop #product-detail .product-info > div:last-of-type table tr td {
+            font-family: "Dosis-ExtraBold", sans-serif;
+            font-size: 2.5vmin;
+            text-transform: uppercase; }
+      #shop #product-detail .product-info h4 {
+        margin: 0 0 1vmin;
+        font-size: 5vmin; }
+      #shop #product-detail .product-info p {
+        font-family: "Roboto-Light", sans-serif;
+        font-size: 2.5vmin;
+        text-align: justify; }
     #shop #product-detail .product-control {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-end;
       width: 100%;
-      height: 17.5vh; }
+      height: 35%; }
       #shop #product-detail .product-control > div {
         display: flex;
         flex-direction: row;
@@ -448,15 +461,19 @@ input:-webkit-autofill {
         #shop #product-detail .product-control > div:first-of-type {
           justify-content: flex-end; }
           #shop #product-detail .product-control > div:first-of-type > div {
+            height: 100%;
             display: flex;
-            flex-direction: column;
-            width: 45%; }
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 45%;
+            margin: 0 0 5vmin; }
             #shop #product-detail .product-control > div:first-of-type > div input {
-              width: 100%;
-              height: 2.5vmin;
-              padding: 2.5vmin 1vmin;
+              width: 25%;
+              height: 3vmin;
+              padding: 1vmin;
               background: transparent;
-              border-bottom: 0.1vmin solid #000;
+              border: 0.1vmin solid #52c234;
               outline-color: #52c234;
               font-family: "Dosis-ExtraBold", sans-serif;
               text-align: right; }
@@ -467,10 +484,10 @@ input:-webkit-autofill {
                   -webkit-appearance: none;
                   margin: 0; }
             #shop #product-detail .product-control > div:first-of-type > div label {
-              margin: 1vmin 0 0;
               font-family: "Dosis-ExtraBold", sans-serif;
               font-size: 1.5vmin;
-              text-align: right; }
+              text-align: right;
+              text-transform: uppercase; }
         #shop #product-detail .product-control > div button {
           width: 45%; }
           #shop #product-detail .product-control > div button:first-of-type {
@@ -482,7 +499,7 @@ input:-webkit-autofill {
   padding: 5vmin;
   background-color: #EAEAEA; }
   #contact h3 {
-    margin: 0 0 1vmin; }
+    margin: 0 0 0.75vmin; }
   #contact > div {
     display: flex;
     flex-direction: column;
@@ -492,16 +509,18 @@ input:-webkit-autofill {
     #contact > div #contact-info {
       height: 35%; }
       #contact > div #contact-info ul li {
-        margin: 0.5vmin 0 0; }
+        margin: 0 0 0.75vmin; }
+        #contact > div #contact-info ul li:last-of-type {
+          margin: 0; }
     #contact > div #help {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       height: 65%;
       background: white;
-      -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-      -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-      box-shadow: 5px 5px 25px 1px #BCBCBC; }
+      -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
       #contact > div #help #help-control {
         display: flex;
         flex-direction: column;
@@ -561,7 +580,7 @@ input:-webkit-autofill {
       align-items: center;
       width: 100%;
       height: 35%;
-      background: #000;
+      background: black;
       color: #fff; }
       #contact > div #important ul li {
         margin: 0 0 0.75vmin;
@@ -577,7 +596,7 @@ input:-webkit-autofill {
       height: 50%;
       background: white; }
       #contact > div #partners h3 {
-        color: #000; }
+        color: black; }
       #contact > div #partners > div {
         display: flex;
         flex-direction: row;
@@ -598,11 +617,11 @@ input:-webkit-autofill {
       width: 100%;
       height: 15%;
       background: #fff;
-      color: #000; }
+      color: black; }
     #contact > div:last-of-type {
-      -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-      -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-      box-shadow: 5px 5px 25px 1px #BCBCBC; }
+      -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+      box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
   #contact h2 {
     margin: 0 0 1vmin;
     letter-spacing: 0.1vmin;
@@ -611,7 +630,7 @@ input:-webkit-autofill {
     margin: 1vmin 0 0;
     font-family: "Dosis-ExtraBold", sans-serif;
     font-size: 3vmin;
-    color: #000; }
+    color: black; }
 
 /* modal styles */
 #modal {
@@ -625,7 +644,7 @@ input:-webkit-autofill {
   height: 100%;
   background: #EAEAEA; }
   #modal h3 {
-    color: #000; }
+    color: black; }
   #modal span {
     font-size: 1.5vmin;
     color: #BCBCBC; }
@@ -640,9 +659,9 @@ input:-webkit-autofill {
     height: 50%;
     padding: 0 0 2vmin 0;
     background: white;
-    -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-    box-shadow: 5px 5px 25px 1px #BCBCBC; }
+    -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+    box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC; }
     #modal #login #login-control, #modal #signup #login-control, #modal #signup #signup-control {
       display: flex;
       justify-content: flex-end;
@@ -651,7 +670,7 @@ input:-webkit-autofill {
       height: 5vmin;
       margin: 0 0 2vmin 0;
       padding: 0 1.5vmin 0 0;
-      background: #000; }
+      background: black; }
       #modal #login #login-control .icon, #modal #signup #login-control .icon, #modal #signup #signup-control .icon {
         width: 2vmin;
         height: 2vmin;
@@ -664,7 +683,7 @@ input:-webkit-autofill {
       height: 75%;
       padding: 3vmin 5vmin; }
       #modal #login #login-form label, #modal #signup #login-form label, #modal #signup #signup-form label {
-        display: none;
+        display: flex;
         font-size: 1.25vmin;
         color: #BCBCBC; }
       #modal #login #login-form input, #modal #signup #login-form input, #modal #signup #signup-form input {
@@ -673,30 +692,53 @@ input:-webkit-autofill {
         background: transparent;
         border-bottom: 0.1vmin solid #BCBCBC;
         outline-color: #52c234; }
+        #modal #login #login-form input[type="checkbox"], #modal #signup #login-form input[type="checkbox"], #modal #signup #signup-form input[type="checkbox"] {
+          width: 1.25vmin;
+          height: 1.25vmin;
+          margin: 0 0.5vmin 0 0; }
         #modal #login #login-form input[type='submit'], #modal #signup #login-form input[type='submit'], #modal #signup #signup-form input[type='submit'] {
           background: #52c234;
           border: none;
-          -webkit-box-shadow: 5px 5px 25px 1px #BCBCBC;
-          -moz-box-shadow: 5px 5px 25px 1px #BCBCBC;
-          box-shadow: 5px 5px 25px 1px #BCBCBC;
+          -webkit-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+          -moz-box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
+          box-shadow: 0 0 2.5vmin 0.25vmin #BCBCBC;
           color: #fff; }
   #modal #signup {
     width: 50%;
-    height: 70%;
+    height: 60%;
     padding: 0; }
+    #modal #signup a {
+      text-decoration: underline; }
+      #modal #signup a:hover {
+        color: #52c234;
+        -webkit-transition: color 0.5s;
+        -moz-transition: color 0.5s;
+        -ms-transition: color 0.5s;
+        -o-transition: color 0.5s;
+        transition: color 0.5s; }
+      #modal #signup a:not(:hover) {
+        color: #BCBCBC;
+        -webkit-transition: color 0.5s;
+        -moz-transition: color 0.5s;
+        -ms-transition: color 0.5s;
+        -o-transition: color 0.5s;
+        transition: color 0.5s; }
     #modal #signup #signup-form {
       flex-direction: row;
-      justify-content: space-between; }
-      #modal #signup #signup-form div {
+      justify-content: space-between;
+      height: 100%; }
+      #modal #signup #signup-form > div {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 47%;
-        height: 90%; }
-        #modal #signup #signup-form div:first-of-type {
+        height: 100%; }
+        #modal #signup #signup-form > div > div {
+          display: flex;
+          flex-direction: row;
+          height: 1.5vmin; }
+        #modal #signup #signup-form > div:first-of-type {
           height: 40%; }
-  #modal #cart {
-    flex-direction: column; }
 
 #notification {
   z-index: 1000;
@@ -725,6 +767,6 @@ input:-webkit-autofill {
   background: #fff; }
 
 ::-webkit-scrollbar-thumb {
-  background: #000; }
+  background: black; }
 
 /*# sourceMappingURL=main.css.map */
