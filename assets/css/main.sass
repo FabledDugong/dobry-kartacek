@@ -4,6 +4,14 @@
 
 ::selection
   background: $grayer
+::-webkit-scrollbar-track
+  background: #fff
+::-webkit-scrollbar
+  width: 0.75vmin
+  background: #fff
+::-webkit-scrollbar-thumb
+  background: black
+
 body
   overflow-x: hidden
   font-family: $content-font
@@ -674,11 +682,3 @@ input
     transition: all .3s
   h3
     color: #fff
-
-::-webkit-scrollbar-track
-  background: #fff
-::-webkit-scrollbar
-  width: 0.75vmin
-  background: #fff
-::-webkit-scrollbar-thumb
-  background: black

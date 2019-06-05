@@ -9,14 +9,11 @@ if (!isset($_SESSION['shopping-cart']))
 else
     $cart = unserialize($_SESSION['shopping-cart']);
 
-//echo password_hash('S8Sob5hKpRMhce3g', PASSWORD_DEFAULT)
-
 ?>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dobrý kartáček</title>
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
@@ -32,8 +29,9 @@ else
 <body>
 <div id="modal">
     <div id="login">
-        <div id="login-control"><img src="assets/img/close.svg" data-role="button-modal-close" alt="close-button"
-                                     class="icon"></div>
+        <div id="login-control">
+            <img src="assets/img/close.svg" data-role="button-modal-close" alt="close-button" class="icon">
+        </div>
         <h3>přihlásit se</h3>
         <form action="assets/php/user_Login.php" method="post" name="login-form" id="login-form">
             <input required type="text" placeholder="E-mail" name="login-acc" id="login-acc" maxlength="30">
@@ -62,11 +60,11 @@ else
                 <input required type="text" placeholder="Telefonní číslo" name="signup-phone" id="signup-phone">
                 <div>
                     <input type="checkbox" id="consent-terms">
-                    <label for="consent-terms">Souhlasím s &#160;<a href="important.html#terms">Obchodními podmínkami</a>.</label>
+                    <label for="consent-terms">Souhlasím s &#160;<a href="important/index.html#terms">Obchodními podmínkami</a>.</label>
                 </div>
                 <div>
                     <input type="checkbox" id="consent-personal">
-                    <label for="consent-personal">Souhlasím se &#160;<a href="important.html#data">Zpracováním osobních údajů.</a></label>
+                    <label for="consent-personal">Souhlasím se &#160;<a href="important/index.html#data">Zpracováním osobních údajů.</a></label>
                 </div>
                 <input type="submit" value="Potvrdit registraci">
             </div>
@@ -92,7 +90,7 @@ else
 //                        }
                     echo '<a href="debugging/loginTest.php">administrace</a>';
                 ?>
-                <a href="assets/php/checkout.php" data-role="button-open-cart" id="ct">košík</a>
+                <a href="checkout/index.php" data-role="button-open-cart" id="ct">košík</a>
             </div>
         </nav>
 
@@ -230,17 +228,17 @@ else
                 <div>
                     <h3>důležité odkazy</h3>
                     <ul>
-                        <li><a href="important.html#terms" target="_blank">obchodní podmínky</a></li>
-                        <li><a href="important.html#data">zpracování osobních údajů</a></li>
-                        <li><a href="">o nás</a></li>
+                        <li><a href="important/index.html#terms" target="_blank">obchodní podmínky</a></li>
+                        <li><a href="important/index.html#data">reklamační řád</a></li>
+                        <li><a href=""></a>zpracování osobních údajů</li>
                     </ul>
                 </div>
                 <div>
                     <h3>jak nakoupit</h3>
                     <ul>
-                        <li><a href="important.html#options">možnosti dopravy</a></li>
-                        <li><a href="important.html#options">možnosti platby</a></li>
-                        <li><a href="important.html#complaints">reklamace a vrácení</a></li>
+                        <li><a href="important/index.html#optionsp">možnosti dopravy</a></li>
+                        <li><a href="important/index.html#optionst">možnosti platby</a></li>
+                        <li><a href="important/index.html#optionsc">možnosti reklamace a vrácení</a></li>
                     </ul>
                 </div>
             </div>

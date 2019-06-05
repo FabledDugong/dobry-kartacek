@@ -1,9 +1,9 @@
 'use strict'
 
-const _tabs = [ ...document.querySelectorAll( '#profile-control #menu .tab' ) ],
-    _content = [ ...document.querySelectorAll( '#profile-content section' ) ]
+const   _tabs = [ ...document.querySelectorAll('#profile-control #menu .tab')],
+        _content = [ ...document.querySelectorAll('#profile-content section')]
 
-_tabs.map( e => e.addEventListener( 'click', () => {
+_tabs.map( e => e.addEventListener('click', () => {
 
     for ( let c of _content )
         ( e.dataset.target === c.id )

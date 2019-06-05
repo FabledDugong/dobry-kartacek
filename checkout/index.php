@@ -1,5 +1,5 @@
 <?php
-include 'includes/config.php';
+include '../assets/php/includes/config.php';
 
 if (!isset($_SESSION['shopping-cart']))
     $cart = new ShoppingCart();
@@ -10,18 +10,25 @@ else
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="../css/control.css">
+    <title>Dobrý kartáček - nákup</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/control.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+    <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#000000">
+    <meta name="apple-mobile-web-app-title" content="Dobr&yacute; kart&aacute;ček">
+    <meta name="application-name" content="Dobr&yacute; kart&aacute;ček">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 <header>
     <nav id="navigation">
         <div>
             <div id="brand">
-                <a><img src="../img/dk_logo.svg" alt="logo" class="logo"></a>
+                <a><img src="../assets/img/dk_logo.svg" alt="logo" class="logo"></a>
             </div>
 
         </div>
@@ -120,6 +127,6 @@ else
     <!--        </div>-->
     <!--    </section>-->
 </main>
-<script type="text/javascript" src="../js/checkout.js"></script>
+<script type="text/javascript" src="../assets/js/checkout.js"></script>
 </body>
 </html>
