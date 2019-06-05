@@ -1,3 +1,4 @@
+@charset "UTF-8";
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, input, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   vertical-align: baseline;
   margin: 0;
@@ -70,15 +71,26 @@ html {
 @font-face {
   src: url("../font/Dosis-Medium.ttf") format("truetype");
   font-family: "Dosis-Medium"; }
+::selection {
+  background: #BCBCBC; }
+
 ::-webkit-scrollbar-track {
-  background: transparent !important; }
+  background: transparent; }
 
 ::-webkit-scrollbar {
   width: 0.75vmin;
-  background: transparent !important; }
+  background: transparent; }
 
 ::-webkit-scrollbar-thumb {
   background: black; }
+
+.logo {
+  width: 6vmin;
+  height: 6vmin; }
+
+.icon {
+  width: 5vmin;
+  height: 5vmin; }
 
 body {
   overflow: hidden;
@@ -87,67 +99,6 @@ body {
   width: 100vw;
   height: 100%;
   font-family: "Roboto-Regular", sans-serif; }
-
-section {
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-  height: fit-content !important;
-  padding: 0 0 5vmin !important; }
-  section h2 {
-    font-size: 4vmin;
-    text-transform: uppercase; }
-  section h3 {
-    margin: 1vmin 0 1vmin; }
-  section h4 {
-    margin: 1vmin 0 1vmin;
-    font-size: 2vmin;
-    text-transform: uppercase;
-    color: #DD3B4E; }
-    section h4:first-of-type {
-      margin-top: 0; }
-  section p {
-    margin: 0 0 2.5vmin;
-    line-height: 1.25;
-    text-align: justify; }
-    section p:last-of-type {
-      margin: 0; }
-  section ol {
-    margin: 0 0 2.5vmin 5vmin;
-    list-style: outside lower-alpha;
-    line-height: 1.25;
-    font-size: 2vmin; }
-    section ol > ol {
-      list-style: outside lower-roman; }
-  section .methods {
-    display: flex;
-    flex-direction: row;
-    margin: 2.5vmin 0 0; }
-    section .methods .method {
-      display: flex;
-      flex-direction: column;
-      width: 33.33%;
-      margin: 0 5vmin 0 0;
-      padding: 2.5vmin;
-      border: 0.1vmin solid #52c234; }
-      section .methods .method h4 {
-        color: #BCBCBC; }
-      section .methods .method p {
-        line-height: 1.1; }
-      section .methods .method ul {
-        margin: 1vmin 0 0 2.5vmin; }
-        section .methods .method ul li {
-          margin: 0 0 0.75vmin;
-          line-height: 1.1;
-          font-size: 1.75vmin; }
-      section .methods .method mark {
-        color: #DD3B4E; }
-
-main {
-  overflow-y: scroll !important;
-  width: 75%;
-  height: 100% !important;
-  padding: 5vmin 5vmin 5vmin 0; }
 
 #navigation {
   display: flex;
@@ -190,6 +141,7 @@ main {
         margin: 0; }
   #navigation ul li {
     margin: 0 0 1vmin;
+    line-height: 1.1;
     font-family: "Dosis-ExtraBold", sans-serif;
     font-size: 2vmin;
     text-transform: uppercase; }
@@ -212,9 +164,118 @@ main {
           font-size: 1.5vmin; }
         #navigation ul li ul li a {
           color: #BCBCBC !important; }
+          #navigation ul li ul li a:hover {
+            color: #52c234 !important;
+            transition: color 0.5s; }
+          #navigation ul li ul li a:not(:hover) {
+            transition: color 0.5s; }
 
-.icon {
-  width: 5vmin;
-  height: 5vmin; }
+#content {
+  overflow-y: scroll;
+  width: 75%;
+  height: 100%;
+  padding: 5vmin 5vmin 5vmin 0; }
+  #content section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    padding: 0 0 5vmin; }
+    #content section h2, #content section h3, #content section h4 {
+      font-family: "Dosis-ExtraBold", sans-serif;
+      text-transform: uppercase; }
+    #content section h2 {
+      font-size: 4vmin; }
+    #content section h3 {
+      margin: 1vmin 0 1vmin;
+      font-size: 2.5vmin;
+      color: #52c234; }
+    #content section h4 {
+      margin: 1vmin 0;
+      font-size: 2vmin;
+      color: #DD3B4E; }
+      #content section h4:first-of-type {
+        margin-top: 0; }
+    #content section p {
+      margin: 0 0 1vmin;
+      font-size: 1.5vmin;
+      line-height: 1.25;
+      text-align: justify; }
+      #content section p:last-of-type {
+        margin: 0; }
+    #content section ol {
+      margin: 0 0 0 5vmin;
+      list-style: outside lower-alpha;
+      line-height: 1.25;
+      font-size: 1.5vmin; }
+      #content section ol:not(:last-child) {
+        margin-bottom: 1vmin; }
+      #content section ol li {
+        margin: 0.5vmin 0; }
+        #content section ol li:last-of-type {
+          margin-bottom: 0; }
+      #content section ol > ol {
+        margin-bottom: 0;
+        list-style: outside lower-roman; }
+    #content section address {
+      margin: 0 0 1vmin 5vmin;
+      line-height: 1.25;
+      white-space: pre-wrap;
+      font-size: 1.5vmin;
+      font-style: italic; }
+    #content section .methods {
+      display: flex;
+      flex-direction: row;
+      margin: 2.5vmin 0 0; }
+      #content section .methods .method {
+        display: flex;
+        flex-direction: column;
+        width: 33.33%;
+        margin: 0 5vmin 0 0;
+        padding: 2.5vmin;
+        border: 0.1vmin solid #52c234; }
+        #content section .methods .method h4 {
+          color: #BCBCBC; }
+        #content section .methods .method p {
+          line-height: 1.1; }
+        #content section .methods .method ul {
+          margin: 1vmin 0 0 2.5vmin; }
+          #content section .methods .method ul li {
+            margin: 0 0 0.75vmin;
+            line-height: 1.1;
+            font-size: 1.75vmin; }
+        #content section .methods .method mark {
+          background: transparent;
+          color: #DD3B4E; }
+
+@media (max-width: 1024px) {
+  * {
+    display: none; }
+
+  html {
+    display: block; }
+    html body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10vmin;
+      background: #52c234; }
+      html body nav {
+        display: none !important; }
+      html body:before {
+        content: "";
+        background: url("../img/dk_logo.svg") no-repeat center center/contain;
+        width: 10vmin;
+        height: 10vmin;
+        margin: 0 0 2.5vmin; }
+      html body:after {
+        content: "Omlouváme se, ale optimalizace pro toto rozlišení je ve vývoji. Prosím použijte zařízení s větším displejem.";
+        line-height: 1.1;
+        font-family: "Dosis-ExtraBold", sans-serif;
+        font-size: 5vmin;
+        text-transform: uppercase;
+        text-align: justify;
+        color: black; } }
 
 /*# sourceMappingURL=important.css.map */
