@@ -12,13 +12,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Dobrý kartáček - uživatelský profil</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/profile.css">
 </head>
 <body>
 <nav id="profile-control">
     <div id="brand">
-        <a href="index.php">
-            <img class="logo" alt="logo" src="assets/img/dk_logo.svg">
+        <a href="../index.php">
+            <img class="logo" alt="logo" src="../assets/img/dk_logo.svg">
         </a>
     </div>
     <div id="menu">
@@ -26,7 +26,7 @@
             <li class="tab active" data-target="profile">Profil</li>
             <li class="tab" data-target="orders">Objednávky</li>
             <li class="tab" data-target="messages">Dotazy</li>
-            <li id="logout"><a href="assets/php/handlers/user/logout.php">Odhlásit se</a></li>
+            <li id="logout"><a href="../assets/php/handlers/user/logout.php">Odhlásit se</a></li>
         </ul>
     </div>
     <div id="copy">
@@ -93,6 +93,6 @@
         prdelka
     </section>
 </main>
-<script type="text/javascript" src="assets/js/profile.js"></script>
+<script type="text/javascript" src="../assets/js/profile.js"></script>
 </body>
 </html>
